@@ -80,6 +80,16 @@
             align-items: center;
         }
 
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
         .logo {
             font-weight: 900;
             font-size: 1.5rem;
@@ -162,9 +172,10 @@
         }
 
         .section-title {
-            font-size: 3.5rem;
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
             font-weight: 900;
             letter-spacing: -1px;
+            word-break: break-word;
         }
 
         .filter-buttons {
@@ -194,7 +205,7 @@
 
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr));
             gap: 35px;
         }
 
@@ -523,10 +534,54 @@
 
             .nav-links {
                 display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(12px);
+                padding: 20px 0;
+                gap: 0;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links li {
+                text-align: center;
+                padding: 12px 20px;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
             }
 
             .contact-container {
-                padding: 40px;
+                padding: 30px 20px;
+            }
+
+            .about-text h2 {
+                font-size: 2.5rem;
+            }
+
+            .social-links {
+                gap: 10px;
+            }
+
+            .social-link {
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+
+            .modal-content {
+                padding: 20px;
+                border-radius: 20px;
             }
         }
     </style>
@@ -538,10 +593,15 @@
         <div class="container">
             <nav>
                 <div class="logo">MOACYR.ART</div>
+                <button class="menu-toggle"
+                    onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
                 <ul class="nav-links">
-                    <li><a href="#portfolio" data-i18n="nav_portfolio">Portfólio</a></li>
-                    <li><a href="#about" data-i18n="nav_about">Sobre</a></li>
-                    <li><a href="#contact" data-i18n="nav_contact">Contato</a></li>
+                    <li><a href="#portfolio" data-i18n="nav_portfolio"
+                            onclick="document.querySelector('.nav-links').classList.remove('open')">Portfólio</a></li>
+                    <li><a href="#about" data-i18n="nav_about"
+                            onclick="document.querySelector('.nav-links').classList.remove('open')">Sobre</a></li>
+                    <li><a href="#contact" data-i18n="nav_contact"
+                            onclick="document.querySelector('.nav-links').classList.remove('open')">Contato</a></li>
                     <li><button class="lang-toggle" id="langToggle" onclick="toggleLanguage()">EN 🌐</button></li>
                 </ul>
             </nav>
@@ -646,9 +706,6 @@
                 <div class="section-header" style="text-align: center;">
                     <span class="section-tag" data-i18n="contact_tag">Pronto para começar?</span>
                     <h2 class="section-title" data-i18n="contact_title">Vamos dar movimento ao seu projeto</h2>
-                    <a href="mailto:moacyr20neto@gmail.com" class="contact-email">
-                        ✉ moacyr20neto@gmail.com
-                    </a>
                 </div>
                 <form class="contact-form">
                     <div class="form-group"><input type="text" data-i18n-ph="ph_name" placeholder="Seu Nome" required>
