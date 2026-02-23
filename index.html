@@ -562,21 +562,22 @@
 
         .marquee-wrapper {
             overflow: hidden;
-            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
             margin-bottom: 8px;
         }
 
         .marquee-track {
             display: flex;
             align-items: center;
-            gap: 60px;
+            gap: 40px;
             width: max-content;
-            animation: marqueeScroll 22s linear infinite;
+            /* A duração é controlada via JS baseado na largura real */
+            animation: marqueeScroll var(--duration, 25s) linear infinite;
         }
 
         .marquee-reverse {
-            animation: marqueeScrollReverse 22s linear infinite;
+            animation: marqueeScrollReverse var(--duration, 25s) linear infinite;
         }
 
         .marquee-wrapper:hover .marquee-track {
@@ -611,13 +612,13 @@
         }
 
         @keyframes marqueeScroll {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         @keyframes marqueeScrollReverse {
-            from { transform: translateX(-50%); }
-            to   { transform: translateX(0); }
+            0%   { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
         }
 
         @media (max-width: 992px) {
@@ -1113,7 +1114,37 @@
 
         document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
-        // ====== Filtro de Projetos ======
+        // ====== Marquee Seamless Fix ======
+        (function () {
+            function setupMarquee(track) {
+                const wrapper = track.parentElement;
+                const wrapperWidth = wrapper.offsetWidth;
+
+                // Clona itens até ter pelo menos 3x a largura da tela
+                const originalItems = Array.from(track.children);
+                const originalCount = originalItems.length;
+
+                // Garante que temos itens suficientes para preencher a tela sem gaps
+                let totalWidth = track.scrollWidth;
+                while (totalWidth < wrapperWidth * 3) {
+                    originalItems.forEach(item => {
+                        track.appendChild(item.cloneNode(true));
+                    });
+                    totalWidth = track.scrollWidth;
+                }
+
+                // Calcula duração proporcional à largura (velocidade constante ~80px/s)
+                const halfWidth = track.scrollWidth / 2;
+                const duration = halfWidth / 80;
+                track.style.setProperty('--duration', duration + 's');
+                track.style.animationDuration = duration + 's';
+            }
+
+            // Roda após render
+            window.addEventListener('load', () => {
+                document.querySelectorAll('.marquee-track').forEach(setupMarquee);
+            });
+        })();
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projects = document.querySelectorAll('.project-card');
 
