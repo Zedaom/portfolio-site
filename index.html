@@ -495,9 +495,46 @@
             to { width: 55px; }
         }
 
-        /* Impede scroll durante splash */
-        body.splash-active {
-            overflow: hidden;
+        /* --- Transition Overlay (após splash) --- */
+        #transitionOverlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        #transitionOverlay video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #transitionOverlay.playing {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* --- Cards com vídeo autoplay --- */
+        .project-image-container {
+            position: relative;
+        }
+
+        .project-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-video.loaded {
+            opacity: 1;
         }
 
         @media (max-width: 992px) {
@@ -583,6 +620,15 @@
         </div>
     </div>
 
+    <!-- Animação de transição entre splash e Hero -->
+    <!-- Coloque transition.mov e transition.webm na mesma pasta do index.html -->
+    <div id="transitionOverlay">
+        <video id="transitionVideo" muted playsinline>
+            <source src="transition.mov" type='video/mp4; codecs="hvc1"'>
+            <source src="transition.webm" type="video/webm">
+        </video>
+    </div>
+
     <!-- Toast de confirmação -->
     <div class="toast" id="toast">✅ Mensagem enviada!</div>
 
@@ -634,6 +680,12 @@
                     onclick="openProjectI18n(this, 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
                     <div class="project-image-container">
                         <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" alt="Motion" class="project-image">
+                        <!-- preview-motion.mov (iOS) + preview-motion.webm (Android/Chrome) -->
+                        <video class="project-video" autoplay muted loop playsinline
+                            oncanplay="this.classList.add('loaded')">
+                            <source src="preview-motion.mov" type='video/mp4; codecs="hvc1"'>
+                            <source src="preview-motion.webm" type="video/webm">
+                        </video>
                     </div>
                     <div class="project-info">
                         <span class="project-category">Motion Design</span>
@@ -646,6 +698,12 @@
                     onclick="openProjectI18n(this, 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
                     <div class="project-image-container">
                         <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Clean up" class="project-image">
+                        <!-- preview-cleanup.mov (iOS) + preview-cleanup.webm (Android/Chrome) -->
+                        <video class="project-video" autoplay muted loop playsinline
+                            oncanplay="this.classList.add('loaded')">
+                            <source src="preview-cleanup.mov" type='video/mp4; codecs="hvc1"'>
+                            <source src="preview-cleanup.webm" type="video/webm">
+                        </video>
                     </div>
                     <div class="project-info">
                         <span class="project-category">Clean Up</span>
@@ -658,6 +716,12 @@
                     onclick="openProjectI18n(this, 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
                     <div class="project-image-container">
                         <img src="https://images.unsplash.com/photo-1633533412154-53afb7875b28?auto=format&fit=crop&w=800&q=80" alt="2D Animation" class="project-image">
+                        <!-- preview-2d.mov (iOS) + preview-2d.webm (Android/Chrome) -->
+                        <video class="project-video" autoplay muted loop playsinline
+                            oncanplay="this.classList.add('loaded')">
+                            <source src="preview-2d.mov" type='video/mp4; codecs="hvc1"'>
+                            <source src="preview-2d.webm" type="video/webm">
+                        </video>
                     </div>
                     <div class="project-info">
                         <span class="project-category" data-i18n="filter_2d">Animação 2D</span>
@@ -745,16 +809,40 @@
     </div>
 
     <script>
-        // ====== Splash Screen ======
+        // ====== Splash Screen + Transição ======
         (function () {
             document.body.classList.add('splash-active');
 
-            const splash = document.getElementById('splash');
+            const splash        = document.getElementById('splash');
+            const overlay       = document.getElementById('transitionOverlay');
+            const transVideo    = document.getElementById('transitionVideo');
+
+            function showHero() {
+                // Remove overlay e libera o hero para aparecer
+                overlay.classList.remove('playing');
+                setTimeout(() => overlay.remove(), 500);
+            }
+
+            function playTransition() {
+                // Se não tiver o arquivo, pula direto pro hero
+                if (!transVideo.src || transVideo.readyState === 0) {
+                    showHero();
+                    return;
+                }
+                overlay.classList.add('playing');
+                transVideo.play();
+                transVideo.addEventListener('ended', showHero, { once: true });
+                // Fallback: se o vídeo travar, remove após 8s
+                setTimeout(showHero, 8000);
+            }
 
             function dismissSplash() {
                 splash.classList.add('slide-up');
                 document.body.classList.remove('splash-active');
-                splash.addEventListener('transitionend', () => splash.remove(), { once: true });
+                splash.addEventListener('transitionend', () => {
+                    splash.remove();
+                    playTransition();
+                }, { once: true });
             }
 
             // Dispara após as animações de texto terminarem (~2.2s)
