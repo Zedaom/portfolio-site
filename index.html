@@ -413,28 +413,25 @@
             background: #000;
             z-index: 99999;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
+            padding-left: 12vw;
             transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
         }
 
-        #splash.glitch-out {
-            animation: fadeOut 0.8s ease forwards;
-        }
-
-        @keyframes fadeOut {
-            0%   { opacity: 1; }
-            100% { opacity: 0; pointer-events: none; }
+        #splash.slide-up {
+            transform: translateY(-100%);
         }
 
         .splash-logo {
-            font-size: clamp(2.5rem, 10vw, 6rem);
+            font-size: clamp(2.5rem, 8vw, 6rem);
             font-weight: 900;
-            letter-spacing: -3px;
+            letter-spacing: -2px;
             color: #fff;
-            overflow: hidden;
             display: flex;
-            gap: 0;
+            align-items: center;
+            line-height: 1;
         }
 
         .splash-logo span {
@@ -444,34 +441,57 @@
             animation: letterUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
 
-        .splash-title {
-            font-size: clamp(0.75rem, 2vw, 1rem);
-            font-weight: 400;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            color: var(--accent-color);
+        .splash-dot {
+            display: inline-block;
+            width: clamp(10px, 1.2vw, 18px);
+            height: clamp(10px, 1.2vw, 18px);
+            background: var(--accent-color);
+            border-radius: 50%;
+            margin: 0 1px;
             opacity: 0;
-            animation: fadeInUp 0.6s ease 1s forwards;
+            transform: scale(0);
+            animation: dotPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.42s forwards;
+        }
+
+        .splash-divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 16px;
+            opacity: 0;
+            animation: fadeInSub 0.5s ease 1.1s forwards;
         }
 
         .splash-line {
+            height: 1.5px;
             width: 0;
-            height: 2px;
             background: var(--accent-color);
-            animation: lineExpand 0.7s ease 0.8s forwards;
-            border-radius: 2px;
+            animation: lineExpand 0.6s ease 1s forwards;
+        }
+
+        .splash-title {
+            font-size: clamp(0.55rem, 1vw, 0.8rem);
+            font-weight: 400;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            white-space: nowrap;
         }
 
         @keyframes letterUp {
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeInUp {
+        @keyframes dotPop {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeInSub {
             to { opacity: 1; }
         }
 
         @keyframes lineExpand {
-            to { width: 80px; }
+            to { width: 55px; }
         }
 
         /* Impede scroll durante splash */
@@ -518,10 +538,12 @@
     <!-- Splash Screen -->
     <div id="splash">
         <div class="splash-logo">
-            <span style="animation-delay:0.1s">M</span><span style="animation-delay:0.15s">O</span><span style="animation-delay:0.2s">A</span><span style="animation-delay:0.25s">C</span><span style="animation-delay:0.3s">Y</span><span style="animation-delay:0.35s">R</span><span style="color:var(--accent-color);animation-delay:0.42s">.</span><span style="animation-delay:0.48s">A</span><span style="animation-delay:0.53s">R</span><span style="animation-delay:0.58s">T</span>
+            <span style="animation-delay:0.1s">M</span><span style="animation-delay:0.15s">O</span><span style="animation-delay:0.2s">A</span><span style="animation-delay:0.25s">C</span><span style="animation-delay:0.3s">Y</span><span style="animation-delay:0.35s">R</span><div class="splash-dot"></div><span style="animation-delay:0.48s">A</span><span style="animation-delay:0.53s">R</span><span style="animation-delay:0.58s">T</span>
         </div>
-        <div class="splash-line"></div>
-        <div class="splash-title">Motion Design &amp; 2D Animator</div>
+        <div class="splash-divider">
+            <div class="splash-line"></div>
+            <div class="splash-title">Motion Design &amp; 2D Artist</div>
+        </div>
     </div>
 
     <!-- Toast de confirmação -->
@@ -530,7 +552,7 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">Moacyr Neto</div>
+                <div class="logo">MOACYR.ART</div>
                 <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
                 <ul class="nav-links">
                     <li><a href="#portfolio" data-i18n="nav_portfolio" onclick="document.querySelector('.nav-links').classList.remove('open')">Portfólio</a></li>
@@ -543,11 +565,11 @@
     </header>
 
     <section class="hero">
-        <div class="container" style="z-index: 1;">
-            <span class="section-tag" style="color:#fff; opacity:0.5; margin-bottom:20px;">Moacyr Neto</span>
-            <h1 class="reveal">Motion <br>& 2D Artist</h1>
-            <p class="reveal" data-i18n="hero_desc">Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.</p>
-            <div class="reveal">
+        <div class="container" style="z-index: 1; text-align: right;">
+            <span class="section-tag" style="color:#fff; opacity:0.5; margin-bottom:20px; display:block;">Moacyr Neto</span>
+            <h1 class="reveal-right" style="transition-delay: 0.1s;">Motion <br>& 2D Artist</h1>
+            <p class="reveal-right" data-i18n="hero_desc" style="margin-left:auto; margin-right:0; transition-delay: 0.25s;">Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.</p>
+            <div class="reveal-right" style="transition-delay: 0.4s;">
                 <a href="#portfolio" class="filter-btn active" style="text-decoration:none; display:inline-block;" data-i18n="hero_cta">Explorar Projetos</a>
             </div>
         </div>
@@ -693,9 +715,9 @@
             const splash = document.getElementById('splash');
 
             function dismissSplash() {
-                splash.classList.add('glitch-out');
+                splash.classList.add('slide-up');
                 document.body.classList.remove('splash-active');
-                splash.addEventListener('animationend', () => splash.remove(), { once: true });
+                splash.addEventListener('transitionend', () => splash.remove(), { once: true });
             }
 
             // Dispara após as animações de texto terminarem (~2.2s)
@@ -842,4 +864,3 @@
 </body>
 
 </html>
-
