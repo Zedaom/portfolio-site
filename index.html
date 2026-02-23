@@ -649,8 +649,8 @@
 
     <section class="hero">
         <div class="container" style="z-index: 1; text-align: center;">
-            <span class="section-tag" style="color:#fff; opacity:0.5; margin-bottom:20px; display:block;">Moacyr Neto</span>
-            <h1 class="reveal" style="transition-delay: 0.1s;">Motion <br>& 2D Artist</h1>
+            <span class="section-tag" data-i18n="hero_name" style="color:#fff; opacity:0.5; margin-bottom:20px; display:block;">Moacyr Neto</span>
+            <h1 class="reveal" data-i18n="hero_title" style="transition-delay: 0.1s;">Motion <br>& 2D Artist</h1>
             <p class="reveal" data-i18n="hero_desc" style="margin-left:auto; margin-right:auto; transition-delay: 0.25s;">Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.</p>
             <div class="reveal" style="transition-delay: 0.4s;">
                 <a href="#portfolio" class="filter-btn active" style="text-decoration:none; display:inline-block;" data-i18n="hero_cta">Explorar Projetos</a>
@@ -667,8 +667,8 @@
 
             <div class="filter-buttons reveal">
                 <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Todos</button>
-                <button class="filter-btn" data-filter="motion">Motion Design</button>
-                <button class="filter-btn" data-filter="cleanup">Clean Up</button>
+                <button class="filter-btn" data-filter="motion" data-i18n="filter_motion">Motion Design</button>
+                <button class="filter-btn" data-filter="cleanup" data-i18n="filter_cleanup">Clean Up</button>
                 <button class="filter-btn" data-filter="2d" data-i18n="filter_2d">Animação 2D</button>
             </div>
 
@@ -755,16 +755,11 @@
                     <span class="section-tag" data-i18n="contact_tag">Pronto para começar?</span>
                     <h2 class="section-title" data-i18n="contact_title">Vamos dar movimento ao seu projeto</h2>
                 </div>
-                <form class="contact-form" action="https://formsubmit.co/moacyr20neto@gmail.com" method="POST">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_subject" value="Nova mensagem do portfólio!">
-                    <input type="hidden" name="_template" value="table">
-                    <!-- URL atualizada com parâmetro para exibir toast ao retornar -->
-                    <input type="hidden" name="_next" value="https://portfolio-site-sable-two.vercel.app/?enviado=true">
-                    <div class="form-group"><input type="text" name="name" data-i18n-ph="ph_name" placeholder="Seu Nome" required></div>
-                    <div class="form-group"><input type="email" name="email" data-i18n-ph="ph_email" placeholder="Seu E-mail" required></div>
-                    <div class="form-group"><textarea name="message" data-i18n-ph="ph_message" placeholder="Conte-me sobre o seu projeto..." rows="6" required></textarea></div>
-                    <button type="submit" class="btn-submit" data-i18n="contact_btn">Enviar Mensagem</button>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group"><input type="text" name="name" id="fieldName" data-i18n-ph="ph_name" placeholder="Seu Nome" required></div>
+                    <div class="form-group"><input type="email" name="email" id="fieldEmail" data-i18n-ph="ph_email" placeholder="Seu E-mail" required></div>
+                    <div class="form-group"><textarea name="message" id="fieldMessage" data-i18n-ph="ph_message" placeholder="Conte-me sobre o seu projeto..." rows="6" required></textarea></div>
+                    <button type="submit" class="btn-submit" id="submitBtn" data-i18n="contact_btn">Enviar Mensagem</button>
                 </form>
             </div>
         </div>
@@ -849,22 +844,48 @@
             setTimeout(dismissSplash, 2200);
         })();
 
-        // ====== Toast de confirmação ======
-        (function () {
-            const params = new URLSearchParams(window.location.search);
-            if (params.get('enviado') === 'true') {
+        // ====== Formulário via Fetch (sem sair da página) ======
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const btn = document.getElementById('submitBtn');
+            const originalText = btn.textContent;
+            btn.textContent = currentLang === 'pt' ? 'Enviando...' : 'Sending...';
+            btn.disabled = true;
+
+            const data = new FormData();
+            data.append('name',    document.getElementById('fieldName').value);
+            data.append('email',   document.getElementById('fieldEmail').value);
+            data.append('message', document.getElementById('fieldMessage').value);
+            data.append('_subject', 'Nova mensagem do portfólio!');
+            data.append('_captcha', 'false');
+            data.append('_template', 'table');
+
+            try {
+                await fetch('https://formsubmit.co/ajax/moacyr20neto@gmail.com', {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: data
+                });
+
+                // Limpa o formulário
+                document.getElementById('contactForm').reset();
+
+                // Mostra o toast de confirmação
                 const toast = document.getElementById('toast');
-                // Força reflow antes de adicionar a classe para garantir a animação
+                toast.textContent = translations[currentLang].toast_msg;
                 requestAnimationFrame(() => {
                     toast.classList.add('show');
-                    setTimeout(() => {
-                        toast.classList.remove('show');
-                    }, 4000);
+                    setTimeout(() => toast.classList.remove('show'), 4000);
                 });
-                // Limpa o parâmetro da URL sem recarregar a página
-                history.replaceState(null, '', window.location.pathname);
+
+            } catch (err) {
+                alert(currentLang === 'pt' ? 'Erro ao enviar. Tente novamente.' : 'Error sending. Please try again.');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
             }
-        })();
+        });
 
         // ====== i18n Translation System ======
         let currentLang = 'pt';
@@ -874,11 +895,15 @@
                 nav_portfolio: 'Portfolio',
                 nav_about: 'About',
                 nav_contact: 'Contact',
+                hero_name: 'Moacyr Neto',
+                hero_title: 'Motion <br>& 2D Artist',
                 hero_desc: 'Specialist in dynamic Motion Design, high-precision Clean Up, and narrative 2D Animations.',
                 hero_cta: 'Explore Projects',
                 portfolio_tag: 'Featured Work',
                 portfolio_title: 'My Portfolio MIX',
                 filter_all: 'All',
+                filter_motion: 'Motion Design',
+                filter_cleanup: 'Clean Up',
                 filter_2d: '2D Animation',
                 about_tag: 'My Journey',
                 about_title: 'Bringing <br><span style="color:var(--accent-color)">Ideas</span> to Life.',
@@ -890,17 +915,22 @@
                 footer_copy: '&copy; 2024 Moacyr Neto. All rights reserved.',
                 ph_name: 'Your Name',
                 ph_email: 'Your E-mail',
-                ph_message: 'Tell me about your project...'
+                ph_message: 'Tell me about your project...',
+                toast_msg: '✅ Message sent!'
             },
             pt: {
                 nav_portfolio: 'Portfólio',
                 nav_about: 'Sobre',
                 nav_contact: 'Contato',
+                hero_name: 'Moacyr Neto',
+                hero_title: 'Motion <br>& 2D Artist',
                 hero_desc: 'Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.',
                 hero_cta: 'Explorar Projetos',
                 portfolio_tag: 'Trabalhos em Destaque',
                 portfolio_title: 'Meu Portfólio MIX',
                 filter_all: 'Todos',
+                filter_motion: 'Motion Design',
+                filter_cleanup: 'Clean Up',
                 filter_2d: 'Animação 2D',
                 about_tag: 'Minha Jornada',
                 about_title: 'Dando Vida a <br><span style="color:var(--accent-color)">Ideias</span>.',
@@ -912,7 +942,8 @@
                 footer_copy: '&copy; 2024 Moacyr Neto. Todos os direitos reservados.',
                 ph_name: 'Seu Nome',
                 ph_email: 'Seu E-mail',
-                ph_message: 'Conte-me sobre o seu projeto...'
+                ph_message: 'Conte-me sobre o seu projeto...',
+                toast_msg: '✅ Mensagem enviada!'
             }
         };
 
@@ -925,6 +956,9 @@
                 const key = el.getAttribute('data-i18n-ph');
                 if (translations[lang][key]) el.placeholder = translations[lang][key];
             });
+            // Atualiza toast
+            const toast = document.getElementById('toast');
+            if (toast) toast.textContent = translations[lang].toast_msg;
             document.documentElement.lang = lang === 'pt' ? 'pt-br' : 'en';
         }
 
