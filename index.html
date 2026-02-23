@@ -537,6 +537,69 @@
             opacity: 1;
         }
 
+        /* --- Clients Marquee --- */
+        .clients {
+            padding: 60px 0;
+            overflow: hidden;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .clients-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .marquee-wrapper {
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        }
+
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: max-content;
+            animation: marqueeScroll 20s linear infinite;
+        }
+
+        .marquee-wrapper:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        .marquee-track img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+            opacity: 0.85;
+            transition: opacity 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .marquee-track img:hover { opacity: 1; }
+
+        .logo-placeholder {
+            height: 40px;
+            padding: 0 24px;
+            background: var(--secondary-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            color: var(--muted-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        @keyframes marqueeScroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+
         @media (max-width: 992px) {
             .about-wrap { grid-template-columns: 1fr; gap: 40px; }
         }
@@ -654,6 +717,32 @@
             <p class="reveal" data-i18n="hero_desc" style="margin-left:auto; margin-right:auto; transition-delay: 0.25s;">Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.</p>
             <div class="reveal" style="transition-delay: 0.4s;">
                 <a href="#portfolio" class="filter-btn active" style="text-decoration:none; display:inline-block;" data-i18n="hero_cta">Explorar Projetos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Empresas / Clientes -->
+    <section class="clients">
+        <div class="clients-header reveal">
+            <span class="section-tag" data-i18n="clients_tag">Empresas & Clientes</span>
+        </div>
+        <div class="marquee-wrapper">
+            <div class="marquee-track">
+                <!-- Coloque as imagens dos logos aqui -->
+                <!-- Exemplo: <img src="logo-empresa.png" alt="Nome da Empresa"> -->
+                <div class="logo-placeholder">Empresa 1</div>
+                <div class="logo-placeholder">Empresa 2</div>
+                <div class="logo-placeholder">Empresa 3</div>
+                <div class="logo-placeholder">Empresa 4</div>
+                <div class="logo-placeholder">Empresa 5</div>
+                <div class="logo-placeholder">Empresa 6</div>
+                <!-- Duplicados para loop infinito -->
+                <div class="logo-placeholder">Empresa 1</div>
+                <div class="logo-placeholder">Empresa 2</div>
+                <div class="logo-placeholder">Empresa 3</div>
+                <div class="logo-placeholder">Empresa 4</div>
+                <div class="logo-placeholder">Empresa 5</div>
+                <div class="logo-placeholder">Empresa 6</div>
             </div>
         </div>
     </section>
@@ -899,7 +988,7 @@
                 hero_title: 'Motion <br>& 2D Artist',
                 hero_desc: 'Specialist in dynamic Motion Design, high-precision Clean Up, and narrative 2D Animations.',
                 hero_cta: 'Explore Projects',
-                portfolio_tag: 'Featured Work',
+                clients_tag: 'Companies & Clients',
                 portfolio_title: 'My Portfolio MIX',
                 filter_all: 'All',
                 filter_motion: 'Motion Design',
@@ -926,7 +1015,7 @@
                 hero_title: 'Motion <br>& 2D Artist',
                 hero_desc: 'Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.',
                 hero_cta: 'Explorar Projetos',
-                portfolio_tag: 'Trabalhos em Destaque',
+                clients_tag: 'Empresas & Clientes',
                 portfolio_title: 'Meu Portfólio MIX',
                 filter_all: 'Todos',
                 filter_motion: 'Motion Design',
