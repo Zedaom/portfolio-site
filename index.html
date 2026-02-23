@@ -4,7 +4,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- SEO Principal -->
     <title>Moacyr Neto | Motion Design & 2D Animation</title>
+    <meta name="description" content="Motion Designer & 2D Artist based in São Paulo, Brazil. Specialized in Motion Design, Clean Up and 2D Animation for studios and brands.">
+    <meta name="keywords" content="Moacyr Neto, Motion Design, Motion Designer, 2D Animation, Animação 2D, Clean Up, Animator, São Paulo, Mogi das Cruzes, Brazil">
+    <meta name="author" content="Moacyr Neto">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://portfolio-site-sable-two.vercel.app/">
+
+    <!-- Idiomas -->
+    <meta http-equiv="content-language" content="pt-BR, en">
+
+    <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://portfolio-site-sable-two.vercel.app/">
+    <meta property="og:title" content="Moacyr Neto | Motion Design & 2D Animation">
+    <meta property="og:description" content="Motion Designer & 2D Artist based in São Paulo, Brazil. Specialized in Motion Design, Clean Up and 2D Animation for studios and brands.">
+    <meta property="og:image" content="https://portfolio-site-sable-two.vercel.app/og-image.jpg">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:site_name" content="Moacyr Neto">
+
+    <!-- Twitter/X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Moacyr Neto | Motion Design & 2D Animation">
+    <meta name="twitter:description" content="Motion Designer & 2D Artist based in São Paulo, Brazil. Specialized in Motion Design, Clean Up and 2D Animation for studios and brands.">
+    <meta name="twitter:image" content="https://portfolio-site-sable-two.vercel.app/og-image.jpg">
+
+    <!-- Geolocalização -->
+    <meta name="geo.region" content="BR-SP">
+    <meta name="geo.placename" content="Mogi das Cruzes, São Paulo">
+
+    <!-- Schema.org (dados estruturados para o Google) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Moacyr Neto",
+        "jobTitle": "Motion Designer & 2D Artist",
+        "description": "Motion Designer & 2D Artist based in São Paulo, Brazil. Specialized in Motion Design, Clean Up and 2D Animation for studios and brands.",
+        "url": "https://portfolio-site-sable-two.vercel.app/",
+        "email": "moacyr20neto@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Mogi das Cruzes",
+            "addressRegion": "São Paulo",
+            "addressCountry": "BR"
+        },
+        "sameAs": [
+            "https://www.linkedin.com/in/moaneto/",
+            "https://www.instagram.com/moacyrneto_/",
+            "https://www.behance.net/moaneto"
+        ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Outfit:wght@300;400&display=swap" rel="stylesheet">
@@ -1120,27 +1174,22 @@
                 const wrapper = track.parentElement;
                 const wrapperWidth = wrapper.offsetWidth;
 
-                // Clona itens até ter pelo menos 3x a largura da tela
-                const originalItems = Array.from(track.children);
-                const originalCount = originalItems.length;
-
-                // Garante que temos itens suficientes para preencher a tela sem gaps
-                let totalWidth = track.scrollWidth;
-                while (totalWidth < wrapperWidth * 3) {
-                    originalItems.forEach(item => {
+                // Clona itens até ter pelo menos 2.5x a largura da tela
+                // Garante loop sem gaps independente de quantos logos tiver
+                let safety = 0;
+                while (track.scrollWidth < wrapperWidth * 2.5 && safety < 20) {
+                    Array.from(track.children).forEach(item => {
                         track.appendChild(item.cloneNode(true));
                     });
-                    totalWidth = track.scrollWidth;
+                    safety++;
                 }
 
-                // Calcula duração proporcional à largura (velocidade constante ~80px/s)
-                const halfWidth = track.scrollWidth / 2;
-                const duration = halfWidth / 80;
-                track.style.setProperty('--duration', duration + 's');
-                track.style.animationDuration = duration + 's';
+                // Velocidade sempre a mesma (30s) — confortável para ler os logos
+                // Quanto mais logos, mais suave parece. Poucos logos = mesma cadência.
+                const BASE_DURATION = 30; // segundos
+                track.style.animationDuration = BASE_DURATION + 's';
             }
 
-            // Roda após render
             window.addEventListener('load', () => {
                 document.querySelectorAll('.marquee-track').forEach(setupMarquee);
             });
