@@ -550,10 +550,21 @@
             margin-bottom: 40px;
         }
 
+        .clients-label {
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 16px;
+        }
+
         .marquee-wrapper {
             overflow: hidden;
             mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
             -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            margin-bottom: 8px;
         }
 
         .marquee-track {
@@ -561,7 +572,11 @@
             align-items: center;
             gap: 60px;
             width: max-content;
-            animation: marqueeScroll 20s linear infinite;
+            animation: marqueeScroll 22s linear infinite;
+        }
+
+        .marquee-reverse {
+            animation: marqueeScrollReverse 22s linear infinite;
         }
 
         .marquee-wrapper:hover .marquee-track {
@@ -598,6 +613,11 @@
         @keyframes marqueeScroll {
             from { transform: translateX(0); }
             to   { transform: translateX(-50%); }
+        }
+
+        @keyframes marqueeScrollReverse {
+            from { transform: translateX(-50%); }
+            to   { transform: translateX(0); }
         }
 
         @media (max-width: 992px) {
@@ -726,23 +746,40 @@
         <div class="clients-header reveal">
             <span class="section-tag" data-i18n="clients_tag">Empresas & Clientes</span>
         </div>
+
+        <!-- Trilho 1: Estúdios (vai para a esquerda) -->
+        <div class="clients-label reveal" data-i18n="clients_studios">Estúdios</div>
         <div class="marquee-wrapper">
             <div class="marquee-track">
-                <!-- Coloque as imagens dos logos aqui -->
-                <!-- Exemplo: <img src="logo-empresa.png" alt="Nome da Empresa"> -->
-                <div class="logo-placeholder">Empresa 1</div>
-                <div class="logo-placeholder">Empresa 2</div>
-                <div class="logo-placeholder">Empresa 3</div>
-                <div class="logo-placeholder">Empresa 4</div>
-                <div class="logo-placeholder">Empresa 5</div>
-                <div class="logo-placeholder">Empresa 6</div>
+                <div class="logo-placeholder">Colossal</div>
+                <div class="logo-placeholder">Estúdio 2</div>
+                <div class="logo-placeholder">Estúdio 3</div>
+                <div class="logo-placeholder">Estúdio 4</div>
+                <div class="logo-placeholder">Estúdio 5</div>
                 <!-- Duplicados para loop infinito -->
-                <div class="logo-placeholder">Empresa 1</div>
-                <div class="logo-placeholder">Empresa 2</div>
-                <div class="logo-placeholder">Empresa 3</div>
-                <div class="logo-placeholder">Empresa 4</div>
-                <div class="logo-placeholder">Empresa 5</div>
-                <div class="logo-placeholder">Empresa 6</div>
+                <div class="logo-placeholder">Colossal</div>
+                <div class="logo-placeholder">Estúdio 2</div>
+                <div class="logo-placeholder">Estúdio 3</div>
+                <div class="logo-placeholder">Estúdio 4</div>
+                <div class="logo-placeholder">Estúdio 5</div>
+            </div>
+        </div>
+
+        <!-- Trilho 2: Marcas (vai para a direita) -->
+        <div class="clients-label reveal" style="margin-top: 28px;" data-i18n="clients_brands">Marcas</div>
+        <div class="marquee-wrapper">
+            <div class="marquee-track marquee-reverse">
+                <div class="logo-placeholder">Havaianas</div>
+                <div class="logo-placeholder">Marca 2</div>
+                <div class="logo-placeholder">Marca 3</div>
+                <div class="logo-placeholder">Marca 4</div>
+                <div class="logo-placeholder">Marca 5</div>
+                <!-- Duplicados para loop infinito -->
+                <div class="logo-placeholder">Havaianas</div>
+                <div class="logo-placeholder">Marca 2</div>
+                <div class="logo-placeholder">Marca 3</div>
+                <div class="logo-placeholder">Marca 4</div>
+                <div class="logo-placeholder">Marca 5</div>
             </div>
         </div>
     </section>
@@ -989,6 +1026,8 @@
                 hero_desc: 'Specialist in dynamic Motion Design, high-precision Clean Up, and narrative 2D Animations.',
                 hero_cta: 'Explore Projects',
                 clients_tag: 'Companies & Clients',
+                clients_studios: 'Studios',
+                clients_brands: 'Brands',
                 portfolio_title: 'My Portfolio MIX',
                 filter_all: 'All',
                 filter_motion: 'Motion Design',
@@ -1016,6 +1055,8 @@
                 hero_desc: 'Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.',
                 hero_cta: 'Explorar Projetos',
                 clients_tag: 'Empresas & Clientes',
+                clients_studios: 'Estúdios',
+                clients_brands: 'Marcas',
                 portfolio_title: 'Meu Portfólio MIX',
                 filter_all: 'Todos',
                 filter_motion: 'Motion Design',
