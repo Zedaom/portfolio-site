@@ -707,12 +707,16 @@
                     <span class="section-tag" data-i18n="contact_tag">Pronto para começar?</span>
                     <h2 class="section-title" data-i18n="contact_title">Vamos dar movimento ao seu projeto</h2>
                 </div>
-                <form class="contact-form">
-                    <div class="form-group"><input type="text" data-i18n-ph="ph_name" placeholder="Seu Nome" required>
+                <form class="contact-form" action="https://formsubmit.co/moacyr20neto@gmail.com" method="POST">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="Nova mensagem do portfólio!">
+                    <input type="hidden" name="_template" value="table">
+                    <div class="form-group"><input type="text" name="name" data-i18n-ph="ph_name" placeholder="Seu Nome"
+                            required>
                     </div>
-                    <div class="form-group"><input type="email" data-i18n-ph="ph_email" placeholder="Seu E-mail"
-                            required></div>
-                    <div class="form-group"><textarea data-i18n-ph="ph_message"
+                    <div class="form-group"><input type="email" name="email" data-i18n-ph="ph_email"
+                            placeholder="Seu E-mail" required></div>
+                    <div class="form-group"><textarea name="message" data-i18n-ph="ph_message"
                             placeholder="Conte-me sobre o seu projeto..." rows="6" required></textarea></div>
                     <button type="submit" class="btn-submit" data-i18n="contact_btn">Enviar Mensagem</button>
                 </form>
