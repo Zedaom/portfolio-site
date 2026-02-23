@@ -413,62 +413,37 @@
             background: #000;
             z-index: 99999;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 20px;
             transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
         }
 
-        #splash.slide-up {
-            transform: translateY(-100%);
+        #splash.glitch-out {
+            animation: glitchExit 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
 
-        .splash-logo {
-            font-size: clamp(2.5rem, 10vw, 6rem);
-            font-weight: 900;
-            letter-spacing: -3px;
-            color: #fff;
-            overflow: hidden;
-            display: flex;
-            gap: 0;
+        @keyframes glitchExit {
+            0%   { transform: translate(0, 0) skewX(0deg); opacity: 1; clip-path: inset(0 0 0 0); }
+            10%  { transform: translate(-6px, 0) skewX(-4deg); clip-path: inset(10% 0 80% 0); }
+            15%  { transform: translate(6px, 0) skewX(4deg);  clip-path: inset(60% 0 20% 0); }
+            20%  { transform: translate(-4px, 0) skewX(0deg); clip-path: inset(30% 0 50% 0); }
+            25%  { transform: translate(0, 0);                clip-path: inset(0 0 0 0); opacity: 1; }
+            35%  { transform: translate(-8px, 2px) skewX(-6deg); filter: hue-rotate(90deg) brightness(1.5); clip-path: inset(5% 0 70% 0); }
+            40%  { transform: translate(8px, -2px) skewX(6deg);  filter: hue-rotate(180deg); clip-path: inset(50% 0 10% 0); }
+            50%  { transform: translate(0, 0) skewX(0deg); filter: none; clip-path: inset(0 0 0 0); opacity: 1; }
+            60%  { transform: translate(-12px, 0) skewX(-8deg); filter: brightness(2); clip-path: inset(20% 0 60% 0); opacity: 0.8; }
+            70%  { transform: translate(12px, 0) skewX(8deg);  filter: brightness(0.5) saturate(3); clip-path: inset(70% 0 5% 0); opacity: 0.6; }
+            80%  { transform: translate(-4px, 0) skewX(0deg); filter: none; opacity: 0.4; clip-path: inset(0 0 0 0); }
+            90%  { transform: translate(4px, 0) skewX(4deg); opacity: 0.2; clip-path: inset(40% 0 40% 0); }
+            100% { transform: translate(0, 0); opacity: 0; clip-path: inset(50% 0 50% 0); pointer-events: none; }
         }
 
-        .splash-logo span {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(60px);
-            animation: letterUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-        }
-
-        .splash-title {
-            font-size: clamp(0.75rem, 2vw, 1rem);
-            font-weight: 400;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            color: var(--accent-color);
-            opacity: 0;
-            animation: fadeInUp 0.6s ease 1s forwards;
-        }
-
-        .splash-line {
-            width: 0;
-            height: 2px;
-            background: var(--accent-color);
-            animation: lineExpand 0.7s ease 0.8s forwards;
-            border-radius: 2px;
-        }
-
-        @keyframes letterUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; }
-        }
-
-        @keyframes lineExpand {
-            to { width: 80px; }
+        #splashVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* mix-blend-mode garante que o alpha do WebM funcione sobre o fundo */
+            mix-blend-mode: normal;
         }
 
         /* Impede scroll durante splash */
@@ -514,11 +489,9 @@
 
     <!-- Splash Screen -->
     <div id="splash">
-        <div class="splash-logo">
-            <span style="animation-delay:0.1s">M</span><span style="animation-delay:0.15s">O</span><span style="animation-delay:0.2s">A</span><span style="animation-delay:0.25s">C</span><span style="animation-delay:0.3s">Y</span><span style="animation-delay:0.35s">R</span><span style="color:var(--accent-color);animation-delay:0.42s">.</span><span style="animation-delay:0.48s">A</span><span style="animation-delay:0.53s">R</span><span style="animation-delay:0.58s">T</span>
-        </div>
-        <div class="splash-line"></div>
-        <div class="splash-title">Motion Design &amp; 2D Artist</div>
+        <video id="splashVideo" autoplay muted playsinline>
+            <source src="splash.webm" type="video/webm">
+        </video>
     </div>
 
     <!-- Toast de confirmação -->
@@ -686,14 +659,21 @@
         // ====== Splash Screen ======
         (function () {
             document.body.classList.add('splash-active');
-            // Slide up após as animações terminarem (~2s)
-            setTimeout(() => {
-                const splash = document.getElementById('splash');
-                splash.classList.add('slide-up');
+
+            const splash = document.getElementById('splash');
+            const video = document.getElementById('splashVideo');
+
+            function dismissSplash() {
+                splash.classList.add('glitch-out');
                 document.body.classList.remove('splash-active');
-                // Remove do DOM após a transição
-                splash.addEventListener('transitionend', () => splash.remove(), { once: true });
-            }, 2200);
+                splash.addEventListener('animationend', () => splash.remove(), { once: true });
+            }
+
+            // Dispara quando o vídeo termina — ideal para sincronizar com sua animação
+            video.addEventListener('ended', dismissSplash);
+
+            // Fallback: se o vídeo não carregar em 5s, remove a splash mesmo assim
+            setTimeout(dismissSplash, 5000);
         })();
 
         // ====== Toast de confirmação ======
