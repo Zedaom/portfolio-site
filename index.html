@@ -7,7 +7,7 @@
     <title>Moacyr Neto | Motion Design & 2D Animation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Outfit:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #000000;
@@ -66,10 +66,11 @@
         }
 
         .logo {
-            font-weight: 900;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 300;
             font-size: 1.5rem;
-            letter-spacing: -1px;
-            background: linear-gradient(45deg, #fff, var(--accent-color));
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--accent-color), #fff);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -470,7 +471,7 @@
         }
 
         .splash-title {
-            font-size: clamp(0.55rem, 1vw, 0.8rem);
+            font-size: clamp(0.65rem, 1.5vw, 0.85rem);
             font-weight: 400;
             letter-spacing: 5px;
             text-transform: uppercase;
@@ -504,6 +505,37 @@
         }
 
         @media (max-width: 768px) {
+            /* Splash mobile */
+            #splash {
+                padding-left: 8vw;
+                padding-right: 8vw;
+            }
+
+            .splash-logo {
+                font-size: clamp(2.2rem, 13vw, 3.5rem);
+                letter-spacing: -1px;
+            }
+
+            .splash-dot {
+                width: clamp(8px, 3vw, 12px);
+                height: clamp(8px, 3vw, 12px);
+            }
+
+            .splash-title {
+                font-size: 0.65rem;
+                letter-spacing: 3px;
+            }
+
+            /* Hero mobile — volta ao centro */
+            .hero .container {
+                text-align: center !important;
+            }
+
+            .hero p {
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
             .hero h1 { font-size: 3.5rem; }
             .hero { padding: 0 20px; }
 
@@ -552,7 +584,7 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">MOACYR.ART</div>
+                <div class="logo">Moacyr Neto</div>
                 <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
                 <ul class="nav-links">
                     <li><a href="#portfolio" data-i18n="nav_portfolio" onclick="document.querySelector('.nav-links').classList.remove('open')">Portfólio</a></li>
@@ -565,11 +597,11 @@
     </header>
 
     <section class="hero">
-        <div class="container" style="z-index: 1; text-align: right;">
+        <div class="container" style="z-index: 1; text-align: center;">
             <span class="section-tag" style="color:#fff; opacity:0.5; margin-bottom:20px; display:block;">Moacyr Neto</span>
-            <h1 class="reveal-right" style="transition-delay: 0.1s;">Motion <br>& 2D Artist</h1>
-            <p class="reveal-right" data-i18n="hero_desc" style="margin-left:auto; margin-right:0; transition-delay: 0.25s;">Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.</p>
-            <div class="reveal-right" style="transition-delay: 0.4s;">
+            <h1 class="reveal" style="transition-delay: 0.1s;">Motion <br>& 2D Artist</h1>
+            <p class="reveal" data-i18n="hero_desc" style="margin-left:auto; margin-right:auto; transition-delay: 0.25s;">Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.</p>
+            <div class="reveal" style="transition-delay: 0.4s;">
                 <a href="#portfolio" class="filter-btn active" style="text-decoration:none; display:inline-block;" data-i18n="hero_cta">Explorar Projetos</a>
             </div>
         </div>
@@ -689,7 +721,7 @@
                     moacyr20neto@gmail.com
                 </a>
             </div>
-            <div class="logo" style="margin-bottom: 15px;">MOACYR.ART</div>
+            <div class="logo" style="margin-bottom: 15px;">Moacyr Neto</div>
             <p class="footer-muted" data-i18n="footer_copy">&copy; 2024 Moacyr Neto. Todos os direitos reservados.</p>
         </div>
     </footer>
