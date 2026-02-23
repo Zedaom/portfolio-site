@@ -438,12 +438,51 @@
             100% { transform: translate(0, 0); opacity: 0; clip-path: inset(50% 0 50% 0); pointer-events: none; }
         }
 
-        #splashVideo {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* mix-blend-mode garante que o alpha do WebM funcione sobre o fundo */
-            mix-blend-mode: normal;
+        .splash-logo {
+            font-size: clamp(2.5rem, 10vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -3px;
+            color: #fff;
+            overflow: hidden;
+            display: flex;
+            gap: 0;
+        }
+
+        .splash-logo span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(60px);
+            animation: letterUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        .splash-title {
+            font-size: clamp(0.75rem, 2vw, 1rem);
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 1s forwards;
+        }
+
+        .splash-line {
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            animation: lineExpand 0.7s ease 0.8s forwards;
+            border-radius: 2px;
+        }
+
+        @keyframes letterUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; }
+        }
+
+        @keyframes lineExpand {
+            to { width: 80px; }
         }
 
         /* Impede scroll durante splash */
@@ -489,9 +528,11 @@
 
     <!-- Splash Screen -->
     <div id="splash">
-        <video id="splashVideo" autoplay muted playsinline>
-            <source src="splash.webm" type="video/webm">
-        </video>
+        <div class="splash-logo">
+            <span style="animation-delay:0.1s">M</span><span style="animation-delay:0.15s">O</span><span style="animation-delay:0.2s">A</span><span style="animation-delay:0.25s">C</span><span style="animation-delay:0.3s">Y</span><span style="animation-delay:0.35s">R</span><span style="color:var(--accent-color);animation-delay:0.42s">.</span><span style="animation-delay:0.48s">A</span><span style="animation-delay:0.53s">R</span><span style="animation-delay:0.58s">T</span>
+        </div>
+        <div class="splash-line"></div>
+        <div class="splash-title">Motion Design &amp; 2D Artist</div>
     </div>
 
     <!-- Toast de confirmação -->
@@ -661,7 +702,6 @@
             document.body.classList.add('splash-active');
 
             const splash = document.getElementById('splash');
-            const video = document.getElementById('splashVideo');
 
             function dismissSplash() {
                 splash.classList.add('glitch-out');
@@ -669,11 +709,8 @@
                 splash.addEventListener('animationend', () => splash.remove(), { once: true });
             }
 
-            // Dispara quando o vídeo termina — ideal para sincronizar com sua animação
-            video.addEventListener('ended', dismissSplash);
-
-            // Fallback: se o vídeo não carregar em 5s, remove a splash mesmo assim
-            setTimeout(dismissSplash, 5000);
+            // Dispara após as animações de texto terminarem (~2.2s)
+            setTimeout(dismissSplash, 2200);
         })();
 
         // ====== Toast de confirmação ======
