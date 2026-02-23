@@ -419,23 +419,12 @@
         }
 
         #splash.glitch-out {
-            animation: glitchExit 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            animation: fadeOut 0.8s ease forwards;
         }
 
-        @keyframes glitchExit {
-            0%   { transform: translate(0, 0) skewX(0deg); opacity: 1; clip-path: inset(0 0 0 0); }
-            10%  { transform: translate(-6px, 0) skewX(-4deg); clip-path: inset(10% 0 80% 0); }
-            15%  { transform: translate(6px, 0) skewX(4deg);  clip-path: inset(60% 0 20% 0); }
-            20%  { transform: translate(-4px, 0) skewX(0deg); clip-path: inset(30% 0 50% 0); }
-            25%  { transform: translate(0, 0);                clip-path: inset(0 0 0 0); opacity: 1; }
-            35%  { transform: translate(-8px, 2px) skewX(-6deg); filter: hue-rotate(90deg) brightness(1.5); clip-path: inset(5% 0 70% 0); }
-            40%  { transform: translate(8px, -2px) skewX(6deg);  filter: hue-rotate(180deg); clip-path: inset(50% 0 10% 0); }
-            50%  { transform: translate(0, 0) skewX(0deg); filter: none; clip-path: inset(0 0 0 0); opacity: 1; }
-            60%  { transform: translate(-12px, 0) skewX(-8deg); filter: brightness(2); clip-path: inset(20% 0 60% 0); opacity: 0.8; }
-            70%  { transform: translate(12px, 0) skewX(8deg);  filter: brightness(0.5) saturate(3); clip-path: inset(70% 0 5% 0); opacity: 0.6; }
-            80%  { transform: translate(-4px, 0) skewX(0deg); filter: none; opacity: 0.4; clip-path: inset(0 0 0 0); }
-            90%  { transform: translate(4px, 0) skewX(4deg); opacity: 0.2; clip-path: inset(40% 0 40% 0); }
-            100% { transform: translate(0, 0); opacity: 0; clip-path: inset(50% 0 50% 0); pointer-events: none; }
+        @keyframes fadeOut {
+            0%   { opacity: 1; }
+            100% { opacity: 0; pointer-events: none; }
         }
 
         .splash-logo {
