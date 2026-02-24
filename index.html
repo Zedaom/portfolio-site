@@ -518,9 +518,9 @@
         }
 
         .splash-logo {
+            font-family: 'Boldonse', sans-serif;
             font-size: clamp(2.5rem, 8vw, 6rem);
-            font-weight: 900;
-            letter-spacing: -2px;
+            letter-spacing: 0;
             color: #fff;
             display: flex;
             align-items: center;
@@ -532,6 +532,7 @@
             opacity: 0;
             transform: translateY(60px);
             animation: letterUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            font-family: 'Boldonse', sans-serif !important;
         }
 
         .splash-dot {
@@ -602,7 +603,7 @@
             line-height: 1.2;
             text-align: center;
             margin: 0;
-            letter-spacing: 1.2em;
+            letter-spacing: 0.6em;
         }
 
         .hero-specs {
@@ -779,6 +780,7 @@
 
             .hero-title {
                 font-size: 5vw !important;
+                letter-spacing: 0.6em !important;
             }
 
             .hero-specs {
@@ -819,7 +821,7 @@
     <!-- Splash Screen -->
     <div id="splash">
         <div class="splash-logo">
-            <span style="animation-delay:0.1s">M</span><span style="animation-delay:0.15s">O</span><span style="animation-delay:0.2s">A</span><span style="animation-delay:0.25s">C</span><span style="animation-delay:0.3s">Y</span><span style="animation-delay:0.35s">R</span><div class="splash-dot"></div><span style="animation-delay:0.48s">A</span><span style="animation-delay:0.53s">R</span><span style="animation-delay:0.58s">T</span>
+            <span style="animation-delay:0.1s">M</span><span style="animation-delay:0.18s">O</span><span style="animation-delay:0.26s">A</span>
         </div>
         <div class="splash-divider">
             <div class="splash-line"></div>
@@ -1003,7 +1005,7 @@
         <div class="container">
             <div class="about-wrap">
                 <div class="about-image reveal-left">
-                    <img src="foto_sobre.webp" alt="Moacyr Neto" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=800&q=80" alt="Moacyr Neto" style="width:100%;height:100%;object-fit:cover;">
                 </div>
                 <div class="about-text reveal-right">
                     <span class="section-tag" data-i18n="about_tag">Minha Jornada</span>
@@ -1322,4 +1324,3 @@
 </body>
 
 </html>
-
