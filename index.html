@@ -157,9 +157,8 @@
         }
 
         .hero h1 {
-            font-size: clamp(3.5rem, 10vw, 7rem);
             font-weight: 900;
-            line-height: 0.9;
+            line-height: 1.15;
             margin-bottom: 25px;
             text-transform: uppercase;
             letter-spacing: -2px;
@@ -552,7 +551,13 @@
             to { width: 55px; }
         }
 
-        /* --- Transition Overlay (após splash) --- */
+        /* Hero Title */
+        .hero-title {
+            font-family: 'Boldonse', sans-serif;
+            font-size: 5rem;
+            line-height: 1.15;
+            text-align: center;
+        }
         #transitionOverlay {
             position: fixed;
             inset: 0;
@@ -715,9 +720,9 @@
                 padding: 0 20px;
             }
 
-            .hero h1 {
-                font-size: clamp(1.5rem, 10vw, 3rem) !important;
-                word-break: break-word;
+            /* 13vw = "MOTION DESIGNER" sempre cabe em 1 linha em qualquer celular */
+            .hero-title {
+                font-size: 13vw !important;
             }
 
             .hero p {
@@ -725,10 +730,7 @@
                 margin-right: auto !important;
             }
 
-            .hero h1 { font-size: 3.5rem; }
-            .hero { padding: 0 20px; }
-
-            .nav-links {
+            .menu-toggle { display: block; }
                 display: none;
                 flex-direction: column;
                 position: absolute;
@@ -802,7 +804,7 @@
     <section class="hero">
         <div class="container" style="z-index: 1; text-align: center;">
             <span class="section-tag" data-i18n="hero_name" style="color:#fff; opacity:0.5; margin-bottom:20px; display:block;">Moacyr Neto</span>
-            <h1 class="reveal" data-i18n="hero_title" style="transition-delay: 0.1s; font-family: 'Boldonse', sans-serif; font-size: clamp(1.8rem, 6vw, 5rem); line-height: 1.15; white-space: normal; text-align: center;">2D ANIMATOR &<br>MOTION DESIGNER</h1>
+            <h1 class="reveal hero-title" data-i18n="hero_title" style="transition-delay: 0.1s;">2D ANIMATOR &<br>MOTION DESIGNER</h1>
             <p class="reveal" data-i18n="hero_desc" style="margin-left:auto; margin-right:auto; transition-delay: 0.25s;">Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.</p>
             <div class="reveal" style="transition-delay: 0.4s;">
                 <a href="#portfolio" class="filter-btn active" style="text-decoration:none; display:inline-block;" data-i18n="hero_cta">Explorar Projetos</a>
