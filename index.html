@@ -61,7 +61,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Outfit:wght@300;400&family=Boldonse:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Outfit:wght@300;400&family=Boldonse&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #000000;
@@ -119,15 +119,18 @@
             padding: 5px;
         }
 
-        .logo {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 300;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, var(--accent-color), #fff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .logo-video-wrap {
+            display: flex;
+            align-items: center;
+            height: 36px;
+        }
+
+        .logo-video {
+            height: 36px;
+            width: auto;
+            display: block;
+            /* mix-blend-mode garante que o alpha funcione sobre qualquer fundo */
+            mix-blend-mode: normal;
         }
 
         .nav-links { display: flex; gap: 30px; list-style: none; }
@@ -773,7 +776,12 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">Moacyr Neto</div>
+                <div class="logo-video-wrap">
+                    <video class="logo-video" autoplay muted loop playsinline>
+                        <source src="logo.mov" type='video/mp4; codecs="hvc1"'>
+                        <source src="logo.webm" type="video/webm">
+                    </video>
+                </div>
                 <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
                 <ul class="nav-links">
                     <li><a href="#portfolio" data-i18n="nav_portfolio" onclick="document.querySelector('.nav-links').classList.remove('open')">Portfólio</a></li>
@@ -788,7 +796,7 @@
     <section class="hero">
         <div class="container" style="z-index: 1; text-align: center;">
             <span class="section-tag" data-i18n="hero_name" style="color:#fff; opacity:0.5; margin-bottom:20px; display:block;">Moacyr Neto</span>
-            <h1 class="reveal" data-i18n="hero_title" style="font-family:'Boldonse', sans-serif;" style="transition-delay: 0.1s;">2D ANIMATOR <br>& MOTION DESIGNER</h1>
+            <h1 class="reveal" data-i18n="hero_title" style="transition-delay: 0.1s; font-family: 'Boldonse', sans-serif; font-size: clamp(1.8rem, 5vw, 4.5rem); line-height: 1.1; white-space: nowrap;">2D Animator & Motion Designer</h1>
             <p class="reveal" data-i18n="hero_desc" style="margin-left:auto; margin-right:auto; transition-delay: 0.25s;">Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.</p>
             <div class="reveal" style="transition-delay: 0.4s;">
                 <a href="#portfolio" class="filter-btn active" style="text-decoration:none; display:inline-block;" data-i18n="hero_cta">Explorar Projetos</a>
@@ -966,7 +974,12 @@
                     moacyr20neto@gmail.com
                 </a>
             </div>
-            <div class="logo" style="margin-bottom: 15px;">Moacyr Neto</div>
+            <div class="logo-video-wrap" style="margin-bottom: 15px;">
+                <video class="logo-video" autoplay muted loop playsinline>
+                    <source src="logo.mov" type='video/mp4; codecs="hvc1"'>
+                    <source src="logo.webm" type="video/webm">
+                </video>
+            </div>
             <p class="footer-muted" data-i18n="footer_copy">&copy; 2024 Moacyr Neto. Todos os direitos reservados.</p>
         </div>
     </footer>
@@ -1077,7 +1090,7 @@
                 nav_about: 'About',
                 nav_contact: 'Contact',
                 hero_name: 'Moacyr Neto',
-                hero_title: 'Motion <br>& 2D Artist',
+                hero_title: '2D Animator & Motion Designer',
                 hero_desc: 'Specialist in dynamic Motion Design, high-precision Clean Up, and narrative 2D Animations.',
                 hero_cta: 'Explore Projects',
                 clients_tag: 'Companies & Clients',
@@ -1106,7 +1119,7 @@
                 nav_about: 'Sobre',
                 nav_contact: 'Contato',
                 hero_name: 'Moacyr Neto',
-                hero_title: 'Motion <br>& 2D Artist',
+                hero_title: '2D Animator & Motion Designer',
                 hero_desc: 'Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.',
                 hero_cta: 'Explorar Projetos',
                 clients_tag: 'Empresas & Clientes',
@@ -1233,5 +1246,3 @@
 </body>
 
 </html>
-
-
