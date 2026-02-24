@@ -1,64 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <!-- SEO Principal -->
-    <title>Moacyr Neto | Motion Design & 2D Animation</title>
-    <meta name="description" content="Motion Designer & 2D Artist based in São Paulo, Brazil. Specialized in Motion Design, Clean Up and 2D Animation for studios and brands.">
-    <meta name="keywords" content="Moacyr Neto, Motion Design, Motion Designer, 2D Animation, Animação 2D, Clean Up, Animator, São Paulo, Mogi das Cruzes, Brazil">
-    <meta name="author" content="Moacyr Neto">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.moanimation.com.br/">
-
-    <!-- Idiomas -->
-    <meta http-equiv="content-language" content="pt-BR, en">
-
-    <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.moanimation.com.br/">
-    <meta property="og:title" content="Moacyr Neto | Motion Design & 2D Animation">
-    <meta property="og:description" content="Motion Designer & 2D Artist based in São Paulo, Brazil. Specialized in Motion Design, Clean Up and 2D Animation for studios and brands.">
-    <meta property="og:image" content="https://www.moanimation.com.br/og-image.jpg">
-    <meta property="og:locale" content="pt_BR">
-    <meta property="og:locale:alternate" content="en_US">
-    <meta property="og:site_name" content="Moacyr Neto">
-
-    <!-- Twitter/X Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Moacyr Neto | Motion Design & 2D Animation">
-    <meta name="twitter:description" content="Motion Designer & 2D Artist based in São Paulo, Brazil. Specialized in Motion Design, Clean Up and 2D Animation for studios and brands.">
-    <meta name="twitter:image" content="https://www.moanimation.com.br/og-image.jpg">
-
-    <!-- Geolocalização -->
-    <meta name="geo.region" content="BR-SP">
-    <meta name="geo.placename" content="Mogi das Cruzes, São Paulo">
-
-    <!-- Schema.org (dados estruturados para o Google) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Moacyr Neto",
-        "jobTitle": "Motion Designer & 2D Artist",
-        "description": "Motion Designer & 2D Artist based in São Paulo, Brazil. Specialized in Motion Design, Clean Up and 2D Animation for studios and brands.",
-        "url": "https://www.moanimation.com.br/",
-        "email": "moacyr20neto@gmail.com",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Mogi das Cruzes",
-            "addressRegion": "São Paulo",
-            "addressCountry": "BR"
-        },
-        "sameAs": [
-            "https://www.linkedin.com/in/moaneto/",
-            "https://www.instagram.com/moacyrneto_/",
-            "https://www.behance.net/moaneto"
-        ]
-    }
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome do Projeto | Moacyr Neto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Outfit:wght@300;400&family=Boldonse&display=swap" rel="stylesheet">
@@ -69,1255 +14,357 @@
             --accent-color: #FCA311;
             --secondary-color: #14213D;
             --muted-color: #999999;
-            --glass-bg: rgba(20, 33, 61, 0.4);
             --glass-border: rgba(229, 229, 229, 0.1);
             --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg-color); color: var(--text-color); overflow-x: hidden; line-height: 1.6; }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: var(--secondary-color); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 0;
-            z-index: 1000;
-            background: transparent;
-            border-bottom: none;
-        }
-
-        nav { display: flex; justify-content: space-between; align-items: center; }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .logo-video-wrap {
-            display: flex;
-            align-items: center;
-            height: 36px;
-        }
-
-        .logo-video {
-            height: 36px;
-            width: auto;
-            display: block;
-            /* mix-blend-mode garante que o alpha funcione sobre qualquer fundo */
-            mix-blend-mode: normal;
-        }
-
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--muted-color);
-            font-weight: 400;
-            font-size: 0.9rem;
+        /* Back button */
+        .back-btn {
+            position: fixed; top: 24px; left: 24px; z-index: 100;
+            display: flex; align-items: center; gap: 8px;
+            color: var(--text-color); text-decoration: none;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+            padding: 10px 18px;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border); border-radius: 50px;
             transition: var(--transition);
         }
+        .back-btn:hover { background: var(--accent-color); border-color: var(--accent-color); color: #000; }
+        .back-btn svg { width: 14px; height: 14px; fill: currentColor; }
 
-        .nav-links a:hover { color: var(--accent-color); }
-
-        .hero {
-            padding: 80px 0 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-color);
+        /* Hero */
+        .project-hero { width: 100%; height: 100vh; position: relative; overflow: hidden; background: #0a0f1e; }
+        .project-hero iframe, .project-hero video {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: none;
         }
-
-        .hero .container {
-            width: 100%;
-            max-width: 100%;
-            padding: 0 20px;
-        }
-
-        .hero-card {
-            position: relative;
-            width: 100%;
-            border-radius: 28px;
-            overflow: hidden;
-            height: calc(100vh - 120px);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-            background: #0a0f1e;
-        }
-
-        .hero-bg-video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                135deg,
-                rgba(20, 33, 61, 0.55) 0%,
-                rgba(0, 0, 0, 0.45) 100%
-            );
+        .project-hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%);
             z-index: 1;
         }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px;
-            gap: 12px;
+        .project-hero-info { position: absolute; bottom: 60px; left: 0; right: 0; z-index: 2; }
+        .project-category-tag {
+            display: inline-block; font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 3px; text-transform: uppercase;
+            color: var(--accent-color); margin-bottom: 12px;
+        }
+        .project-hero-title {
+            font-family: 'Boldonse', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            line-height: 1.05; color: #fff; letter-spacing: 0.05em;
         }
 
-        .hero h1 {
-            font-weight: 900;
-            line-height: 1.15;
-            margin-bottom: 0;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            color: #ffffff;
+        /* Content */
+        .project-content { padding: 80px 0 120px; }
+
+        /* Ficha técnica */
+        .project-meta {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1px; background: var(--glass-border);
+            border: 1px solid var(--glass-border); border-radius: 20px;
+            overflow: hidden; margin-bottom: 80px;
         }
+        .meta-item { padding: 28px 32px; background: var(--bg-color); }
+        .meta-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-color); margin-bottom: 8px; }
+        .meta-value { font-size: 1rem; font-weight: 600; }
 
-        .portfolio { padding: 120px 0; }
+        /* Descrição geral */
+        .project-description { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; margin-bottom: 80px; }
+        .project-description h2 { font-family: 'Boldonse', sans-serif; font-size: 2.5rem; line-height: 1.1; letter-spacing: 0.05em; position: sticky; top: 100px; }
+        .project-description h2 span { color: var(--accent-color); }
+        .project-description p { font-size: 1.1rem; line-height: 1.9; opacity: 0.75; margin-bottom: 20px; }
 
-        .section-header { margin-bottom: 60px; }
+        .section-divider { height: 1px; background: var(--glass-border); margin: 60px 0; }
 
-        .section-tag {
-            color: var(--accent-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            display: block;
+        /* ── CENAS ── */
+        .scenes-header {
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px;
         }
+        .scenes-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted-color); }
+        .scenes-count { font-size: 0.75rem; font-weight: 600; color: var(--accent-color); letter-spacing: 1px; }
 
-        .section-title {
-            font-size: clamp(1.8rem, 5vw, 3.5rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            word-break: break-word;
-        }
-
-        .filter-buttons { display: flex; gap: 12px; margin-bottom: 60px; flex-wrap: wrap; }
-
-        .filter-btn {
-            background: var(--secondary-color);
+        .scene-block {
+            margin-bottom: 48px;
             border: 1px solid var(--glass-border);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
+            border-radius: 24px; overflow: hidden;
+            background: rgba(20, 33, 61, 0.15);
+        }
+        .scene-block:last-child { margin-bottom: 0; }
+
+        .scene-header {
+            display: flex; align-items: center; gap: 16px;
+            padding: 18px 28px; border-bottom: 1px solid var(--glass-border);
+        }
+        .scene-number { font-family: 'Boldonse', sans-serif; font-size: 0.75rem; letter-spacing: 2px; color: var(--accent-color); }
+        .scene-title-text { font-size: 0.9rem; font-weight: 600; }
+        .scene-tag {
+            margin-left: auto; font-size: 0.65rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase; color: var(--muted-color);
+            padding: 4px 12px; border: 1px solid var(--glass-border); border-radius: 50px;
         }
 
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            box-shadow: 0 10px 20px rgba(252, 163, 17, 0.3);
+        /* Vídeo da cena */
+        .scene-video-wrap { position: relative; aspect-ratio: 16/9; background: #000; }
+        .scene-video-wrap iframe, .scene-video-wrap video {
+            position: absolute; inset: 0; width: 100%; height: 100%; border: none; object-fit: cover;
         }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr));
-            gap: 35px;
+        .scene-video-placeholder {
+            width: 100%; height: 100%; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 10px;
+            color: var(--muted-color); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
         }
+        .scene-video-placeholder svg { width: 40px; height: 40px; opacity: 0.2; fill: currentColor; }
 
-        .project-card {
-            background: var(--secondary-color);
-            border-radius: 28px;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-            transition: var(--transition);
-            cursor: pointer;
-        }
+        /* Corpo da cena */
+        .scene-body { padding: 24px 28px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: start; }
+        .scene-desc { font-size: 0.95rem; line-height: 1.8; opacity: 0.7; }
+        .scene-details { display: flex; flex-direction: column; gap: 10px; }
+        .scene-detail-item { display: flex; align-items: baseline; gap: 10px; font-size: 0.85rem; }
+        .scene-detail-label { font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.6rem; color: var(--accent-color); min-width: 72px; }
+        .scene-detail-value { opacity: 0.7; }
 
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-color);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-        }
+        /* GIFs da cena */
+        .scene-gallery { padding: 4px 28px 28px; display: grid; gap: 12px; }
+        .scene-gallery.gifs-1 { grid-template-columns: 1fr; }
+        .scene-gallery.gifs-2 { grid-template-columns: repeat(2, 1fr); }
+        .scene-gallery.gifs-3 { grid-template-columns: repeat(3, 1fr); }
+        .scene-gallery.gifs-4, .scene-gallery.gifs-many { grid-template-columns: repeat(4, 1fr); }
 
-        .project-image-container { height: 260px; overflow: hidden; background: #000; }
+        .scene-gif { border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; background: var(--secondary-color); border: 1px solid var(--glass-border); }
+        .scene-gif img, .scene-gif video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
+        .scene-gif:hover img, .scene-gif:hover video { transform: scale(1.05); }
+        .gif-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--muted-color); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; }
+        .gif-placeholder svg { width: 22px; height: 22px; opacity: 0.25; fill: currentColor; }
 
-        .project-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-            opacity: 0.8;
-        }
+        /* Nav inferior */
+        .project-nav { display: flex; justify-content: space-between; align-items: center; padding-top: 60px; border-top: 1px solid var(--glass-border); }
+        .project-nav a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--muted-color); font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: var(--transition); }
+        .project-nav a:hover { color: var(--accent-color); }
+        .project-nav a svg { width: 16px; height: 16px; fill: currentColor; }
+        .project-nav .center-logo { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 1rem; letter-spacing: 2px; background: linear-gradient(90deg, var(--accent-color), #fff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
 
-        .project-card:hover .project-image { scale: 1.05; opacity: 1; }
-
-        .project-info { padding: 30px; }
-
-        .project-category {
-            font-size: 0.8rem;
-            color: var(--accent-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .project-title { font-size: 1.6rem; font-weight: 800; }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
+        /* Reveal */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.23, 1, 0.32, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        .reveal-left {
-            opacity: 0;
-            transform: translateX(-40px);
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .reveal-left.active { opacity: 1; transform: translateX(0); }
-
-        .reveal-right {
-            opacity: 0;
-            transform: translateX(40px);
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .reveal-right.active { opacity: 1; transform: translateX(0); }
-
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-
-        .about {
-            padding: 120px 0;
-            background: linear-gradient(180deg, var(--bg-color), #0a0f1e);
-        }
-
-        .about-wrap {
-            display: grid;
-            grid-template-columns: 0.9fr 1.1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .about-image { border-radius: 40px; overflow: hidden; border: 1px solid var(--glass-border); }
-        .about-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
-
-        .about-text h2 { font-size: 4rem; margin-bottom: 25px; line-height: 1; }
-
-        .about-text p { margin-bottom: 20px; opacity: 0.7; font-size: 1.15rem; }
-
-        .contact { padding: 120px 0; }
-
-        .contact-container {
-            background: var(--secondary-color);
-            padding: 80px;
-            border-radius: 40px;
-            border: 1px solid var(--glass-border);
-        }
-
-        .contact-form { display: grid; gap: 20px; margin-top: 40px; }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--glass-border);
-            padding: 20px 25px;
-            border-radius: 18px;
-            color: white;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--accent-color);
-            outline: none;
-            background: rgba(0, 0, 0, 0.4);
-        }
-
-        .btn-submit {
-            padding: 22px;
-            background: var(--accent-color);
-            border: none;
-            border-radius: 18px;
-            color: white;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(252, 163, 17, 0.4);
-        }
-
-        footer {
-            padding: 80px 0 40px;
-            text-align: center;
-            border-top: 1px solid var(--glass-border);
-        }
-
-        .social-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: var(--secondary-color);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(252, 163, 17, 0.3);
-        }
-
-        .social-link svg { width: 18px; height: 18px; fill: currentColor; }
-
-        .footer-muted { opacity: 0.4; margin-top: 20px; }
-
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .modal-content {
-            background: var(--bg-color);
-            width: 100%;
-            max-width: 1100px;
-            max-height: 90vh;
-            border-radius: 40px;
-            border: 1px solid var(--glass-border);
-            padding: 50px;
-            overflow-y: auto;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            cursor: pointer;
-            font-size: 3rem;
-            opacity: 0.5;
-        }
-
-        .lang-toggle {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--glass-border);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            margin-left: 10px;
-        }
-
-        .lang-toggle:hover { background: var(--accent-color); border-color: var(--accent-color); }
-
-        /* --- Toast Notification --- */
-        .toast {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%) translateY(120px);
-            background: var(--accent-color);
-            color: #000;
-            padding: 18px 36px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            z-index: 9999;
-            box-shadow: 0 10px 40px rgba(252, 163, 17, 0.45);
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease;
-            opacity: 0;
-            pointer-events: none;
-            white-space: nowrap;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-
-        /* --- Splash Screen --- */
-        #splash {
-            position: fixed;
-            inset: 0;
-            background: #000;
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
-        }
-
-        #splash.slide-up {
-            transform: translateY(-100%);
-        }
-
-        .splash-logo {
-            font-family: 'Boldonse', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            letter-spacing: 0;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            line-height: 1;
-        }
-
-        .splash-logo span {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(60px);
-            animation: letterUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            font-family: 'Boldonse', sans-serif !important;
-        }
-
-        .splash-dot {
-            display: inline-block;
-            width: clamp(10px, 1.2vw, 18px);
-            height: clamp(10px, 1.2vw, 18px);
-            background: var(--accent-color);
-            border-radius: 50%;
-            margin: 0 1px;
-            opacity: 0;
-            transform: scale(0);
-            animation: dotPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.42s forwards;
-        }
-
-        .splash-divider {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-top: 16px;
-            opacity: 0;
-            animation: fadeInSub 0.5s ease 1.1s forwards;
-        }
-
-        .splash-line {
-            height: 1.5px;
-            width: 0;
-            background: var(--accent-color);
-            animation: lineExpand 0.6s ease 1s forwards;
-        }
-
-        /* Segunda linha — espelho da primeira */
-        .splash-line-right {
-            height: 1.5px;
-            width: 0;
-            background: var(--accent-color);
-            animation: lineExpand 0.6s ease 1s forwards;
-        }
-
-        .splash-title {
-            font-size: clamp(0.65rem, 1.5vw, 0.85rem);
-            font-weight: 400;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: var(--accent-color);
-            white-space: nowrap;
-        }
-
-        @keyframes letterUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes dotPop {
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes fadeInSub {
-            to { opacity: 1; }
-        }
-
-        @keyframes lineExpand {
-            to { width: 55px; }
-        }
-
-        /* Hero Title */
-        .hero-title {
-            font-family: 'Boldonse', sans-serif;
-            font-size: 2.25rem;
-            line-height: 1.2;
-            text-align: center;
-            margin: 0;
-            letter-spacing: 0.1em;
-        }
-
-        .hero-specs {
-            font-size: 0.6rem;
-            font-weight: 400;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.65);
-            margin: 0 0 10px;
-        }
-        #transitionOverlay {
-            position: fixed;
-            inset: 0;
-            z-index: 9998;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            pointer-events: none;
-            opacity: 0;
-        }
-
-        #transitionOverlay video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        #transitionOverlay.playing {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        /* --- Cards com vídeo autoplay --- */
-        .project-image-container {
-            position: relative;
-        }
-
-        .project-video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .project-video.loaded {
-            opacity: 1;
-        }
-
-        /* --- Clients Marquee --- */
-        .clients {
-            padding: 60px 0;
-            overflow: hidden;
-            border-top: 1px solid var(--glass-border);
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .clients-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .clients-label {
-            text-align: center;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--muted-color);
-            margin-bottom: 16px;
-        }
-
-        .marquee-wrapper {
-            overflow: hidden;
-            mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-            margin-bottom: 8px;
-        }
-
-        .marquee-track {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            width: max-content;
-            /* A duração é controlada via JS baseado na largura real */
-            animation: marqueeScroll var(--duration, 25s) linear infinite;
-        }
-
-        .marquee-reverse {
-            animation: marqueeScrollReverse var(--duration, 25s) linear infinite;
-        }
-
-        .marquee-wrapper:hover .marquee-track {
-            animation-play-state: paused;
-        }
-
-        .marquee-track img {
-            height: 40px;
-            width: auto;
-            object-fit: contain;
-            opacity: 0.85;
-            transition: opacity 0.3s ease;
-            flex-shrink: 0;
-        }
-
-        .marquee-track img:hover { opacity: 1; }
-
-        .logo-placeholder {
-            height: 40px;
-            padding: 0 24px;
-            background: var(--secondary-color);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            color: var(--muted-color);
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        @keyframes marqueeScroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        @keyframes marqueeScrollReverse {
-            0%   { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-        }
-
-        @media (max-width: 992px) {
-            .about-wrap { grid-template-columns: 1fr; gap: 40px; }
-            .about-image { height: 380px; }
-        }
-
         @media (max-width: 768px) {
-            /* Splash mobile — centralizado */
-            #splash {
-                align-items: center;
-            }
-
-            .splash-divider {
-                justify-content: center;
-            }
-
-            .splash-logo {
-                font-size: clamp(2.2rem, 13vw, 3.5rem);
-                letter-spacing: -1px;
-            }
-
-            .splash-dot {
-                width: clamp(8px, 3vw, 12px);
-                height: clamp(8px, 3vw, 12px);
-            }
-
-            .splash-title {
-                font-size: 0.65rem;
-                letter-spacing: 3px;
-            }
-
-            /* Hero mobile */
-            .hero {
-                padding: 70px 0 20px;
-            }
-
-            .hero-card {
-                height: calc(100vh - 100px);
-                border-radius: 18px;
-            }
-
-            .hero-bg-video {
-                object-position: 60% center;
-            }
-
-            .hero-title {
-                font-size: 5vw !important;
-                letter-spacing: 0.1em !important;
-            }
-
-            .hero-specs {
-                font-size: 0.5rem;
-                letter-spacing: 1.5px;
-            }
-
-            /* Nav mobile */
-            .menu-toggle { display: block; }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.95);
-                backdrop-filter: blur(12px);
-                padding: 20px 0;
-                gap: 0;
-            }
-
-            .nav-links.open { display: flex; }
-            .nav-links li { text-align: center; padding: 12px 20px; }
-            .nav-links a { font-size: 1rem; }
-            .contact-container { padding: 30px 20px; }
-            .about-text h2 { font-size: 2.5rem; }
-            .social-links { gap: 10px; }
-            .social-link { padding: 10px 16px; font-size: 0.8rem; }
-            .modal-content { padding: 20px; border-radius: 20px; }
+            .back-btn { top: 16px; left: 16px; font-size: 0.75rem; padding: 8px 14px; }
+            .project-hero { height: 60vh; }
+            .project-hero-info { bottom: 30px; }
+            .project-hero-title { font-size: 2.2rem; }
+            .project-meta { grid-template-columns: repeat(2, 1fr); }
+            .project-description { grid-template-columns: 1fr; gap: 30px; }
+            .project-description h2 { position: static; font-size: 1.8rem; }
+            .scene-body { grid-template-columns: 1fr; }
+            .scene-gallery.gifs-3, .scene-gallery.gifs-4, .scene-gallery.gifs-many { grid-template-columns: repeat(2, 1fr); }
+            .project-nav .center-logo { display: none; }
         }
     </style>
 </head>
-
 <body>
 
-    <!-- Splash Screen -->
-    <div id="splash">
-        <div class="splash-logo">
-            <span style="animation-delay:0.1s">M</span><span style="animation-delay:0.18s">O</span><span style="animation-delay:0.26s">A</span>
-        </div>
-        <div class="splash-divider">
-            <div class="splash-line"></div>
-            <div class="splash-title">Motion Design &amp; 2D Artist</div>
-            <div class="splash-line-right"></div>
+    <a href="index.html" class="back-btn">
+        <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Portfólio
+    </a>
+
+    <!-- ═══════════════════════════════════════════
+         HERO — vídeo principal do projeto
+         ═══════════════════════════════════════════ -->
+    <div class="project-hero">
+        <!--
+            OPÇÃO A — YouTube:
+            <iframe src="https://www.youtube.com/embed/SEU_ID?autoplay=1&mute=1&loop=1&playlist=SEU_ID" allowfullscreen allow="autoplay"></iframe>
+
+            OPÇÃO B — arquivo próprio:
+            <video autoplay muted loop playsinline>
+                <source src="video-principal.mov" type='video/mp4; codecs="hvc1"'>
+                <source src="video-principal.webm" type="video/webm">
+            </video>
+        -->
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ" allowfullscreen allow="autoplay"></iframe>
+        <div class="project-hero-overlay"></div>
+        <div class="project-hero-info">
+            <div class="container">
+                <div class="project-category-tag">Motion Design</div><!-- Categoria: Motion Design / Clean Up / Animação 2D -->
+                <h1 class="project-hero-title">Nome do<br>Projeto</h1>
+            </div>
         </div>
     </div>
 
-    <!-- Animação de transição entre splash e Hero -->
-    <!-- Coloque transition.mov e transition.webm na mesma pasta do index.html -->
-    <div id="transitionOverlay">
-        <video id="transitionVideo" muted playsinline>
-            <source src="transition.mov" type='video/mp4; codecs="hvc1"'>
-            <source src="transition.webm" type="video/webm">
-        </video>
-    </div>
-
-    <!-- Toast de confirmação -->
-    <div class="toast" id="toast">Mensagem enviada!</div>
-
-    <header>
-        <div class="container" style="max-width: 100%; padding: 0 28px;">
-            <nav>
-                <div class="logo-video-wrap">
-                    <video class="logo-video" autoplay muted loop playsinline>
-                        <source src="logo.mov" type='video/mp4; codecs="hvc1"'>
-                        <source src="logo.webm" type="video/webm">
-                    </video>
-                </div>
-                <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
-                <ul class="nav-links">
-                    <li><a href="#portfolio" data-i18n="nav_portfolio" onclick="document.querySelector('.nav-links').classList.remove('open')">Portfólio</a></li>
-                    <li><a href="#about" data-i18n="nav_about" onclick="document.querySelector('.nav-links').classList.remove('open')">Sobre</a></li>
-                    <li><a href="#contact" data-i18n="nav_contact" onclick="document.querySelector('.nav-links').classList.remove('open')">Contato</a></li>
-                    <li><button class="lang-toggle" id="langToggle" onclick="toggleLanguage()">EN 🌐</button></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="container" style="z-index: 1;">
-            <div class="hero-card reveal">
-                <!-- Vídeo de fundo — coloque hero-bg.mov e hero-bg.webm na mesma pasta -->
-                <video class="hero-bg-video" autoplay muted loop playsinline>
-                    <source src="hero-bg.mov" type='video/mp4; codecs="hvc1"'>
-                    <source src="hero-bg.webm" type="video/webm">
-                </video>
-                <!-- Camada de cor sobre o vídeo -->
-                <div class="hero-overlay"></div>
-                <!-- Conteúdo centralizado -->
-                <div class="hero-content">
-                    <h1 class="reveal hero-title" style="transition-delay: 0.1s;">MOACYR NETO</h1>
-                    <p class="reveal hero-specs" data-i18n="hero_specs" style="transition-delay: 0.2s;">Motion Design · Clean Up · 2D Animation</p>
-                    <div class="reveal" style="transition-delay: 0.35s;">
-                        <a href="#portfolio" class="filter-btn active" style="text-decoration:none; display:inline-block;" data-i18n="hero_cta">Explorar Projetos</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Empresas / Clientes -->
-    <section class="clients">
-        <div class="clients-header reveal">
-            <span class="section-tag" data-i18n="clients_tag">Empresas & Clientes</span>
-        </div>
-
-        <!-- Trilho 1: Estúdios (vai para a esquerda) -->
-        <div class="clients-label reveal" data-i18n="clients_studios">Estúdios</div>
-        <div class="marquee-wrapper">
-            <div class="marquee-track">
-                <div class="logo-placeholder">Colossal</div>
-                <div class="logo-placeholder">Estúdio 2</div>
-                <div class="logo-placeholder">Estúdio 3</div>
-                <div class="logo-placeholder">Estúdio 4</div>
-                <div class="logo-placeholder">Estúdio 5</div>
-                <!-- Duplicados para loop infinito -->
-                <div class="logo-placeholder">Colossal</div>
-                <div class="logo-placeholder">Estúdio 2</div>
-                <div class="logo-placeholder">Estúdio 3</div>
-                <div class="logo-placeholder">Estúdio 4</div>
-                <div class="logo-placeholder">Estúdio 5</div>
-            </div>
-        </div>
-
-        <!-- Trilho 2: Marcas (vai para a direita) -->
-        <div class="clients-label reveal" style="margin-top: 28px;" data-i18n="clients_brands">Marcas</div>
-        <div class="marquee-wrapper">
-            <div class="marquee-track marquee-reverse">
-                <div class="logo-placeholder">Havaianas</div>
-                <div class="logo-placeholder">Marca 2</div>
-                <div class="logo-placeholder">Marca 3</div>
-                <div class="logo-placeholder">Marca 4</div>
-                <div class="logo-placeholder">Marca 5</div>
-                <!-- Duplicados para loop infinito -->
-                <div class="logo-placeholder">Havaianas</div>
-                <div class="logo-placeholder">Marca 2</div>
-                <div class="logo-placeholder">Marca 3</div>
-                <div class="logo-placeholder">Marca 4</div>
-                <div class="logo-placeholder">Marca 5</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="portfolio">
+    <div class="project-content">
         <div class="container">
-            <div class="section-header reveal">
-                <span class="section-tag" data-i18n="portfolio_tag">Trabalhos em Destaque</span>
-                <h2 class="section-title" data-i18n="portfolio_title">Meu Portfólio MIX</h2>
+
+            <!-- ═══ FICHA TÉCNICA ═══ -->
+            <div class="project-meta reveal">
+                <div class="meta-item"><div class="meta-label">Cliente</div><div class="meta-value">Nome do Cliente</div></div>
+                <div class="meta-item"><div class="meta-label">Estúdio</div><div class="meta-value">Nome do Estúdio</div></div>
+                <div class="meta-item"><div class="meta-label">Ano</div><div class="meta-value">2024</div></div>
+                <div class="meta-item"><div class="meta-label">Software</div><div class="meta-value">After Effects, TVPaint</div></div>
             </div>
 
-            <div class="filter-buttons reveal">
-                <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Todos</button>
-                <button class="filter-btn" data-filter="motion" data-i18n="filter_motion">Motion Design</button>
-                <button class="filter-btn" data-filter="cleanup" data-i18n="filter_cleanup">Clean Up</button>
-                <button class="filter-btn" data-filter="2d" data-i18n="filter_2d">Animação 2D</button>
-            </div>
-
-            <div class="project-grid" id="projectGrid">
-                <div class="project-card reveal delay-1" data-category="motion"
-                    onclick="window.location.href='projeto-showreel.html'">
-                    <div class="project-image-container">
-                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" alt="Motion" class="project-image">
-                        <video class="project-video" autoplay muted loop playsinline
-                            oncanplay="this.classList.add('loaded')">
-                            <source src="preview-motion.mov" type='video/mp4; codecs="hvc1"'>
-                            <source src="preview-motion.webm" type="video/webm">
-                        </video>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-category">Motion Design</span>
-                        <h3 class="project-title">Showreel 2024</h3>
-                    </div>
-                </div>
-                <div class="project-card reveal delay-2" data-category="cleanup"
-                    onclick="window.location.href='projeto-horizon.html'">
-                    <div class="project-image-container">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Clean up" class="project-image">
-                        <video class="project-video" autoplay muted loop playsinline
-                            oncanplay="this.classList.add('loaded')">
-                            <source src="preview-cleanup.mov" type='video/mp4; codecs="hvc1"'>
-                            <source src="preview-cleanup.webm" type="video/webm">
-                        </video>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-category">Clean Up</span>
-                        <h3 class="project-title">Project: Horizon</h3>
-                    </div>
-                </div>
-                <div class="project-card reveal delay-3" data-category="2d"
-                    onclick="window.location.href='projeto-max.html'">
-                    <div class="project-image-container">
-                        <img src="https://images.unsplash.com/photo-1633533412154-53afb7875b28?auto=format&fit=crop&w=800&q=80" alt="2D Animation" class="project-image">
-                        <video class="project-video" autoplay muted loop playsinline
-                            oncanplay="this.classList.add('loaded')">
-                            <source src="preview-2d.mov" type='video/mp4; codecs="hvc1"'>
-                            <source src="preview-2d.webm" type="video/webm">
-                        </video>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-category" data-i18n="filter_2d">Animação 2D</span>
-                        <h3 class="project-title">Max Dynamic</h3>
-                    </div>
+            <!-- ═══ DESCRIÇÃO GERAL ═══ -->
+            <div class="project-description reveal">
+                <h2>Sobre o<br><span>Projeto</span></h2>
+                <div>
+                    <p>Descreva aqui o contexto geral do projeto — o que foi feito, para quem, e qual foi o seu papel.</p>
+                    <p>Segundo parágrafo opcional com mais detalhes sobre o processo criativo.</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-wrap">
-                <div class="about-image reveal-left">
-                    <img src="foto-sobre.jpg" alt="Moacyr Neto" style="width:100%;height:100%;object-fit:cover;">
-                </div>
-                <div class="about-text reveal-right">
-                    <span class="section-tag" data-i18n="about_tag">Minha Jornada</span>
-                    <h2 data-i18n="about_title">Dando Vida a <br><span style="color:var(--accent-color)">Ideias</span>.</h2>
-                    <p data-i18n="about_p1">Com anos de experiência no mercado de animação, especializei-me no equilíbrio entre a técnica meticulosa do Clean Up e a criatividade do Motion Design.</p>
-                    <p data-i18n="about_p2">Acredito que cada movimento deve contar uma história visual impactante e fluida.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="section-divider"></div>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-container reveal">
-                <div class="section-header" style="text-align: center;">
-                    <span class="section-tag" data-i18n="contact_tag">Pronto para começar?</span>
-                    <h2 class="section-title" data-i18n="contact_title">Vamos dar movimento ao seu projeto</h2>
-                </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group"><input type="text" name="name" id="fieldName" data-i18n-ph="ph_name" placeholder="Seu Nome" required></div>
-                    <div class="form-group"><input type="email" name="email" id="fieldEmail" data-i18n-ph="ph_email" placeholder="Seu E-mail" required></div>
-                    <div class="form-group"><textarea name="message" id="fieldMessage" data-i18n-ph="ph_message" placeholder="Conte-me sobre o seu projeto..." rows="6" required></textarea></div>
-                    <button type="submit" class="btn-submit" id="submitBtn" data-i18n="contact_btn">Enviar Mensagem</button>
-                </form>
-            </div>
-        </div>
-    </section>
+            <!-- ═══ CENAS (gerado automaticamente pelo JS abaixo) ═══ -->
+            <div id="scenesContainer" class="reveal"></div>
 
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/moaneto/" target="_blank" rel="noopener" class="social-link">
-                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                    LinkedIn
+            <!-- ═══ NAV INFERIOR ═══ -->
+            <div class="project-nav reveal">
+                <a href="index.html">
+                    <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                    Voltar
                 </a>
-                <a href="https://www.instagram.com/moacyrneto_/" target="_blank" rel="noopener" class="social-link">
-                    <svg viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 11-2.88 0 1.441 1.441 0 012.88 0z"/></svg>
-                    Instagram
-                </a>
-                <a href="https://www.behance.net/moaneto#" target="_blank" rel="noopener" class="social-link">
-                    <svg viewBox="0 0 24 24"><path d="M6.938 4.503c.702 0 1.34.06 1.92.188.577.13 1.07.33 1.485.609.41.28.733.65.96 1.12.225.47.34 1.05.34 1.73 0 .74-.17 1.36-.507 1.86-.338.5-.837.9-1.502 1.22.906.26 1.576.72 2.022 1.37.448.66.665 1.45.665 2.36 0 .75-.13 1.39-.41 1.93-.28.55-.67 1-1.16 1.35-.48.348-1.05.6-1.67.767-.63.165-1.27.25-1.95.25H0v-15.3h6.938v.547zM6.545 10.21c.55 0 1.004-.15 1.362-.45.36-.3.54-.75.54-1.35 0-.35-.06-.64-.18-.87-.12-.23-.29-.42-.5-.56-.21-.14-.46-.24-.74-.3-.28-.06-.58-.09-.9-.09H3.38v3.62h3.165zm.18 5.41c.35 0 .68-.04.98-.12.3-.08.56-.2.78-.37.22-.17.39-.4.52-.67.12-.28.18-.62.18-1.02 0-.82-.24-1.4-.73-1.74-.49-.34-1.12-.51-1.9-.51H3.38v4.43h3.345zM15.93 16.03c.45.48 1.1.72 1.95.72.61 0 1.14-.15 1.58-.45.44-.3.7-.6.78-.94h2.59c-.41 1.28-1.03 2.2-1.85 2.77-.83.57-1.83.85-3 .85-.82 0-1.56-.13-2.22-.4-.66-.27-1.22-.65-1.68-1.14-.46-.5-.82-1.09-1.06-1.78-.25-.69-.37-1.44-.37-2.25s.13-1.57.38-2.27c.25-.69.61-1.29 1.08-1.78.47-.49 1.03-.88 1.68-1.15.65-.28 1.37-.42 2.15-.42.9 0 1.67.18 2.31.53.64.35 1.16.82 1.56 1.41.41.59.7 1.27.89 2.04.19.77.25 1.57.17 2.42h-7.72c-.02.9.24 1.65.69 2.14zm3.39-5.17c-.35-.42-.89-.63-1.61-.63-.48 0-.88.09-1.2.26-.32.17-.58.39-.77.65-.19.26-.33.55-.42.87-.09.31-.15.6-.18.87h4.87c-.12-.84-.42-1.6-.69-2.02zM15.27 4.2h5.46v1.42h-5.46V4.2z"/></svg>
-                    Behance
-                </a>
-                <a href="mailto:moacyr20neto@gmail.com" class="social-link">
-                    <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
-                    moacyr20neto@gmail.com
+                <a href="index.html" class="center-logo">Moacyr Neto</a>
+                <a href="#"><!-- Troque # pelo arquivo do próximo projeto -->
+                    Próximo
+                    <svg viewBox="0 0 24 24"><path d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4v-2z"/></svg>
                 </a>
             </div>
-            <div class="logo-video-wrap" style="margin-bottom: 15px;">
-                <video class="logo-video" autoplay muted loop playsinline>
-                    <source src="logo.mov" type='video/mp4; codecs="hvc1"'>
-                    <source src="logo.webm" type="video/webm">
-                </video>
-            </div>
-            <p class="footer-muted" data-i18n="footer_copy">&copy; 2024 Moacyr Neto. Todos os direitos reservados.</p>
-        </div>
-    </footer>
 
-    <div id="projectModal" class="modal" onclick="closeModalOnSide(event)">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <div style="aspect-ratio: 16/9; background:#000; border-radius: 20px; overflow: hidden;">
-                <iframe id="projectVideo" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div style="margin-top: 35px;">
-                <h2 id="modalTitle" style="font-size: 2.5rem; letter-spacing: -1px;"></h2>
-                <p id="modalDescription" style="margin-top: 15px; opacity: 0.6; font-size: 1.1rem; line-height: 1.8;"></p>
-            </div>
         </div>
     </div>
 
     <script>
-        // ====== Splash Screen + Transição ======
-        (function () {
-            document.body.classList.add('splash-active');
+    // ╔══════════════════════════════════════════════════════════╗
+    // ║  ✏️  CONFIGURE SUAS CENAS AQUI                          ║
+    // ║                                                          ║
+    // ║  Cada { } é uma cena. Adicione ou remova à vontade.     ║
+    // ║  Projeto com 1 cena só? Deixe apenas 1 objeto.          ║
+    // ╚══════════════════════════════════════════════════════════╝
+    const CENAS = [
+        {
+            titulo: "Cena 01 — Abertura",       // Nome da cena
+            tag: "Clean Up",                     // Tipo: Clean Up / Motion / 2D Animation
 
-            const splash        = document.getElementById('splash');
-            const overlay       = document.getElementById('transitionOverlay');
-            const transVideo    = document.getElementById('transitionVideo');
+            // VÍDEO: coloque o ID do YouTube OU o nome do arquivo. Deixe "" para não usar.
+            youtube: "dQw4w9WgXcQ",              // ID do YouTube  →  youtube.com/watch?v=ESSE_ID
+            arquivo: "",                          // Arquivo próprio → ex: "cena01.webm"
 
-            function showHero() {
-                // Remove overlay e libera o hero para aparecer
-                overlay.classList.remove('playing');
-                setTimeout(() => overlay.remove(), 500);
+            descricao: "Descreva o que fez nessa cena — técnica, dificuldade, contexto.",
+
+            // Detalhes da cena (deixe "" para ocultar a linha)
+            frames:   "240 frames",
+            tecnica:  "Clean Up digital",
+            software: "TVPaint",
+
+            // GIFs / imagens da cena — adicione quantos quiser
+            // src: caminho do arquivo  |  label: nome que aparece no placeholder
+            gifs: [
+                { src: "", label: "cena01-a.gif" },
+                { src: "", label: "cena01-b.gif" },
+            ]
+        },
+        {
+            titulo: "Cena 02 — Ação Principal",
+            tag: "Clean Up",
+            youtube: "dQw4w9WgXcQ",
+            arquivo: "",
+            descricao: "Descrição do que foi feito nessa segunda cena.",
+            frames:   "180 frames",
+            tecnica:  "Clean Up digital",
+            software: "TVPaint",
+            gifs: [
+                { src: "", label: "cena02-a.gif" },
+                { src: "", label: "cena02-b.gif" },
+                { src: "", label: "cena02-c.gif" },
+            ]
+        },
+        // ➕ Copie e cole um bloco acima para adicionar mais cenas
+    ];
+
+
+    // ─── Renderização automática — não precisa editar ────────────
+    const iconImg  = `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>`;
+    const iconVid  = `<svg viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/></svg>`;
+
+    function gifClass(n) {
+        if (n === 1) return 'gifs-1';
+        if (n === 2) return 'gifs-2';
+        if (n === 3) return 'gifs-3';
+        if (n === 4) return 'gifs-4';
+        return 'gifs-many';
+    }
+
+    const container = document.getElementById('scenesContainer');
+
+    container.innerHTML = `
+        <div class="scenes-header">
+            <span class="scenes-label">Cenas do Projeto</span>
+            <span class="scenes-count">${CENAS.length} cena${CENAS.length !== 1 ? 's' : ''}</span>
+        </div>
+        ${CENAS.map((c, i) => {
+            // Vídeo
+            let video = '';
+            if (c.youtube) {
+                video = `<iframe src="https://www.youtube.com/embed/${c.youtube}?rel=0" allowfullscreen loading="lazy"></iframe>`;
+            } else if (c.arquivo) {
+                const mov = c.arquivo.replace(/\.webm$/, '.mov');
+                video = `<video controls playsinline><source src="${c.arquivo}" type="video/webm"><source src="${mov}" type='video/mp4; codecs="hvc1"'></video>`;
+            } else {
+                video = `<div class="scene-video-placeholder">${iconVid}<span>Vídeo da cena</span></div>`;
             }
 
-            function playTransition() {
-                // Se não tiver o arquivo, pula direto pro hero
-                if (!transVideo.src || transVideo.readyState === 0) {
-                    showHero();
-                    return;
-                }
-                overlay.classList.add('playing');
-                transVideo.play();
-                transVideo.addEventListener('ended', showHero, { once: true });
-                // Fallback: se o vídeo travar, remove após 8s
-                setTimeout(showHero, 8000);
-            }
+            // Detalhes
+            const det = (label, val) => val
+                ? `<div class="scene-detail-item"><span class="scene-detail-label">${label}</span><span class="scene-detail-value">${val}</span></div>`
+                : '';
 
-            function dismissSplash() {
-                splash.classList.add('slide-up');
-                document.body.classList.remove('splash-active');
-                splash.addEventListener('transitionend', () => {
-                    splash.remove();
-                    playTransition();
-                }, { once: true });
-            }
+            // GIFs
+            const gifsHTML = c.gifs && c.gifs.length
+                ? `<div class="scene-gallery ${gifClass(c.gifs.length)}">
+                    ${c.gifs.map(g => `
+                        <div class="scene-gif">
+                            ${g.src
+                                ? `<img src="${g.src}" alt="${g.label}" loading="lazy">`
+                                : `<div class="gif-placeholder">${iconImg}<span>${g.label}</span></div>`}
+                        </div>`).join('')}
+                   </div>`
+                : '';
 
-            // Dispara após as animações de texto terminarem (~2.2s)
-            setTimeout(dismissSplash, 2200);
-        })();
+            return `
+            <div class="scene-block reveal">
+                <div class="scene-header">
+                    <span class="scene-number">CENA ${String(i+1).padStart(2,'0')}</span>
+                    <span class="scene-title-text">${c.titulo}</span>
+                    <span class="scene-tag">${c.tag}</span>
+                </div>
+                <div class="scene-video-wrap">${video}</div>
+                <div class="scene-body">
+                    <p class="scene-desc">${c.descricao}</p>
+                    <div class="scene-details">
+                        ${det('Frames', c.frames)}
+                        ${det('Técnica', c.tecnica)}
+                        ${det('Software', c.software)}
+                    </div>
+                </div>
+                ${gifsHTML}
+            </div>`;
+        }).join('')}
+    `;
 
-        // ====== Formulário via Fetch (sem sair da página) ======
-        document.getElementById('contactForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const btn = document.getElementById('submitBtn');
-            const originalText = btn.textContent;
-            btn.textContent = currentLang === 'pt' ? 'Enviando...' : 'Sending...';
-            btn.disabled = true;
-
-            const data = new FormData();
-            data.append('name',    document.getElementById('fieldName').value);
-            data.append('email',   document.getElementById('fieldEmail').value);
-            data.append('message', document.getElementById('fieldMessage').value);
-            data.append('_subject', 'Nova mensagem do portfólio!');
-            data.append('_captcha', 'false');
-            data.append('_template', 'table');
-
-            try {
-                await fetch('https://formsubmit.co/ajax/moacyr20neto@gmail.com', {
-                    method: 'POST',
-                    headers: { 'Accept': 'application/json' },
-                    body: data
-                });
-
-                // Limpa o formulário
-                document.getElementById('contactForm').reset();
-
-                // Mostra o toast de confirmação
-                const toast = document.getElementById('toast');
-                toast.textContent = translations[currentLang].toast_msg;
-                requestAnimationFrame(() => {
-                    toast.classList.add('show');
-                    setTimeout(() => toast.classList.remove('show'), 4000);
-                });
-
-            } catch (err) {
-                alert(currentLang === 'pt' ? 'Erro ao enviar. Tente novamente.' : 'Error sending. Please try again.');
-            } finally {
-                btn.textContent = originalText;
-                btn.disabled = false;
-            }
-        });
-
-        // ====== i18n Translation System ======
-        let currentLang = 'pt';
-
-        const translations = {
-            en: {
-                nav_portfolio: 'Portfolio',
-                nav_about: 'About',
-                nav_contact: 'Contact',
-                hero_name: 'Moacyr Neto',
-                hero_specs: 'Motion Design · Clean Up · 2D Animation',
-                hero_cta: 'Explore Projects',
-                clients_tag: 'Companies & Clients',
-                clients_studios: 'Studios',
-                clients_brands: 'Brands',
-                portfolio_title: 'My Portfolio MIX',
-                filter_all: 'All',
-                filter_motion: 'Motion Design',
-                filter_cleanup: 'Clean Up',
-                filter_2d: '2D Animation',
-                about_tag: 'My Journey',
-                about_title: 'Bringing <br><span style="color:var(--accent-color)">Ideas</span> to Life.',
-                about_p1: 'With years of experience in the animation industry, I specialize in the balance between meticulous Clean Up technique and the creativity of Motion Design.',
-                about_p2: 'I believe every movement should tell a visually impactful and fluid story.',
-                contact_tag: 'Ready to start?',
-                contact_title: "Let's bring your project to life",
-                contact_btn: 'Send Message',
-                footer_copy: '&copy; 2024 Moacyr Neto. All rights reserved.',
-                ph_name: 'Your Name',
-                ph_email: 'Your E-mail',
-                ph_message: 'Tell me about your project...',
-                toast_msg: 'Message sent!'
-            },
-            pt: {
-                nav_portfolio: 'Portfólio',
-                nav_about: 'Sobre',
-                nav_contact: 'Contato',
-                hero_name: 'Moacyr Neto',
-                hero_specs: 'Motion Design · Clean Up · Animação 2D',
-                hero_cta: 'Explorar Projetos',
-                clients_tag: 'Empresas & Clientes',
-                clients_studios: 'Estúdios',
-                clients_brands: 'Marcas',
-                portfolio_title: 'Meu Portfólio MIX',
-                filter_all: 'Todos',
-                filter_motion: 'Motion Design',
-                filter_cleanup: 'Clean Up',
-                filter_2d: 'Animação 2D',
-                about_tag: 'Minha Jornada',
-                about_title: 'Dando Vida a <br><span style="color:var(--accent-color)">Ideias</span>.',
-                about_p1: 'Com anos de experiência no mercado de animação, especializei-me no equilíbrio entre a técnica meticulosa do Clean Up e a criatividade do Motion Design.',
-                about_p2: 'Acredito que cada movimento deve contar uma história visual impactante e fluida.',
-                contact_tag: 'Pronto para começar?',
-                contact_title: 'Vamos dar movimento ao seu projeto',
-                contact_btn: 'Enviar Mensagem',
-                footer_copy: '&copy; 2024 Moacyr Neto. Todos os direitos reservados.',
-                ph_name: 'Seu Nome',
-                ph_email: 'Seu E-mail',
-                ph_message: 'Conte-me sobre o seu projeto...',
-                toast_msg: 'Mensagem enviada!'
-            }
-        };
-
-        function applyTranslations(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) el.innerHTML = translations[lang][key];
-            });
-            document.querySelectorAll('[data-i18n-ph]').forEach(el => {
-                const key = el.getAttribute('data-i18n-ph');
-                if (translations[lang][key]) el.placeholder = translations[lang][key];
-            });
-            // Atualiza toast
-            const toast = document.getElementById('toast');
-            if (toast) toast.textContent = translations[lang].toast_msg;
-            document.documentElement.lang = lang === 'pt' ? 'pt-br' : 'en';
-        }
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'pt' ? 'en' : 'pt';
-            applyTranslations(currentLang);
-            document.getElementById('langToggle').textContent = currentLang === 'pt' ? 'EN 🌐' : 'PT 🌐';
-        }
-
-        // ====== Intersection Observer (Rewind) ======
-        const observeOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                } else {
-                    entry.target.classList.remove('active');
-                }
-            });
-        }, observeOptions);
-
-        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
-
-        // ====== Marquee Seamless Fix ======
-        (function () {
-            function setupMarquee(track) {
-                const wrapper = track.parentElement;
-                const wrapperWidth = wrapper.offsetWidth;
-
-                // Clona itens até ter pelo menos 2.5x a largura da tela
-                // Garante loop sem gaps independente de quantos logos tiver
-                let safety = 0;
-                while (track.scrollWidth < wrapperWidth * 2.5 && safety < 20) {
-                    Array.from(track.children).forEach(item => {
-                        track.appendChild(item.cloneNode(true));
-                    });
-                    safety++;
-                }
-
-                // Velocidade sempre a mesma (30s) — confortável para ler os logos
-                // Quanto mais logos, mais suave parece. Poucos logos = mesma cadência.
-                const BASE_DURATION = 30; // segundos
-                track.style.animationDuration = BASE_DURATION + 's';
-            }
-
-            window.addEventListener('load', () => {
-                document.querySelectorAll('.marquee-track').forEach(setupMarquee);
-            });
-        })();
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const projects = document.querySelectorAll('.project-card');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.getAttribute('data-filter');
-                projects.forEach(project => {
-                    project.style.display = (filter === 'all' || project.getAttribute('data-category') === filter) ? 'block' : 'none';
-                });
-            });
-        });
-
-        // ====== Modal ======
-        function openProjectI18n(card, videoUrl) {
-            const suffix = currentLang;
-            const title = card.getAttribute('data-title-' + suffix);
-            const desc = card.getAttribute('data-desc-' + suffix);
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDescription').innerText = desc;
-            document.getElementById('projectVideo').src = videoUrl;
-            document.getElementById('projectModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('projectModal').style.display = 'none';
-            document.getElementById('projectVideo').src = '';
-            document.body.style.overflow = 'auto';
-        }
-
-        function closeModalOnSide(event) {
-            if (event.target.id === 'projectModal') closeModal();
-        }
+    // Scroll reveal
+    const obs = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }),
+        { threshold: 0.08 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     </script>
-</body>
 
+</body>
 </html>
