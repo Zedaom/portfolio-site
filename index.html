@@ -509,8 +509,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
-            padding-left: 12vw;
+            align-items: center;
             transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
         }
 
@@ -557,6 +556,14 @@
         }
 
         .splash-line {
+            height: 1.5px;
+            width: 0;
+            background: var(--accent-color);
+            animation: lineExpand 0.6s ease 1s forwards;
+        }
+
+        /* Segunda linha — espelho da primeira */
+        .splash-line-right {
             height: 1.5px;
             width: 0;
             background: var(--accent-color);
@@ -736,10 +743,8 @@
         }
 
         @media (max-width: 768px) {
-            /* Splash mobile */
+            /* Splash mobile — centralizado */
             #splash {
-                padding-left: 0;
-                padding-right: 0;
                 align-items: center;
             }
 
@@ -819,6 +824,7 @@
         <div class="splash-divider">
             <div class="splash-line"></div>
             <div class="splash-title">Motion Design &amp; 2D Artist</div>
+            <div class="splash-line-right"></div>
         </div>
     </div>
 
@@ -886,13 +892,13 @@
         <div class="clients-label reveal" data-i18n="clients_studios">Estúdios</div>
         <div class="marquee-wrapper">
             <div class="marquee-track">
-                <div class="logo-placeholder">Estúdio 1</div>
+                <div class="logo-placeholder">Colossal</div>
                 <div class="logo-placeholder">Estúdio 2</div>
                 <div class="logo-placeholder">Estúdio 3</div>
                 <div class="logo-placeholder">Estúdio 4</div>
                 <div class="logo-placeholder">Estúdio 5</div>
                 <!-- Duplicados para loop infinito -->
-                <div class="logo-placeholder">Estúdio 1</div>
+                <div class="logo-placeholder">Colossal</div>
                 <div class="logo-placeholder">Estúdio 2</div>
                 <div class="logo-placeholder">Estúdio 3</div>
                 <div class="logo-placeholder">Estúdio 4</div>
@@ -904,13 +910,13 @@
         <div class="clients-label reveal" style="margin-top: 28px;" data-i18n="clients_brands">Marcas</div>
         <div class="marquee-wrapper">
             <div class="marquee-track marquee-reverse">
-                <div class="logo-placeholder">Marca 1</div>
+                <div class="logo-placeholder">Havaianas</div>
                 <div class="logo-placeholder">Marca 2</div>
                 <div class="logo-placeholder">Marca 3</div>
                 <div class="logo-placeholder">Marca 4</div>
                 <div class="logo-placeholder">Marca 5</div>
                 <!-- Duplicados para loop infinito -->
-                <div class="logo-placeholder">Marca 1</div>
+                <div class="logo-placeholder">Havaianas</div>
                 <div class="logo-placeholder">Marca 2</div>
                 <div class="logo-placeholder">Marca 3</div>
                 <div class="logo-placeholder">Marca 4</div>
@@ -1316,4 +1322,3 @@
 </body>
 
 </html>
-
