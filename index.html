@@ -709,9 +709,15 @@
                 letter-spacing: 3px;
             }
 
-            /* Hero mobile — volta ao centro */
+            /* Hero mobile — centralizado e sem overflow */
             .hero .container {
                 text-align: center !important;
+                padding: 0 20px;
+            }
+
+            .hero h1 {
+                font-size: clamp(1.5rem, 10vw, 3rem) !important;
+                word-break: break-word;
             }
 
             .hero p {
@@ -796,7 +802,7 @@
     <section class="hero">
         <div class="container" style="z-index: 1; text-align: center;">
             <span class="section-tag" data-i18n="hero_name" style="color:#fff; opacity:0.5; margin-bottom:20px; display:block;">Moacyr Neto</span>
-            <h1 class="reveal" data-i18n="hero_title" style="transition-delay: 0.1s; font-family: 'Boldonse', sans-serif; font-size: clamp(1.8rem, 5vw, 4.5rem); line-height: 1.1; white-space: nowrap;">2D Animator & Motion Designer</h1>
+            <h1 class="reveal" data-i18n="hero_title" style="transition-delay: 0.1s; font-family: 'Boldonse', sans-serif; font-size: clamp(1.8rem, 6vw, 5rem); line-height: 1.15; white-space: normal; text-align: center;">2D ANIMATOR &<br>MOTION DESIGNER</h1>
             <p class="reveal" data-i18n="hero_desc" style="margin-left:auto; margin-right:auto; transition-delay: 0.25s;">Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.</p>
             <div class="reveal" style="transition-delay: 0.4s;">
                 <a href="#portfolio" class="filter-btn active" style="text-decoration:none; display:inline-block;" data-i18n="hero_cta">Explorar Projetos</a>
@@ -1090,8 +1096,7 @@
                 nav_about: 'About',
                 nav_contact: 'Contact',
                 hero_name: 'Moacyr Neto',
-                hero_title: '2D Animator & Motion Designer',
-                hero_desc: 'Specialist in dynamic Motion Design, high-precision Clean Up, and narrative 2D Animations.',
+                hero_title: '2D ANIMATOR &<br>MOTION DESIGNER',
                 hero_cta: 'Explore Projects',
                 clients_tag: 'Companies & Clients',
                 clients_studios: 'Studios',
@@ -1119,8 +1124,7 @@
                 nav_about: 'Sobre',
                 nav_contact: 'Contato',
                 hero_name: 'Moacyr Neto',
-                hero_title: '2D Animator & Motion Designer',
-                hero_desc: 'Especialista em Motion Design dinâmico, Clean Up de alta precisão e Animações 2D narrativas.',
+                hero_title: 'ANIMADOR 2D &<br>MOTION DESIGNER',
                 hero_cta: 'Explorar Projetos',
                 clients_tag: 'Empresas & Clientes',
                 clients_studios: 'Estúdios',
