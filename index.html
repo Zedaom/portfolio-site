@@ -153,12 +153,17 @@
             background: var(--bg-color);
         }
 
+        .hero .container {
+            width: 100%;
+            max-width: 100%;
+            padding: 0 20px;
+        }
+
         .hero-card {
             position: relative;
             width: 100%;
             border-radius: 28px;
             overflow: hidden;
-            /* Quase fullscreen — altura baseada na viewport menos o header */
             height: calc(100vh - 120px);
             border: 1px solid var(--glass-border);
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
@@ -591,10 +596,12 @@
             line-height: 1.2;
             text-align: center;
             margin: 0;
+            /* 40px tracking no Photoshop ≈ 0.25em em CSS */
+            letter-spacing: 0.25em;
         }
 
         .hero-specs {
-            font-size: 0.85rem;
+            font-size: 0.6rem;
             font-weight: 400;
             letter-spacing: 3px;
             text-transform: uppercase;
