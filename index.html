@@ -338,6 +338,7 @@
         }
 
         .about-image { border-radius: 40px; overflow: hidden; border: 1px solid var(--glass-border); }
+        .about-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
         .about-text h2 { font-size: 4rem; margin-bottom: 25px; line-height: 1; }
 
@@ -741,6 +742,7 @@
 
         @media (max-width: 992px) {
             .about-wrap { grid-template-columns: 1fr; gap: 40px; }
+            .about-image { height: 380px; }
         }
 
         @media (max-width: 768px) {
@@ -1324,5 +1326,3 @@
 </body>
 
 </html>
-
-
