@@ -25,7 +25,6 @@
         ::-webkit-scrollbar-thumb { background: var(--secondary-color); border-radius: 4px; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-        /* Back button */
         .back-btn {
             position: fixed; top: 24px; left: 24px; z-index: 100;
             display: flex; align-items: center; gap: 8px;
@@ -39,7 +38,6 @@
         .back-btn:hover { background: var(--accent-color); border-color: var(--accent-color); color: #000; }
         .back-btn svg { width: 14px; height: 14px; fill: currentColor; }
 
-        /* Hero */
         .project-hero { width: 100%; height: 100vh; position: relative; overflow: hidden; background: #0a0f1e; }
         .project-hero iframe, .project-hero video {
             position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: none;
@@ -61,10 +59,8 @@
             line-height: 1.05; color: #fff; letter-spacing: 0.05em;
         }
 
-        /* Content */
         .project-content { padding: 80px 0 120px; }
 
-        /* Ficha técnica */
         .project-meta {
             display: grid; grid-template-columns: repeat(4, 1fr);
             gap: 1px; background: var(--glass-border);
@@ -75,7 +71,6 @@
         .meta-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-color); margin-bottom: 8px; }
         .meta-value { font-size: 1rem; font-weight: 600; }
 
-        /* Descrição geral */
         .project-description { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; margin-bottom: 80px; }
         .project-description h2 { font-family: 'Boldonse', sans-serif; font-size: 2.5rem; line-height: 1.1; letter-spacing: 0.05em; position: sticky; top: 100px; }
         .project-description h2 span { color: var(--accent-color); }
@@ -83,46 +78,23 @@
 
         .section-divider { height: 1px; background: var(--glass-border); margin: 60px 0; }
 
-        /* ── CENAS ── */
-        .scenes-header {
-            display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px;
-        }
+        .scenes-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
         .scenes-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted-color); }
         .scenes-count { font-size: 0.75rem; font-weight: 600; color: var(--accent-color); letter-spacing: 1px; }
 
-        .scene-block {
-            margin-bottom: 48px;
-            border: 1px solid var(--glass-border);
-            border-radius: 24px; overflow: hidden;
-            background: rgba(20, 33, 61, 0.15);
-        }
+        .scene-block { margin-bottom: 48px; border: 1px solid var(--glass-border); border-radius: 24px; overflow: hidden; background: rgba(20, 33, 61, 0.15); }
         .scene-block:last-child { margin-bottom: 0; }
 
-        .scene-header {
-            display: flex; align-items: center; gap: 16px;
-            padding: 18px 28px; border-bottom: 1px solid var(--glass-border);
-        }
+        .scene-header { display: flex; align-items: center; gap: 16px; padding: 18px 28px; border-bottom: 1px solid var(--glass-border); }
         .scene-number { font-family: 'Boldonse', sans-serif; font-size: 0.75rem; letter-spacing: 2px; color: var(--accent-color); }
         .scene-title-text { font-size: 0.9rem; font-weight: 600; }
-        .scene-tag {
-            margin-left: auto; font-size: 0.65rem; font-weight: 700;
-            letter-spacing: 2px; text-transform: uppercase; color: var(--muted-color);
-            padding: 4px 12px; border: 1px solid var(--glass-border); border-radius: 50px;
-        }
+        .scene-tag { margin-left: auto; font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted-color); padding: 4px 12px; border: 1px solid var(--glass-border); border-radius: 50px; }
 
-        /* Vídeo da cena */
         .scene-video-wrap { position: relative; aspect-ratio: 16/9; background: #000; }
-        .scene-video-wrap iframe, .scene-video-wrap video {
-            position: absolute; inset: 0; width: 100%; height: 100%; border: none; object-fit: cover;
-        }
-        .scene-video-placeholder {
-            width: 100%; height: 100%; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 10px;
-            color: var(--muted-color); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
-        }
+        .scene-video-wrap iframe, .scene-video-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; border: none; object-fit: cover; }
+        .scene-video-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--muted-color); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
         .scene-video-placeholder svg { width: 40px; height: 40px; opacity: 0.2; fill: currentColor; }
 
-        /* Corpo da cena */
         .scene-body { padding: 24px 28px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: start; }
         .scene-desc { font-size: 0.95rem; line-height: 1.8; opacity: 0.7; }
         .scene-details { display: flex; flex-direction: column; gap: 10px; }
@@ -130,7 +102,6 @@
         .scene-detail-label { font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.6rem; color: var(--accent-color); min-width: 72px; }
         .scene-detail-value { opacity: 0.7; }
 
-        /* GIFs da cena */
         .scene-gallery { padding: 4px 28px 28px; display: grid; gap: 12px; }
         .scene-gallery.gifs-1 { grid-template-columns: 1fr; }
         .scene-gallery.gifs-2 { grid-template-columns: repeat(2, 1fr); }
@@ -143,14 +114,12 @@
         .gif-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--muted-color); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; }
         .gif-placeholder svg { width: 22px; height: 22px; opacity: 0.25; fill: currentColor; }
 
-        /* Nav inferior */
         .project-nav { display: flex; justify-content: space-between; align-items: center; padding-top: 60px; border-top: 1px solid var(--glass-border); }
         .project-nav a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--muted-color); font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: var(--transition); }
         .project-nav a:hover { color: var(--accent-color); }
         .project-nav a svg { width: 16px; height: 16px; fill: currentColor; }
         .project-nav .center-logo { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 1rem; letter-spacing: 2px; background: linear-gradient(90deg, var(--accent-color), #fff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
 
-        /* Reveal */
         .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.23, 1, 0.32, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -175,25 +144,28 @@
         Portfólio
     </a>
 
-    <!-- ═══════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════
          HERO — vídeo principal do projeto
-         ═══════════════════════════════════════════ -->
-    <div class="project-hero">
-        <!--
-            OPÇÃO A — YouTube:
-            <iframe src="https://www.youtube.com/embed/SEU_ID?autoplay=1&mute=1&loop=1&playlist=SEU_ID" allowfullscreen allow="autoplay"></iframe>
+         ═══════════════════════════════════════════════════════
+         OPÇÃO A — Vimeo (recomendado):
+           <iframe src="https://player.vimeo.com/video/SEU_ID?autoplay=1&muted=1&loop=1&background=1" allowfullscreen allow="autoplay"></iframe>
+           → O ID é o número na URL: vimeo.com/ESSE_NUMERO
 
-            OPÇÃO B — arquivo próprio:
-            <video autoplay muted loop playsinline>
-                <source src="video-principal.mov" type='video/mp4; codecs="hvc1"'>
-                <source src="video-principal.webm" type="video/webm">
-            </video>
-        -->
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ" allowfullscreen allow="autoplay"></iframe>
+         OPÇÃO B — YouTube:
+           <iframe src="https://www.youtube.com/embed/SEU_ID?autoplay=1&mute=1&loop=1&playlist=SEU_ID" allowfullscreen allow="autoplay"></iframe>
+
+         OPÇÃO C — arquivo próprio (.mov / .webm):
+           <video autoplay muted loop playsinline>
+               <source src="video-principal.mov" type='video/mp4; codecs="hvc1"'>
+               <source src="video-principal.webm" type="video/webm">
+           </video>
+    ════════════════════════════════════════════════════════════ -->
+    <div class="project-hero">
+        <iframe src="https://player.vimeo.com/video/SEU_ID_AQUI?autoplay=1&muted=1&loop=1&background=1" allowfullscreen allow="autoplay"></iframe>
         <div class="project-hero-overlay"></div>
         <div class="project-hero-info">
             <div class="container">
-                <div class="project-category-tag">Motion Design</div><!-- Categoria: Motion Design / Clean Up / Animação 2D -->
+                <div class="project-category-tag">Motion Design</div>
                 <h1 class="project-hero-title">Nome do<br>Projeto</h1>
             </div>
         </div>
@@ -221,7 +193,7 @@
 
             <div class="section-divider"></div>
 
-            <!-- ═══ CENAS (gerado automaticamente pelo JS abaixo) ═══ -->
+            <!-- ═══ CENAS ═══ -->
             <div id="scenesContainer" class="reveal"></div>
 
             <!-- ═══ NAV INFERIOR ═══ -->
@@ -231,7 +203,7 @@
                     Voltar
                 </a>
                 <a href="index.html" class="center-logo">Moacyr Neto</a>
-                <a href="#"><!-- Troque # pelo arquivo do próximo projeto -->
+                <a href="#">
                     Próximo
                     <svg viewBox="0 0 24 24"><path d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4v-2z"/></svg>
                 </a>
@@ -241,30 +213,31 @@
     </div>
 
     <script>
-    // ╔══════════════════════════════════════════════════════════╗
-    // ║  ✏️  CONFIGURE SUAS CENAS AQUI                          ║
-    // ║                                                          ║
-    // ║  Cada { } é uma cena. Adicione ou remova à vontade.     ║
-    // ║  Projeto com 1 cena só? Deixe apenas 1 objeto.          ║
-    // ╚══════════════════════════════════════════════════════════╝
+    // ╔══════════════════════════════════════════════════════════════╗
+    // ║  ✏️  CONFIGURE SUAS CENAS AQUI                              ║
+    // ║                                                              ║
+    // ║  Cada { } é uma cena. Adicione ou remova à vontade.         ║
+    // ║  Projeto com 1 cena só? Deixe apenas 1 objeto no array.     ║
+    // ╚══════════════════════════════════════════════════════════════╝
     const CENAS = [
         {
-            titulo: "Cena 01 — Abertura",       // Nome da cena
-            tag: "Clean Up",                     // Tipo: Clean Up / Motion / 2D Animation
+            titulo: "Cena 01 — Abertura",
+            tag: "Clean Up",
 
-            // VÍDEO: coloque o ID do YouTube OU o nome do arquivo. Deixe "" para não usar.
-            youtube: "dQw4w9WgXcQ",              // ID do YouTube  →  youtube.com/watch?v=ESSE_ID
-            arquivo: "",                          // Arquivo próprio → ex: "cena01.webm"
+            // ── VÍDEO DA CENA — escolha apenas UM dos três: ──────────
+            vimeo:   "SEU_ID_AQUI",   // ID Vimeo  → vimeo.com/ESSE_NUMERO  ✅ recomendado
+            youtube: "",              // ID YouTube → youtube.com/watch?v=ESSE_ID
+            arquivo: "",              // Arquivo próprio → ex: "cena01.webm"
+            // ─────────────────────────────────────────────────────────
 
             descricao: "Descreva o que fez nessa cena — técnica, dificuldade, contexto.",
 
-            // Detalhes da cena (deixe "" para ocultar a linha)
+            // Deixe "" para ocultar a linha
             frames:   "240 frames",
             tecnica:  "Clean Up digital",
             software: "TVPaint",
 
-            // GIFs / imagens da cena — adicione quantos quiser
-            // src: caminho do arquivo  |  label: nome que aparece no placeholder
+            // GIFs / imagens — adicione ou remova à vontade
             gifs: [
                 { src: "", label: "cena01-a.gif" },
                 { src: "", label: "cena01-b.gif" },
@@ -273,7 +246,8 @@
         {
             titulo: "Cena 02 — Ação Principal",
             tag: "Clean Up",
-            youtube: "dQw4w9WgXcQ",
+            vimeo:   "SEU_ID_AQUI",
+            youtube: "",
             arquivo: "",
             descricao: "Descrição do que foi feito nessa segunda cena.",
             frames:   "180 frames",
@@ -289,9 +263,9 @@
     ];
 
 
-    // ─── Renderização automática — não precisa editar ────────────
-    const iconImg  = `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>`;
-    const iconVid  = `<svg viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/></svg>`;
+    // ─── Renderização automática — não precisa editar ────────────────
+    const iconImg = `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>`;
+    const iconVid = `<svg viewBox="0 0 24 24"><path d="M17 10.5V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h12a1 1 0 001-1v-3.5l4 4v-11l-4 4z"/></svg>`;
 
     function gifClass(n) {
         if (n === 1) return 'gifs-1';
@@ -302,16 +276,17 @@
     }
 
     const container = document.getElementById('scenesContainer');
-
     container.innerHTML = `
         <div class="scenes-header">
             <span class="scenes-label">Cenas do Projeto</span>
             <span class="scenes-count">${CENAS.length} cena${CENAS.length !== 1 ? 's' : ''}</span>
         </div>
         ${CENAS.map((c, i) => {
-            // Vídeo
+            // Vídeo — prioridade: Vimeo > YouTube > arquivo próprio
             let video = '';
-            if (c.youtube) {
+            if (c.vimeo) {
+                video = `<iframe src="https://player.vimeo.com/video/${c.vimeo}?autoplay=0&title=0&byline=0&portrait=0" allowfullscreen loading="lazy"></iframe>`;
+            } else if (c.youtube) {
                 video = `<iframe src="https://www.youtube.com/embed/${c.youtube}?rel=0" allowfullscreen loading="lazy"></iframe>`;
             } else if (c.arquivo) {
                 const mov = c.arquivo.replace(/\.webm$/, '.mov');
@@ -320,12 +295,10 @@
                 video = `<div class="scene-video-placeholder">${iconVid}<span>Vídeo da cena</span></div>`;
             }
 
-            // Detalhes
             const det = (label, val) => val
                 ? `<div class="scene-detail-item"><span class="scene-detail-label">${label}</span><span class="scene-detail-value">${val}</span></div>`
                 : '';
 
-            // GIFs
             const gifsHTML = c.gifs && c.gifs.length
                 ? `<div class="scene-gallery ${gifClass(c.gifs.length)}">
                     ${c.gifs.map(g => `
@@ -358,7 +331,6 @@
         }).join('')}
     `;
 
-    // Scroll reveal
     const obs = new IntersectionObserver(
         entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }),
         { threshold: 0.08 }
