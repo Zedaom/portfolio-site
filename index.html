@@ -948,53 +948,67 @@
                 <button class="filter-btn" data-filter="2d" data-i18n="filter_2d">Animação 2D</button>
             </div>
 
-            <div class="project-grid" id="projectGrid">
-                <div class="project-card reveal delay-1" data-category="motion"
-                    onclick="window.location.href='projeto-showreel.html'">
+            <div class="project-grid" id="projectGrid"></div>
+
+            <script>
+            // ╔══════════════════════════════════════════════════════════╗
+            // ║  ✏️  ADICIONE / REMOVA PROJETOS AQUI                    ║
+            // ║                                                          ║
+            // ║  categoria: "motion" | "cleanup" | "2d"                 ║
+            // ║  thumb: imagem de capa (fallback se vídeo não carregar)  ║
+            // ║  preview: nome base do arquivo de preview (sem extensão) ║
+            // ║  pagina: arquivo HTML do projeto                         ║
+            // ╚══════════════════════════════════════════════════════════╝
+            const PROJETOS = [
+                {
+                    titulo:    "Showreel 2024",
+                    categoria: "motion",
+                    label:     "Motion Design",
+                    thumb:     "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
+                    preview:   "preview-motion",
+                    pagina:    "projeto-showreel.html",
+                },
+                {
+                    titulo:    "Project: Horizon",
+                    categoria: "cleanup",
+                    label:     "Clean Up",
+                    thumb:     "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+                    preview:   "preview-cleanup",
+                    pagina:    "projeto-horizon.html",
+                },
+                {
+                    titulo:    "Max Dynamic",
+                    categoria: "2d",
+                    label:     "Animação 2D",
+                    thumb:     "https://images.unsplash.com/photo-1633533412154-53afb7875b28?auto=format&fit=crop&w=800&q=80",
+                    preview:   "preview-2d",
+                    pagina:    "projeto-max.html",
+                },
+                // ➕ Para adicionar um projeto novo, copie o bloco acima e cole aqui
+            ];
+
+            // ─── Renderização automática — não precisa editar ─────────
+            const grid = document.getElementById('projectGrid');
+            const delays = ['delay-1','delay-2','delay-3','delay-4','delay-5','delay-6'];
+            grid.innerHTML = PROJETOS.map((p, i) => `
+                <div class="project-card reveal ${delays[i % delays.length]}"
+                    data-category="${p.categoria}"
+                    onclick="window.location.href='${p.pagina}'">
                     <div class="project-image-container">
-                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" alt="Motion" class="project-image">
+                        <img src="${p.thumb}" alt="${p.titulo}" class="project-image">
                         <video class="project-video" autoplay muted loop playsinline
                             oncanplay="this.classList.add('loaded')">
-                            <source src="preview-motion.mov" type='video/mp4; codecs="hvc1"'>
-                            <source src="preview-motion.webm" type="video/webm">
+                            <source src="${p.preview}.mov" type='video/mp4; codecs="hvc1"'>
+                            <source src="${p.preview}.webm" type="video/webm">
                         </video>
                     </div>
                     <div class="project-info">
-                        <span class="project-category">Motion Design</span>
-                        <h3 class="project-title">Showreel 2024</h3>
+                        <span class="project-category">${p.label}</span>
+                        <h3 class="project-title">${p.titulo}</h3>
                     </div>
                 </div>
-                <div class="project-card reveal delay-2" data-category="cleanup"
-                    onclick="window.location.href='projeto-horizon.html'">
-                    <div class="project-image-container">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Clean up" class="project-image">
-                        <video class="project-video" autoplay muted loop playsinline
-                            oncanplay="this.classList.add('loaded')">
-                            <source src="preview-cleanup.mov" type='video/mp4; codecs="hvc1"'>
-                            <source src="preview-cleanup.webm" type="video/webm">
-                        </video>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-category">Clean Up</span>
-                        <h3 class="project-title">Project: Horizon</h3>
-                    </div>
-                </div>
-                <div class="project-card reveal delay-3" data-category="2d"
-                    onclick="window.location.href='projeto-max.html'">
-                    <div class="project-image-container">
-                        <img src="https://images.unsplash.com/photo-1633533412154-53afb7875b28?auto=format&fit=crop&w=800&q=80" alt="2D Animation" class="project-image">
-                        <video class="project-video" autoplay muted loop playsinline
-                            oncanplay="this.classList.add('loaded')">
-                            <source src="preview-2d.mov" type='video/mp4; codecs="hvc1"'>
-                            <source src="preview-2d.webm" type="video/webm">
-                        </video>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-category" data-i18n="filter_2d">Animação 2D</span>
-                        <h3 class="project-title">Max Dynamic</h3>
-                    </div>
-                </div>
-            </div>
+            `).join('');
+            </script>
         </div>
     </section>
 
