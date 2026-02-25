@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Nome do Projeto | Moacyr Neto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: var(--secondary-color); border-radius: 4px; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width: 1600px; margin: 0 auto; padding: 0 60px; }
 
         .back-btn {
             position: fixed; top: 24px; left: 24px; z-index: 100;
@@ -124,6 +124,7 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 768px) {
+            .container { padding: 0 20px; }
             .back-btn { top: 16px; left: 16px; font-size: 0.75rem; padding: 8px 14px; }
             .project-hero { height: 60vh; }
             .project-hero-info { bottom: 30px; }
