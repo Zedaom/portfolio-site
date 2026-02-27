@@ -598,7 +598,23 @@
             to { width: 55px; }
         }
 
-        /* Hero Title */
+        /* Hero CTA — mesmo visual do filter-btn mas sem participar do filtro */
+        .hero-cta-btn {
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: none;
+            background: var(--accent-color);
+            color: #000;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .hero-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(252, 163, 17, 0.4);
+        }
         .hero-title {
             font-family: 'Boldonse', sans-serif;
             font-size: 2.25rem;
@@ -782,7 +798,7 @@
             }
 
             .hero-bg-video {
-                object-position: 50% center;
+                object-position: 60% center;
             }
 
             .hero-title {
@@ -884,7 +900,7 @@
                     <h1 class="reveal hero-title" style="transition-delay: 0.1s;">MOACYR NETO</h1>
                     <p class="reveal hero-specs" data-i18n="hero_specs" style="transition-delay: 0.2s;">Motion Design · Clean Up · 2D Animation</p>
                     <div class="reveal" style="transition-delay: 0.35s;">
-                        <a href="#portfolio" class="filter-btn active" style="text-decoration:none; display:inline-block;" data-i18n="hero_cta">Explorar Projetos</a>
+                        <a href="#portfolio" class="hero-cta-btn" style="text-decoration:none; display:inline-block;" data-i18n="hero_cta">Explorar Projetos</a>
                     </div>
                 </div>
             </div>
@@ -938,7 +954,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-tag" data-i18n="portfolio_tag">Trabalhos em Destaque</span>
-                <h2 class="section-title" data-i18n="portfolio_title">Portfólio</h2>
+                <h2 class="section-title" data-i18n="portfolio_title">Meu Portfólio MIX</h2>
             </div>
 
             <div class="filter-buttons reveal">
@@ -1008,6 +1024,11 @@
                     </div>
                 </div>
             `).join('');
+
+            // Observa os cards gerados dinamicamente assim que forem criados
+            grid.querySelectorAll('.reveal').forEach(el => {
+                if (window.__portfolioObserver) window.__portfolioObserver.observe(el);
+            });
             </script>
         </div>
     </section>
@@ -1021,8 +1042,8 @@
                 <div class="about-text reveal-right">
                     <span class="section-tag" data-i18n="about_tag">Minha Jornada</span>
                     <h2 data-i18n="about_title">Dando Vida a <br><span style="color:var(--accent-color)">Ideias</span>.</h2>
-                    <p data-i18n="about_p1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                    <p data-i18n="about_p2">Linha 2 texto auxiliar</p>
+                    <p data-i18n="about_p1">Com anos de experiência no mercado de animação, especializei-me no equilíbrio entre a técnica meticulosa do Clean Up e a criatividade do Motion Design.</p>
+                    <p data-i18n="about_p2">Acredito que cada movimento deve contar uma história visual impactante e fluida.</p>
                 </div>
             </div>
         </div>
@@ -1214,7 +1235,7 @@
                 clients_tag: 'Empresas & Clientes',
                 clients_studios: 'Estúdios',
                 clients_brands: 'Marcas',
-                portfolio_title: 'Portfolio',
+                portfolio_title: 'Meu Portfólio MIX',
                 filter_all: 'Todos',
                 filter_motion: 'Motion Design',
                 filter_cleanup: 'Clean Up',
@@ -1255,18 +1276,18 @@
             document.getElementById('langToggle').textContent = currentLang === 'pt' ? 'EN 🌐' : 'PT 🌐';
         }
 
-        // ====== Intersection Observer (Rewind) ======
-        const observeOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        // ====== Intersection Observer ======
+        const observeOptions = { threshold: 0.1, rootMargin: "0px 0px -30px 0px" };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                } else {
-                    entry.target.classList.remove('active');
+                    observer.unobserve(entry.target);
                 }
             });
         }, observeOptions);
+        window.__portfolioObserver = observer;
 
         document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
@@ -1335,6 +1356,3 @@
 </body>
 
 </html>
-
-
-
