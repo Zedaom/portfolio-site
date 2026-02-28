@@ -91,11 +91,13 @@
         .scene-number { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 2px; color: var(--accent-color); }
         .scene-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted-color); padding: 4px 12px; border: 1px solid var(--glass-border); border-radius: 50px; }
 
-        /* GIFs — coluna centralizada, sem caixas */
+        /* Clipes — coluna centralizada, sem caixas */
         .scene-gallery { display: flex; flex-direction: column; align-items: center; gap: 20px; }
         .scene-gif { width: 90%; border-radius: 16px; overflow: hidden; }
-        .scene-gif img { width: 100%; height: auto; display: block; border-radius: 16px; transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
-        .scene-gif:hover img { transform: scale(1.02); }
+        .scene-gif img,
+        .scene-gif video { width: 100%; height: auto; display: block; transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
+        .scene-gif:hover img,
+        .scene-gif:hover video { transform: scale(1.02); }
         .gif-placeholder {
             width: 100%; aspect-ratio: 16/9;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -222,17 +224,18 @@
     const CENAS = [
         {
             tag: "Clean Up",   // tipo: Clean Up / Motion Design / Animação 2D
-            gifs: [
-                { src: "", label: "cena01-a.gif" },
-                { src: "", label: "cena01-b.gif" },
+            clips: [
+                // Use .webm (leve e rápido) ou .gif se preferir
+                { src: "", label: "cena01-a.webm" },
+                { src: "", label: "cena01-b.webm" },
             ]
         },
         {
             tag: "Clean Up",
-            gifs: [
-                { src: "", label: "cena02-a.gif" },
-                { src: "", label: "cena02-b.gif" },
-                { src: "", label: "cena02-c.gif" },
+            clips: [
+                { src: "", label: "cena02-a.webm" },
+                { src: "", label: "cena02-b.webm" },
+                { src: "", label: "cena02-c.webm" },
             ]
         },
         // ➕ Copie e cole um bloco acima para adicionar mais cenas
@@ -256,14 +259,19 @@
             <span class="scenes-count">${CENAS.length} cena${CENAS.length !== 1 ? 's' : ''}</span>
         </div>
         ${CENAS.map((c, i) => {
-            const gifsHTML = c.gifs && c.gifs.length
-                ? `<div class="scene-gallery ${gifClass(c.gifs.length)}">
-                    ${c.gifs.map(g => `
-                        <div class="scene-gif">
-                            ${g.src
-                                ? `<img src="${g.src}" alt="${g.label}" loading="lazy">`
-                                : `<div class="gif-placeholder">${iconImg}<span>${g.label}</span></div>`}
-                        </div>`).join('')}
+            const gifsHTML = c.clips && c.clips.length
+                ? `<div class="scene-gallery">
+                    ${c.clips.map(g => {
+                        if (!g.src) {
+                            return `<div class="scene-gif"><div class="gif-placeholder">${iconImg}<span>${g.label}</span></div></div>`;
+                        }
+                        const isVideo = /\.(webm|mp4|mov)$/i.test(g.src);
+                        if (isVideo) {
+                            const mp4 = g.src.replace(/\.webm$/i, '.mp4');
+                            return `<div class="scene-gif"><video autoplay loop muted playsinline preload="metadata"><source src="${g.src}" type="video/webm"><source src="${mp4}" type="video/mp4"></video></div>`;
+                        }
+                        return `<div class="scene-gif"><img src="${g.src}" alt="${g.label}" loading="lazy"></div>`;
+                    }).join('')}
                    </div>`
                 : '';
 
