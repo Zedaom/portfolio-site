@@ -84,25 +84,27 @@
         .scenes-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted-color); }
         .scenes-count { font-size: 0.75rem; font-weight: 600; color: var(--accent-color); letter-spacing: 1px; }
 
-        /* Cenas — sem caixa */
+        /* Cenas — tag dentro do container, clips full bleed */
         .scene-block { margin-bottom: 64px; }
         .scene-block:last-child { margin-bottom: 0; }
-        .scene-header { display: flex; align-items: center; gap: 16px; padding: 0 0 16px; border-bottom: 1px solid var(--glass-border); margin-bottom: 20px; }
-        .scene-number { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 2px; color: var(--accent-color); }
-        .scene-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted-color); padding: 4px 12px; border: 1px solid var(--glass-border); border-radius: 50px; }
+        .scene-header { padding: 0 0 16px; border-bottom: 1px solid var(--glass-border); margin-bottom: 20px; }
+        .scene-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-color); }
 
-        /* Clipes — coluna centralizada, sem caixas */
-        .scene-gallery { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        .scene-gif { width: 90%; border-radius: 16px; overflow: hidden; }
+        /* Full bleed: sai do container */
+        .scene-gallery-wrap {
+            margin: 0 -60px;
+        }
+
+        /* Clipes — largura total, sem espaço entre eles */
+        .scene-gallery { display: flex; flex-direction: column; gap: 0; }
+        .scene-gif { width: 100%; overflow: hidden; }
         .scene-gif img,
-        .scene-gif video { width: 100%; height: auto; display: block; transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
-        .scene-gif:hover img,
-        .scene-gif:hover video { transform: scale(1.02); }
+        .scene-gif video { width: 100%; height: auto; display: block; }
         .gif-placeholder {
             width: 100%; aspect-ratio: 16/9;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             gap: 8px; color: var(--muted-color); font-size: 0.65rem; letter-spacing: 2px;
-            text-transform: uppercase; border: 1px dashed var(--glass-border); border-radius: 16px;
+            text-transform: uppercase; border: 1px dashed var(--glass-border);
         }
         .gif-placeholder svg { width: 22px; height: 22px; opacity: 0.25; fill: currentColor; }
 
@@ -155,6 +157,9 @@
             /* GIFs: 100% no mobile */
             .scene-gif { width: 100%; }
 
+            /* GIFs: full bleed no mobile também */
+            .scene-gallery-wrap { margin: 0 -20px; }
+
             .project-nav .center-logo { display: none; }
         }
     </style>
@@ -169,7 +174,7 @@
 
     <!-- Hero: troque o nome da imagem abaixo -->
     <div class="project-hero">
-        <img src="ImpossibleJourneyCapa.jpeg" alt="Impossible Journey" class="project-hero-img">
+        <img src="capa-impossible-journey.jpg" alt="Impossible Journey" class="project-hero-img">
         <div class="project-hero-overlay"></div>
         <div class="project-hero-info">
             <div class="container">
@@ -192,7 +197,8 @@
             <div class="project-description reveal">
                 <h2>Sobre o<br><span>Projeto</span></h2>
                 <div>
-                    <p>Projeto que auxiliei no Clean up em cenas com cor base, luz e sombra antes de ir para o processo de pintura tradicional, dirigido por YUCA.</p>
+                    <p>Descreva aqui o contexto geral do projeto — o que foi feito, para quem, e qual foi o seu papel.</p>
+                    <p>Segundo parágrafo opcional com mais detalhes sobre o processo criativo.</p>
                 </div>
             </div>
 
@@ -225,17 +231,18 @@
             tag: "Clean Up",   // tipo: Clean Up / Motion Design / Animação 2D
             clips: [
                 // Use .webm (leve e rápido) ou .gif se preferir
-                { src: "ImpossibleJourneySH270_COR_BASE.mp4", label: "cena01-a.webm" },
-                { src: "ImpossibleJourneySH170_COR_BASE.mp4", label: "cena01-b.webm" },
-                { src: "ImpossibleJourneySH160_COR_BASE.mp4", label: "cena01-c.webm" },
-                { src: "ImpossibleJourneySH160_LUZ.mp4", label: "cena01-d.webm" },
-                { src: "ImpossibleJourneyBebe_01.mp4", label: "cena01-e.webm" },
-                { src: "ImpossibleJourneyBebe_02.mp4", label: "cena01-f.webm" },
-                { src: "ImpossibleJourneyBebe_03.mp4", label: "cena01-h.webm" },
-                { src: "ImpossibleJourneySH450_COR_BASE.mp4", label: "cena01-i.webm" },
+                { src: "", label: "cena01-a.webm" },
+                { src: "", label: "cena01-b.webm" },
             ]
         },
-       
+        {
+            tag: "Clean Up",
+            clips: [
+                { src: "", label: "cena02-a.webm" },
+                { src: "", label: "cena02-b.webm" },
+                { src: "", label: "cena02-c.webm" },
+            ]
+        },
         // ➕ Copie e cole um bloco acima para adicionar mais cenas
     ];
 
@@ -251,14 +258,9 @@
     }
 
     const container = document.getElementById('scenesContainer');
-    container.innerHTML = `
-        <div class="scenes-header">
-            <span class="scenes-label">Cenas do Projeto</span>
-            <span class="scenes-count">${CENAS.length} cena${CENAS.length !== 8 ? 's' : ''}</span>
-        </div>
-        ${CENAS.map((c, i) => {
-            const gifsHTML = c.clips && c.clips.length
-                ? `<div class="scene-gallery">
+    container.innerHTML = CENAS.map((c, i) => {
+            const clipsHTML = c.clips && c.clips.length
+                ? `<div class="scene-gallery-wrap"><div class="scene-gallery">
                     ${c.clips.map(g => {
                         if (!g.src) {
                             return `<div class="scene-gif"><div class="gif-placeholder">${iconImg}<span>${g.label}</span></div></div>`;
@@ -270,19 +272,17 @@
                         }
                         return `<div class="scene-gif"><img src="${g.src}" alt="${g.label}" loading="lazy"></div>`;
                     }).join('')}
-                   </div>`
+                   </div></div>`
                 : '';
 
             return `
             <div class="scene-block reveal">
                 <div class="scene-header">
-                    <span class="scene-number">CENA ${String(i+1).padStart(2,'0')}</span>
                     <span class="scene-tag">${c.tag}</span>
                 </div>
-                ${gifsHTML}
+                ${clipsHTML}
             </div>`;
-        }).join('')}
-    `;
+        }).join('');
 
     const obs = new IntersectionObserver(
         entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }),
@@ -299,7 +299,8 @@
             back:        "Portfólio",
             sobre_title: "Sobre o",
             sobre_span:  "Projeto",
-            sobre_p1:    "Projeto que auxiliei no Clean up em cenas com cor base, luz e sombra antes de ir para o processo de pintura tradicional, dirigido por YUCA.",   
+            sobre_p1:    "Descreva aqui o contexto geral do projeto — o que foi feito, para quem, e qual foi o seu papel.",
+            sobre_p2:    "Segundo parágrafo opcional com mais detalhes sobre o processo criativo.",
             scenes_label:"Cenas do Projeto",
             nav_prev:    "Voltar",
             nav_next:    "Próximo",
@@ -308,7 +309,8 @@
             back:        "Portfolio",
             sobre_title: "About the",
             sobre_span:  "Project",
-            sobre_p1:    "Provided clean-up support on scenes featuring base color, lighting, and shadow passes before the traditional painting process. Directed by YUCA.",
+            sobre_p1:    "Describe the general context of the project — what was done, for whom, and what was your role.",
+            sobre_p2:    "Optional second paragraph with more details about the creative process.",
             scenes_label:"Project Scenes",
             nav_prev:    "Back",
             nav_next:    "Next",
