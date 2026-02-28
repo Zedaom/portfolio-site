@@ -116,34 +116,39 @@
         }
         .gif-placeholder svg { width: 22px; height: 22px; opacity: 0.25; fill: currentColor; }
 
-        /* Créditos — estilo simples centralizado */
+        /* Créditos — centralizado entre as duas linhas */
         .project-credits {
-            margin-top: 80px;
-            padding-top: 60px;
+            padding: 80px 0;
             border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 260px;
         }
         .credits-title {
             font-size: 0.7rem; font-weight: 700;
             letter-spacing: 3px; text-transform: uppercase;
-            color: var(--muted-color); margin-bottom: 40px;
+            color: var(--muted-color); margin-bottom: 32px;
         }
         .credits-list {
-            display: flex; flex-direction: column; gap: 12px;
+            display: flex; flex-direction: column; gap: 10px;
         }
         .credit-line {
             font-size: 0.95rem; color: var(--text-color); opacity: 0.75;
             line-height: 1.6;
         }
         .credit-line strong {
-            color: var(--text-color); opacity: 1; font-weight: 400;
+            font-weight: 400;
         }
 
-        /* Nav inferior — centralizado */
+        /* Nav inferior — centralizado, sem borda própria (créditos já tem borda abaixo) */
         .project-nav {
             display: flex; justify-content: center; align-items: center;
             gap: 48px;
-            padding-top: 60px; border-top: 1px solid var(--glass-border);
+            padding: 48px 0;
         }
         .project-nav a {
             display: flex; align-items: center; gap: 10px;
@@ -159,6 +164,15 @@
             background: linear-gradient(90deg, var(--accent-color), #fff);
             -webkit-background-clip: text; background-clip: text;
             -webkit-text-fill-color: transparent; text-decoration: none;
+        }
+
+        /* Vídeo: fade-in quando pronto — evita flash preto no mobile */
+        .scene-gif video {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .scene-gif video.ready {
+            opacity: 1;
         }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.23, 1, 0.32, 1); }
@@ -337,6 +351,18 @@
     }, { threshold: 0.25 });
 
     document.querySelectorAll('.scene-gif').forEach(el => videoObs.observe(el));
+
+    // ── Fade-in quando o vídeo tem dados suficientes para exibir ─────
+    // Evita flash preto no mobile — o vídeo só aparece quando tem o 1º frame
+    document.querySelectorAll('.scene-gif video').forEach(video => {
+        const show = () => video.classList.add('ready');
+        if (video.readyState >= 2) {          // já tem dados (HAVE_CURRENT_DATA)
+            show();
+        } else {
+            video.addEventListener('loadeddata', show, { once: true });
+            video.addEventListener('canplay',    show, { once: true });
+        }
+    });
     </script>
 
     <script>
