@@ -89,14 +89,11 @@
         .scene-block:last-child { margin-bottom: 0; }
         .scene-header { display: flex; align-items: center; gap: 16px; padding: 0 0 16px; border-bottom: 1px solid var(--glass-border); margin-bottom: 20px; }
         .scene-number { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 2px; color: var(--accent-color); }
-        .scene-title-text { font-size: 0.9rem; font-weight: 600; }
-        .scene-tag { margin-left: auto; font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted-color); padding: 4px 12px; border: 1px solid var(--glass-border); border-radius: 50px; }
-        .scene-body { margin-bottom: 24px; }
-        .scene-desc { font-size: 0.95rem; line-height: 1.8; opacity: 0.7; }
+        .scene-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted-color); padding: 4px 12px; border: 1px solid var(--glass-border); border-radius: 50px; }
 
         /* GIFs — coluna centralizada, sem caixas */
         .scene-gallery { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        .scene-gif { width: 60%; border-radius: 16px; overflow: hidden; }
+        .scene-gif { width: 90%; border-radius: 16px; overflow: hidden; }
         .scene-gif img { width: 100%; height: auto; display: block; border-radius: 16px; transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
         .scene-gif:hover img { transform: scale(1.02); }
         .gif-placeholder {
@@ -153,8 +150,8 @@
             .project-description { grid-template-columns: 1fr; gap: 30px; }
             .project-description h2 { position: static; font-size: 1.8rem; }
 
-            /* GIFs: 75% no mobile */
-            .scene-gif { width: 75%; }
+            /* GIFs: 100% no mobile */
+            .scene-gif { width: 100%; }
 
             .project-nav .center-logo { display: none; }
         }
@@ -170,7 +167,7 @@
 
     <!-- Hero: troque o nome da imagem abaixo -->
     <div class="project-hero">
-        <img src="ImpossibleJourneyCapa" alt="Impossible Journey" class="project-hero-img">
+        <img src="capa-impossible-journey.jpg" alt="Impossible Journey" class="project-hero-img">
         <div class="project-hero-overlay"></div>
         <div class="project-hero-info">
             <div class="container">
@@ -224,19 +221,14 @@
     // ╚══════════════════════════════════════════════════════════════╝
     const CENAS = [
         {
-            tag: "Clean Up",
-
-            // GIFs / imagens da cena — adicione quantos quiser
-            // src: nome do arquivo  |  label: texto do placeholder enquanto não tiver o arquivo
+            tag: "Clean Up",   // tipo: Clean Up / Motion Design / Animação 2D
             gifs: [
-                { src: "ImpossibleJourneySH160_COR_BASE.gif", label: "ImpossibleJourneySH160_COR_BASE.gif" },
-                { src: "ImpossibleJourneySH160_LUZ.gif", label: "ImpossibleJourneySH160_LUZ.gif" },
+                { src: "", label: "cena01-a.gif" },
+                { src: "", label: "cena01-b.gif" },
             ]
         },
         {
-            titulo: "Cena 02 — Ação Principal",
             tag: "Clean Up",
-            descricao: "Descrição do que foi feito nessa segunda cena.",
             gifs: [
                 { src: "", label: "cena02-a.gif" },
                 { src: "", label: "cena02-b.gif" },
@@ -279,11 +271,7 @@
             <div class="scene-block reveal">
                 <div class="scene-header">
                     <span class="scene-number">CENA ${String(i+1).padStart(2,'0')}</span>
-                    <span class="scene-title-text">${c.titulo}</span>
                     <span class="scene-tag">${c.tag}</span>
-                </div>
-                <div class="scene-body">
-                    <p class="scene-desc">${c.descricao}</p>
                 </div>
                 ${gifsHTML}
             </div>`;
