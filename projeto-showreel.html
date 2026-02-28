@@ -38,8 +38,9 @@
         .back-btn:hover { background: var(--accent-color); border-color: var(--accent-color); color: #000; }
         .back-btn svg { width: 14px; height: 14px; fill: currentColor; }
 
-        /* Hero — desktop: fullscreen com texto sobreposto */
+        /* Hero desktop */
         .project-hero { width: 100%; height: 100vh; position: relative; overflow: hidden; background: #0a0f1e; }
+        .project-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .project-hero iframe, .project-hero video {
             position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: none;
         }
@@ -83,33 +84,27 @@
         .scenes-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted-color); }
         .scenes-count { font-size: 0.75rem; font-weight: 600; color: var(--accent-color); letter-spacing: 1px; }
 
-        .scene-block { margin-bottom: 48px; border: 1px solid var(--glass-border); border-radius: 24px; overflow: hidden; background: rgba(20, 33, 61, 0.15); }
+        /* Cenas — sem caixa */
+        .scene-block { margin-bottom: 64px; }
         .scene-block:last-child { margin-bottom: 0; }
-
-        .scene-header { display: flex; align-items: center; gap: 16px; padding: 18px 28px; border-bottom: 1px solid var(--glass-border); }
+        .scene-header { display: flex; align-items: center; gap: 16px; padding: 0 0 16px; border-bottom: 1px solid var(--glass-border); margin-bottom: 20px; }
         .scene-number { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 2px; color: var(--accent-color); }
         .scene-title-text { font-size: 0.9rem; font-weight: 600; }
         .scene-tag { margin-left: auto; font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted-color); padding: 4px 12px; border: 1px solid var(--glass-border); border-radius: 50px; }
-
-        .scene-video-wrap { position: relative; aspect-ratio: 16/9; background: #000; }
-        .scene-video-wrap iframe, .scene-video-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; border: none; object-fit: cover; }
-        .scene-video-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--muted-color); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
-        .scene-video-placeholder svg { width: 40px; height: 40px; opacity: 0.2; fill: currentColor; }
-
-        /* Corpo — apenas descrição, sem ficha técnica por cena */
-        .scene-body { padding: 24px 28px; }
+        .scene-body { margin-bottom: 24px; }
         .scene-desc { font-size: 0.95rem; line-height: 1.8; opacity: 0.7; }
 
-        .scene-gallery { padding: 4px 28px 28px; display: grid; gap: 12px; }
-        .scene-gallery.gifs-1 { grid-template-columns: 1fr; }
-        .scene-gallery.gifs-2 { grid-template-columns: repeat(2, 1fr); }
-        .scene-gallery.gifs-3 { grid-template-columns: repeat(3, 1fr); }
-        .scene-gallery.gifs-4, .scene-gallery.gifs-many { grid-template-columns: repeat(4, 1fr); }
-
-        .scene-gif { border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; background: var(--secondary-color); border: 1px solid var(--glass-border); }
-        .scene-gif img, .scene-gif video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
-        .scene-gif:hover img, .scene-gif:hover video { transform: scale(1.05); }
-        .gif-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--muted-color); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; }
+        /* GIFs — coluna centralizada, sem caixas */
+        .scene-gallery { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .scene-gif { width: 60%; border-radius: 16px; overflow: hidden; }
+        .scene-gif img { width: 100%; height: auto; display: block; border-radius: 16px; transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
+        .scene-gif:hover img { transform: scale(1.02); }
+        .gif-placeholder {
+            width: 100%; aspect-ratio: 16/9;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 8px; color: var(--muted-color); font-size: 0.65rem; letter-spacing: 2px;
+            text-transform: uppercase; border: 1px dashed var(--glass-border); border-radius: 16px;
+        }
         .gif-placeholder svg { width: 22px; height: 22px; opacity: 0.25; fill: currentColor; }
 
         .project-nav { display: flex; justify-content: space-between; align-items: center; padding-top: 60px; border-top: 1px solid var(--glass-border); }
@@ -121,7 +116,6 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.23, 1, 0.32, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* ── MOBILE: vídeo + título abaixo, sem sobreposição ── */
         .lang-btn {
             position: fixed; top: 24px; right: 24px; z-index: 100;
             background: rgba(0,0,0,0.6); backdrop-filter: blur(12px);
@@ -133,32 +127,35 @@
         .lang-btn:hover { background: var(--accent-color); border-color: var(--accent-color); color: #000; }
 
         @media (max-width: 768px) {
+            .container { padding: 0 20px; }
             .lang-btn { top: 16px; right: 16px; padding: 8px 14px; }
+            .back-btn { top: 16px; left: 16px; font-size: 0.75rem; padding: 8px 14px; }
 
-            .project-hero {
-                height: auto;
-                display: flex;
-                flex-direction: column;
+            /* Hero mobile: imagem em cima, título embaixo */
+            .project-hero { height: auto; display: flex; flex-direction: column; }
+            .project-hero-img {
+                position: static; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover;
             }
             .project-hero iframe, .project-hero video {
-                position: static;
-                width: 100%;
-                height: auto;
-                aspect-ratio: 16/9;
+                position: static; width: 100%; height: auto; aspect-ratio: 16/9;
             }
             .project-hero-overlay { display: none; }
-            .project-hero-info {
-                position: static;
-                padding: 20px 20px 0;
-                background: var(--bg-color);
-            }
+            .project-hero-info { position: static; padding: 20px 20px 0; background: var(--bg-color); }
             .project-hero-title { font-size: 1.8rem; }
 
+            /* Ficha técnica: 2 colunas, texto menor */
             .project-content { padding: 30px 0 80px; }
-            .project-meta { grid-template-columns: repeat(2, 1fr); }
+            .project-meta { grid-template-columns: 1fr 1fr; }
+            .meta-item { padding: 16px 18px; }
+            .meta-value { font-size: 0.85rem; word-break: break-word; }
+            .meta-label { font-size: 0.55rem; }
+
             .project-description { grid-template-columns: 1fr; gap: 30px; }
             .project-description h2 { position: static; font-size: 1.8rem; }
-            .scene-gallery.gifs-3, .scene-gallery.gifs-4, .scene-gallery.gifs-many { grid-template-columns: repeat(2, 1fr); }
+
+            /* GIFs: 75% no mobile */
+            .scene-gif { width: 75%; }
+
             .project-nav .center-logo { display: none; }
         }
     </style>
@@ -173,7 +170,7 @@
 
     <!-- Hero: troque o nome da imagem abaixo -->
     <div class="project-hero">
-        <img src="ImpossibleJourneyCapa.jpeg" alt="Impossible Journey" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        <img src="ImpossibleJourneyCapa" alt="Impossible Journey" class="project-hero-img">
         <div class="project-hero-overlay"></div>
         <div class="project-hero-info">
             <div class="container">
@@ -227,9 +224,7 @@
     // ╚══════════════════════════════════════════════════════════════╝
     const CENAS = [
         {
-            titulo: "Cena 01 — Abertura",
             tag: "Clean Up",
-            descricao: "Descreva o que fez nessa cena — técnica, dificuldade, contexto.",
 
             // GIFs / imagens da cena — adicione quantos quiser
             // src: nome do arquivo  |  label: texto do placeholder enquanto não tiver o arquivo
@@ -243,7 +238,9 @@
             tag: "Clean Up",
             descricao: "Descrição do que foi feito nessa segunda cena.",
             gifs: [
-                { src: "ImpossibleJourneySH450_COR_BASE.gif", label: "ImpossibleJourneySH450_COR_BASE.gif" },
+                { src: "", label: "cena02-a.gif" },
+                { src: "", label: "cena02-b.gif" },
+                { src: "", label: "cena02-c.gif" },
             ]
         },
         // ➕ Copie e cole um bloco acima para adicionar mais cenas
