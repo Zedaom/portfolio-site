@@ -254,7 +254,7 @@
     container.innerHTML = `
         <div class="scenes-header">
             <span class="scenes-label">Cenas do Projeto</span>
-            <span class="scenes-count">${CENAS.length} cena${CENAS.length !== 1 ? 's' : ''}</span>
+            <span class="scenes-count">${CENAS.length} cena${CENAS.length !== 8 ? 's' : ''}</span>
         </div>
         ${CENAS.map((c, i) => {
             const gifsHTML = c.clips && c.clips.length
