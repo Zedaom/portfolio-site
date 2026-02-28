@@ -166,6 +166,35 @@
             -webkit-text-fill-color: transparent; text-decoration: none;
         }
 
+        /* Botão "ver créditos completos" */
+        .credits-toggle {
+            margin-top: 28px;
+            background: none; border: none;
+            color: var(--muted-color);
+            font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase;
+            cursor: pointer; display: flex; align-items: center; gap: 6px;
+            transition: color 0.3s;
+        }
+        .credits-toggle:hover { color: var(--accent-color); }
+        .credits-toggle svg { transition: transform 0.3s; }
+        .credits-toggle.open svg { transform: rotate(180deg); }
+
+        /* Lista completa — escondida por padrão */
+        .credits-full {
+            display: none;
+            margin-top: 28px;
+            max-width: 680px;
+            text-align: left;
+        }
+        .credits-full.open { display: block; }
+        .credits-full p {
+            font-size: 0.82rem; line-height: 1.8;
+            opacity: 0.55; color: var(--text-color);
+            margin-bottom: 12px;
+        }
+        .credits-full p:last-child { margin-bottom: 0; }
+
         /* Vídeo: fade-in quando pronto — evita flash preto no mobile */
         .scene-gif video {
             opacity: 0;
@@ -257,32 +286,39 @@
             <!-- ═══ CRÉDITOS ═══
                  Adicione linhas no formato: Cargo: Nome(s)
             -->
+            <!-- ═══ CRÉDITOS ═══
+                 Edite os créditos principais abaixo.
+                 A lista completa fica escondida e expande com o botão.
+            -->
             <div class="project-credits reveal">
                 <div class="credits-title">Créditos</div>
+
+                <!-- Créditos principais — apenas os mais relevantes para o seu trabalho -->
                 <div class="credits-list">
-                    
-                    <div class="credit-line">Director: YUCA. 
+                    <div class="credit-line">Direção: <strong>YUCA</strong></div>
+                    <div class="credit-line">Produção: <strong>The Youth</strong></div>
+                    <div class="credit-line">Pós-Produção: <strong>Colossal</strong></div>
+                    <div class="credit-line">2D Animation Supervisor: <strong>Denis Bargos, Daniella Schuarts, Bruno Brasil, André Ruivo.</strong></div>
+                    <div class="credit-line">Clean Up: <strong>Moacyr Neto</strong> e equipe</div>
+                    <!-- ➕ adicione ou remova linhas aqui -->
+                </div>
 
-Production Company: THE YOUTH. Post-Production Company: COLOSSAL. Executive Creative Director: Eduardo Lubiazi, João Machado. Executive Producer: Eduardo Lubiazi. Head of Production: Daniel Maia. Post-Production Coordinator: Yasmim Uehara. Art Director: Eduardo Rosa. Animation Director: YUCA + Bruno Brasil. DOP: Yuri Maranhão.
+                <!-- Botão para expandir créditos completos -->
+                <button class="credits-toggle" id="creditsToggle" onclick="toggleCredits()">
+                    Ver créditos completos
+                    <svg id="creditsChevron" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
 
-Producer: Yasmim Uehara, Mauricio Kazu Yamashita. Post-Production Coordinator: Yasmim Uehara. Post-Production Coordinator Assistant: Nicole Lia Rêgo da Silva, Ana Paula Godoy. Production Coordinator: Carol Cherobim. Assistant Coordinator: Camila Pires, Lu Krasa. Finance Department: Iza Lubiazi
-
-Head of art: YUCA. Art Direction: Rosa Eduardo Studio. Animation Director: YUCA + Bruno Brasil. Screenplay: Viton Araújo and Eduardo Tavares. Editor: Leonardo Salomão. Assistant Editor: Victor Balestrin. Printing Studio: Farbewerk Fine Art Lab. Printing Producer: Daniel Farbewerk. Painting Studio: ATELIÊ 39. Painting Artists: Ana Beatriz Artigas, João Paulo de Carvalho. 2D Animation Supervisor: Denis Bargos, Daniella Schuarts, Bruno Brasil, André Ruivo. VFX Supervision: Rodrigo Stradiotto, Diogo Gameiro. Lead Conform and Delivery: Victor Balestrin. Conform and Delivery: Ricardo Jug.
-
-Lead Character Design: Beatrice Bandiera. Lead Concept Artists: Fabio Miraglia. Lead Illustration: Beatrice Bandiera, Marília Mafé, Diogo Saraiva, Bruno Rosal. Concept Artist: Marília Mafé, Taíssa Maia, Che Marcheti, Ana Maria Sena, Bennê Oliveira, Camilla Muniz, Cinthia Saty, Helô Rodrigues, Fabio Miraglia, Diogo Saraiva, Bruno Rosal, Daniel Cramer, Gabriel dos Anjos, Fernando Nas, João Capoulade, Douglas Lopes, Wilson Panassi, Felipe Parucci.
-
-Storyboard: Walfrido Monteiro. Previz animation: André Ruivo. 2D Animation: Carol Caporrino, Nana Siqueira, Gabriela Chamorro Diniz, Danila Ribeiro, Thalyne Chrystyna, Gabrielle Paparelli, André Ruivo, Diones Ignacio, Robson Vilalba, Anderson Omori, Gilson Júnior de Souza Bastos, Bremo, Gui Kirinus, Geovani Angelo, Carlos Yury, Gui Klein, Sid Ahearne, Alexandre Sales, Gabriel Fraga, Gabriel Chagas, Robb Reis, Denis Bargos.
-
-VFX Animation: Nana Siqueira, Hermes de Lima, Fhilipe Marmori. Lead Clean Up: Mateuz Fernandes. Clean Up / Painting: Clara Luz Carvalho Salazar, Nana Siqueira, Giovanna Jahjah, Melissa Ferreira Sartor, Renata SHP, Brenda Maryan, Taiza Nogueira, Mateuz Fernandes, Robson Vilalba, Diones Ignacio, Dudu Querubins, Ulisses Jucá, Luiz Alvares, Pedro Solano, Thallyson Silvestre, Moacyr Neto, Diogo Saraiva, Carlos Yury, Lucas Batalha, Rosinaldo Lages, Josias Bosio, Bruno Mazzilli, Leonardo Vincensi, Rafael Sinnott, Lucas Moraes, Fabio Soro, Lucas Fernandes Siqueira, Jonatas Freire da Silva Souza, Rhuan Gonçalves de Oliveira de Farias, Diego Akel, Lucas Felipe Pereira. 2D Compositing: Gabriel Rocha, Diego Eduardo Loz, Tiago Castro, Adelir Boeira, Lucas Santiago, Jean Lamin, Alan Jose Dias.
-
-Compositing: Michel Takahashi. Colorist: Erick Moraes. 3D Previz: Lucas Lira. 3D Animator: Tiago da Silva. Motion Graphics: Janaína da Veiga. Still Craft Photographer: Diego Cagnato. Stabilization Compositing: Everton Ricardo Sabino (Tom), Nícolas Braga de Medeiros Nicolak.
-
-Live Action: Director: YUCA. DOP: Yuri Maranhão. 1st AC: Jenny Desrosiers. Make up artist: Cris Severo. Steadicam OP: Emma Leavy. BB: Melquan Q Ali. Sound Mixer: Emily Strong. Producer: Stella Bloss. Producer: Livia Borjaile. PA/Driver: Elijah Joseph. Still Photography: Talitha Ramos. Casting: Amanda Gabrielle Baia, Bruce Arturo McIntyre III, Camilla de Souza, Carla Williams, Denise Miller, Emilie Rodriguez, Sarry Nemorin. Portrait Painter: Eduardo Rosa.
-
-Music Company: Satélite Áudio. Music Direction: Roberto Coelho, Kito Siqueira e Hurso Ambrifi. Account: Fernanda Costa, Renata Schincariol, Daniel Chasin e Karen Nakamura. Music Production: Roberto Coelho, Hurso Ambrifi, Thiago Colli, Koitty , Alexandre Avicena, Pedro Pelotas e Nando Diniz. Post Production and Mixing: Carla Cornea, Vithor Moraes, Arthur Dossa, Andre Giannini e Esteban Romero. Production Coordinator: Camila Guedes, Letícia Oliveira, Bea Vieira e Mariana Tardelli.
-
-<strong></strong></div>
-                    <!-- ➕ copie uma linha acima para adicionar mais -->
+                <!-- Lista completa — colada do press kit / vimeo description -->
+                <div class="credits-full" id="creditsFull">
+                    <p>Executive Creative Director: Eduardo Lubiazi, João Machado. Executive Producer: Eduardo Lubiazi. Head of Production: Daniel Maia. Post-Production Coordinator: Yasmim Uehara. Art Director: Eduardo Rosa. Animation Director: YUCA + Bruno Brasil. DOP: Yuri Maranhão.</p>
+                    <p>Producer: Yasmim Uehara, Mauricio Kazu Yamashita. Production Coordinator: Carol Cherobim. Assistant Coordinator: Camila Pires, Lu Krasa.</p>
+                    <p>Screenplay: Viton Araújo and Eduardo Tavares. Editor: Leonardo Salomão. Painting Artists: Ana Beatriz Artigas, João Paulo de Carvalho. 2D Animation Supervisor: Denis Bargos, Daniella Schuarts, Bruno Brasil, André Ruivo. VFX Supervision: Rodrigo Stradiotto, Diogo Gameiro.</p>
+                    <p>2D Animation: Carol Caporrino, Nana Siqueira, Gabriela Chamorro Diniz, Danila Ribeiro, Thalyne Chrystyna, Gabrielle Paparelli, André Ruivo, Diones Ignacio, Robson Vilalba, Anderson Omori, Gilson Júnior, Bremo, Gui Kirinus, Geovani Angelo, Carlos Yury, Gui Klein, Sid Ahearne, Alexandre Sales, Gabriel Fraga, Gabriel Chagas, Robb Reis, Denis Bargos.</p>
+                    <p>Clean Up / Painting: Clara Luz Carvalho Salazar, Nana Siqueira, Giovanna Jahjah, Melissa Ferreira Sartor, Renata SHP, Brenda Maryan, Taiza Nogueira, Mateuz Fernandes, Robson Vilalba, Diones Ignacio, Dudu Querubins, Ulisses Jucá, Luiz Alvares, Pedro Solano, Thallyson Silvestre, Moacyr Neto, Diogo Saraiva, Carlos Yury, Lucas Batalha, Rosinaldo Lages, Josias Bosio, Bruno Mazzilli, Leonardo Vincensi, Rafael Sinnott, Lucas Moraes, Fabio Soro, Lucas Fernandes Siqueira, Jonatas Freire da Silva Souza, Rhuan Gonçalves, Diego Akel, Lucas Felipe Pereira.</p>
+                    <p>2D Compositing: Gabriel Rocha, Diego Eduardo Loz, Tiago Castro, Adelir Boeira, Lucas Santiago, Jean Lamin, Alan Jose Dias. Colorist: Erick Moraes. Motion Graphics: Janaína da Veiga.</p>
+                    <p>Music: Satélite Áudio. Music Direction: Roberto Coelho, Kito Siqueira e Hurso Ambrifi.</p>
+                    <!-- ➕ adicione mais parágrafos se precisar -->
                 </div>
             </div>
 
@@ -374,13 +410,21 @@ Music Company: Satélite Áudio. Music Direction: Roberto Coelho, Kito Siqueira 
     // Evita flash preto no mobile — o vídeo só aparece quando tem o 1º frame
     document.querySelectorAll('.scene-gif video').forEach(video => {
         const show = () => video.classList.add('ready');
-        if (video.readyState >= 2) {          // já tem dados (HAVE_CURRENT_DATA)
+        if (video.readyState >= 2) {
             show();
         } else {
             video.addEventListener('loadeddata', show, { once: true });
             video.addEventListener('canplay',    show, { once: true });
         }
     });
+
+    function toggleCredits() {
+        const full    = document.getElementById('creditsFull');
+        const toggle  = document.getElementById('creditsToggle');
+        const isOpen  = full.classList.toggle('open');
+        toggle.classList.toggle('open', isOpen);
+        toggle.childNodes[0].textContent = isOpen ? 'Fechar créditos ' : 'Ver créditos completos ';
+    }
     </script>
 
     <script>
@@ -397,7 +441,7 @@ Music Company: Satélite Áudio. Music Direction: Roberto Coelho, Kito Siqueira 
             back:        "Portfolio",
             sobre_title: "About the",
             sobre_span:  "Project",
-            sobre_p1:    "Provided clean-up support on scenes featuring base color, lighting, and shadow passes before the traditional painting process. Directed by YUCA.",
+            sobre_p1:    "Provided Clean up support on scenes featuring base color, lighting, and shadow passes before the traditional painting process. Directed by YUCA.",
             nav_prev:    "Back",
             nav_next:    "Next",
         }
