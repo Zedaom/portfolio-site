@@ -80,26 +80,32 @@
 
         .section-divider { height: 1px; background: var(--glass-border); margin: 60px 0; }
 
-        .scenes-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
-        .scenes-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted-color); }
-        .scenes-count { font-size: 0.75rem; font-weight: 600; color: var(--accent-color); letter-spacing: 1px; }
-
-        /* Cenas — tag dentro do container, clips full bleed */
+        /* Cenas */
         .scene-block { margin-bottom: 64px; }
         .scene-block:last-child { margin-bottom: 0; }
         .scene-header { padding: 0 0 16px; border-bottom: 1px solid var(--glass-border); margin-bottom: 20px; }
         .scene-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-color); }
 
-        /* Full bleed: sai do container */
-        .scene-gallery-wrap {
-            margin: 0 -60px;
+        /* Full bleed */
+        .scene-gallery-wrap { margin: 0 -60px; }
+        .scene-gallery {
+            display: flex; flex-direction: column;
+            /* evita linha de sub-pixel entre vídeos */
+            gap: 0; font-size: 0;
         }
-
-        /* Clipes — largura total, sem espaço entre eles */
-        .scene-gallery { display: flex; flex-direction: column; gap: 0; }
-        .scene-gif { width: 100%; overflow: hidden; }
+        .scene-gif {
+            width: 100%; overflow: hidden;
+            /* margin negativo cobre qualquer gap de sub-pixel */
+            margin-bottom: -1px;
+        }
+        .scene-gif:last-child { margin-bottom: 0; }
         .scene-gif img,
-        .scene-gif video { width: 100%; height: auto; display: block; }
+        .scene-gif video {
+            width: 100%; height: auto;
+            display: block;
+            /* força renderização exata sem gap */
+            vertical-align: bottom;
+        }
         .gif-placeholder {
             width: 100%; aspect-ratio: 16/9;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -132,19 +138,13 @@
             .lang-btn { top: 16px; right: 16px; padding: 8px 14px; }
             .back-btn { top: 16px; left: 16px; font-size: 0.75rem; padding: 8px 14px; }
 
-            /* Hero mobile: imagem em cima, título embaixo */
             .project-hero { height: auto; display: flex; flex-direction: column; }
-            .project-hero-img {
-                position: static; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover;
-            }
-            .project-hero iframe, .project-hero video {
-                position: static; width: 100%; height: auto; aspect-ratio: 16/9;
-            }
+            .project-hero-img { position: static; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
+            .project-hero iframe, .project-hero video { position: static; width: 100%; height: auto; aspect-ratio: 16/9; }
             .project-hero-overlay { display: none; }
             .project-hero-info { position: static; padding: 20px 20px 0; background: var(--bg-color); }
             .project-hero-title { font-size: 1.8rem; }
 
-            /* Ficha técnica: 2 colunas, texto menor */
             .project-content { padding: 30px 0 80px; }
             .project-meta { grid-template-columns: 1fr 1fr; }
             .meta-item { padding: 16px 18px; }
@@ -154,12 +154,7 @@
             .project-description { grid-template-columns: 1fr; gap: 30px; }
             .project-description h2 { position: static; font-size: 1.8rem; }
 
-            /* GIFs: 100% no mobile */
-            .scene-gif { width: 100%; }
-
-            /* GIFs: full bleed no mobile também */
             .scene-gallery-wrap { margin: 0 -20px; }
-
             .project-nav .center-logo { display: none; }
         }
     </style>
@@ -172,7 +167,6 @@
     </a>
     <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
 
-    <!-- Hero: troque o nome da imagem abaixo -->
     <div class="project-hero">
         <img src="ImpossibleJourneyCapa.jpeg" alt="Impossible Journey" class="project-hero-img">
         <div class="project-hero-overlay"></div>
@@ -221,84 +215,82 @@
     </div>
 
     <script>
-    // ╔══════════════════════════════════════════════════════════════╗
-    // ║  ✏️  CONFIGURE SUAS CENAS AQUI                              ║
-    // ║  Cada { } é uma cena. Adicione ou remova à vontade.         ║
-    // ╚══════════════════════════════════════════════════════════════╝
     const CENAS = [
         {
-            tag: "Clean Up",   // tipo: Clean Up / Motion Design / Animação 2D
+            tag: "Clean Up",
             clips: [
-                // Use .webm (leve e rápido) ou .gif se preferir
-                { src: "ImpossibleJourneySH160_COR_BASE.mp4", label: "cena01-a.webm" },
-                { src: "ImpossibleJourneySH160_LUZ.mp4", label: "cena01-b.webm" },
-                { src: "ImpossibleJourneySH170_COR_BASE.mp4", label: "cena01-b.webm" },
-                { src: "ImpossibleJourneySH270_COR_BASE.mp4", label: "cena01-b.webm" },
-                { src: "ImpossibleJourneySH450_COR_BASE.mp4", label: "cena01-b.webm" },
-                { src: "ImpossibleJourneyBebe_01.mp4", label: "cena01-b.webm" },
-                { src: "ImpossibleJourneyBebe_02.mp4", label: "cena01-b.webm" },
-                { src: "ImpossibleJourneyBebe_03.mp4", label: "cena01-b.webm" },
+                { src: "ImpossibleJourneySH160_COR_BASE.mp4", label: "SH160 Cor Base" },
+                { src: "ImpossibleJourneySH160_LUZ.mp4",      label: "SH160 Luz" },
+                { src: "ImpossibleJourneySH170_COR_BASE.mp4", label: "SH170 Cor Base" },
+                { src: "ImpossibleJourneySH270_COR_BASE.mp4", label: "SH270 Cor Base" },
+                { src: "ImpossibleJourneySH450_COR_BASE.mp4", label: "SH450 Cor Base" },
+                { src: "ImpossibleJourneyBebe_01.mp4",         label: "Bebê 01" },
+                { src: "ImpossibleJourneyBebe_02.mp4",         label: "Bebê 02" },
+                { src: "ImpossibleJourneyBebe_03.mp4",         label: "Bebê 03" },
             ]
         },
-        
-        // ➕ Copie e cole um bloco acima para adicionar mais cenas
     ];
 
-    // ─── Renderização automática ─────────────────────────────────────
     const iconImg = `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>`;
 
-    function gifClass(n) {
-        if (n === 1) return 'gifs-1';
-        if (n === 2) return 'gifs-2';
-        if (n === 3) return 'gifs-3';
-        if (n === 4) return 'gifs-4';
-        return 'gifs-many';
-    }
-
     const container = document.getElementById('scenesContainer');
-    container.innerHTML = CENAS.map((c, i) => {
-            const clipsHTML = c.clips && c.clips.length
-                ? `<div class="scene-gallery-wrap"><div class="scene-gallery">
-                    ${c.clips.map(g => {
-                        if (!g.src) {
-                            return `<div class="scene-gif"><div class="gif-placeholder">${iconImg}<span>${g.label}</span></div></div>`;
-                        }
-                        const isVideo = /\.(webm|mp4|mov)$/i.test(g.src);
-                        if (isVideo) {
-                            const mp4 = g.src.replace(/\.webm$/i, '.mp4');
-                            return `<div class="scene-gif"><video autoplay loop muted playsinline preload="metadata"><source src="${g.src}" type="video/webm"><source src="${mp4}" type="video/mp4"></video></div>`;
-                        }
-                        return `<div class="scene-gif"><img src="${g.src}" alt="${g.label}" loading="lazy"></div>`;
-                    }).join('')}
-                   </div></div>`
-                : '';
+    container.innerHTML = CENAS.map(c => {
+        const clipsHTML = c.clips && c.clips.length
+            ? `<div class="scene-gallery-wrap"><div class="scene-gallery">
+                ${c.clips.map(g => {
+                    if (!g.src) {
+                        return `<div class="scene-gif"><div class="gif-placeholder">${iconImg}<span>${g.label}</span></div></div>`;
+                    }
+                    const isVideo = /\.(webm|mp4|mov)$/i.test(g.src);
+                    if (isVideo) {
+                        // preload="none" — só carrega quando o observer mandar
+                        return `<div class="scene-gif"><video loop muted playsinline preload="none"><source src="${g.src}" type="video/mp4"></video></div>`;
+                    }
+                    return `<div class="scene-gif"><img src="${g.src}" alt="${g.label}" loading="lazy"></div>`;
+                }).join('')}
+               </div></div>`
+            : '';
 
-            return `
-            <div class="scene-block reveal">
-                <div class="scene-header">
-                    <span class="scene-tag">${c.tag}</span>
-                </div>
-                ${clipsHTML}
-            </div>`;
-        }).join('');
+        return `
+        <div class="scene-block reveal">
+            <div class="scene-header">
+                <span class="scene-tag">${c.tag}</span>
+            </div>
+            ${clipsHTML}
+        </div>`;
+    }).join('');
 
-    const obs = new IntersectionObserver(
+    // ── Reveal observer (seções gerais) ──────────────────────────────
+    const revealObs = new IntersectionObserver(
         entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }),
         { threshold: 0.08 }
     );
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // ── Play/Pause observer — toca só quando visível ──────────────────
+    // threshold: 0.25 = pelo menos 25% do vídeo na tela para começar
+    const videoObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            const video = e.target.querySelector('video');
+            if (!video) return;
+            if (e.isIntersecting) {
+                video.play().catch(() => {}); // catch ignora bloqueio de autoplay
+            } else {
+                video.pause();
+            }
+        });
+    }, { threshold: 0.25 });
+
+    document.querySelectorAll('.scene-gif').forEach(el => videoObs.observe(el));
     </script>
 
     <script>
-    // ── Tradução PT / EN ─────────────────────────────────────────
-    // Edite os textos abaixo para traduzir a página
     const TRADUCOES = {
         pt: {
             back:        "Portfólio",
             sobre_title: "Sobre o",
             sobre_span:  "Projeto",
             sobre_p1:    "Projeto que auxiliei no Clean up em cenas com cor base, luz e sombra antes de ir para o processo de pintura tradicional, dirigido por YUCA.",
-            scenes_label:"Cenas do Projeto",
             nav_prev:    "Voltar",
             nav_next:    "Próximo",
         },
@@ -307,7 +299,6 @@
             sobre_title: "About the",
             sobre_span:  "Project",
             sobre_p1:    "Provided clean-up support on scenes featuring base color, lighting, and shadow passes before the traditional painting process. Directed by YUCA.",
-            scenes_label:"Project Scenes",
             nav_prev:    "Back",
             nav_next:    "Next",
         }
@@ -325,14 +316,10 @@
         const t = TRADUCOES[lang];
         const q = s => document.querySelector(s);
         const qa = s => document.querySelectorAll(s);
-
-        q('.back-label').textContent         = t.back;
+        q('.back-label').textContent = t.back;
         q('.project-description h2').innerHTML = `${t.sobre_title}<br><span>${t.sobre_span}</span>`;
         const ps = qa('.project-description p');
         if (ps[0]) ps[0].textContent = t.sobre_p1;
-        if (ps[1]) ps[1].textContent = t.sobre_p2;
-        const sl = q('.scenes-label');
-        if (sl) sl.textContent = t.scenes_label;
         qa('.project-nav a').forEach((a, i) => {
             if (i === 0) a.innerHTML = a.innerHTML.replace(/Voltar|Back/, t.nav_prev);
             if (i === 2) a.innerHTML = a.innerHTML.replace(/Próximo|Next/, t.nav_next);
