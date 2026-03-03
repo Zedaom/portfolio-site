@@ -723,7 +723,7 @@
             border-radius: 50px;
             border: none;
             background: var(--accent-color);
-            color: #000;
+            color: #fff;
             font-weight: 700;
             font-size: 0.85rem;
             letter-spacing: 1px;
@@ -1064,7 +1064,7 @@
                             onclick="document.querySelector('.nav-links').classList.remove('open')">Sobre</a></li>
                     <li><a href="#contact" data-i18n="nav_contact"
                             onclick="document.querySelector('.nav-links').classList.remove('open')">Contato</a></li>
-                    <li><button class="lang-toggle" id="langToggle" onclick="toggleLanguage()">EN 🌐</button></li>
+                    <li><button class="lang-toggle" id="langToggle" onclick="toggleLanguage()">PT 🌐</button></li>
                 </ul>
             </nav>
         </div>
@@ -1409,7 +1409,7 @@
         });
 
         // ====== i18n Translation System ======
-        let currentLang = 'pt';
+        let currentLang = 'en';
 
         const translations = {
             en: {
@@ -1590,8 +1590,9 @@
         function closeModalOnSide(event) {
             if (event.target.id === 'projectModal') closeModal();
         }
+        // Initialize language
+        applyTranslations(currentLang);
     </script>
 </body>
 
 </html>
-
