@@ -1674,7 +1674,7 @@
             const nav = document.querySelector('.nav-links');
             const isOpen = nav.classList.toggle('open');
             header.classList.toggle('nav-open', isOpen);
-            document.body.style.overflow = isOpen ? 'hidden' : '';
+            // Removido o lock de scroll para evitar travamento no celular
         }
 
         // Close menu when clicking a link
@@ -1704,4 +1704,3 @@
 </body>
 
 </html>
-
