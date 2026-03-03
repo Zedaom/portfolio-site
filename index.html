@@ -147,15 +147,21 @@
         .logo-video-wrap {
             display: flex;
             align-items: center;
-            height: 36px;
+            height: 42px;
         }
 
-        .logo-video {
-            height: 36px;
-            width: auto;
-            display: block;
-            /* mix-blend-mode garante que o alpha funcione sobre qualquer fundo */
-            mix-blend-mode: normal;
+        .logo-text {
+            font-family: 'Boldonse', sans-serif !important;
+            font-size: 2.2rem;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -1px;
+            line-height: 1;
+            transition: var(--transition);
+        }
+
+        .logo-text:hover {
+            color: var(--accent-color);
         }
 
         .nav-links {
@@ -1050,10 +1056,7 @@
         <div class="container" style="max-width: 100%; padding: 0 28px;">
             <nav>
                 <div class="logo-video-wrap">
-                    <video class="logo-video" autoplay muted loop playsinline>
-                        <source src="logo.mov" type='video/mp4; codecs="hvc1"'>
-                        <source src="logo.webm" type="video/webm">
-                    </video>
+                    <a href="#" class="logo-text">MOA</a>
                 </div>
                 <button class="menu-toggle"
                     onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
@@ -1300,11 +1303,8 @@
                     moacyr20neto@gmail.com
                 </a>
             </div>
-            <div class="logo-video-wrap" style="margin-bottom: 15px;">
-                <video class="logo-video" autoplay muted loop playsinline>
-                    <source src="logo.mov" type='video/mp4; codecs="hvc1"'>
-                    <source src="logo.webm" type="video/webm">
-                </video>
+            <div class="logo-video-wrap" style="margin-bottom: 25px; justify-content: center;">
+                <a href="#" class="logo-text">MOA</a>
             </div>
 
         </div>
