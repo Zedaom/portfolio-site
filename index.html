@@ -828,7 +828,7 @@
         .marquee-track {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 60px;
             width: max-content;
             /* A duração é controlada via JS baseado na largura real */
             animation: marqueeScroll var(--duration, 25s) linear infinite;
@@ -1119,23 +1119,6 @@
                 <div class="marquee-logo">
                     <img src="split-logo.png" alt="Split-Studio">
                 </div>
-               
-                <!-- Duplicados para loop infinito -->
-               <div class="marquee-logo">
-                    <img src="colossal-logo.png" alt="Colossal">
-                </div>
-               <div class="marquee-logo">
-                    <img src="the-youth-logo.png" alt="The-Youth">
-                </div>
-               <div class="marquee-logo">
-                    <img src="envar-logo.png" alt="Envar-Entertainment">
-                </div>
-                 <div class="marquee-logo">
-                    <img src="histeria-logo.png" alt="Histeria">
-                </div>
-                 <div class="marquee-logo">
-                    <img src="split-logo.png" alt="Split-Studio">
-                </div>
             </div>
         </div>
 
@@ -1153,21 +1136,7 @@
                     <img src="huawei-logo.png" alt="Huawei">
                 </div>
                 <div class="marquee-logo">
-                    <img src="tiger-beer-logo.png" alt="Huawei">
-                </div>
-                
-                <!-- Duplicados para loop infinito -->
-               <div class="marquee-logo">
-                    <img src="riot-forge.png" alt="Riot-Forge">
-                </div>
-                <div class="marquee-logo">
-                    <img src="havaianas-logo.png" alt="Havaianas">
-                </div>
-                <div class="marquee-logo">
-                    <img src="huawei-logo.png" alt="Huawei">
-                </div>
-                <div class="marquee-logo">
-                    <img src="tiger-beer-logo.png" alt="Huawei">
+                    <img src="tiger-beer-logo.png" alt="Tiger Beer">
                 </div>
             </div>
         </div>
@@ -1535,25 +1504,48 @@
         document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
         // ====== Marquee Seamless Fix ======
+        // Lógica inteligente: duplica o conjunto original apenas 1x para o loop,
+        // garantindo que o usuário nunca veja logos repetidos na mesma tela.
         (function () {
             function setupMarquee(track) {
                 const wrapper = track.parentElement;
                 const wrapperWidth = wrapper.offsetWidth;
 
-                // Clona itens até ter pelo menos 2.5x a largura da tela
-                // Garante loop sem gaps independente de quantos logos tiver
-                let safety = 0;
-                while (track.scrollWidth < wrapperWidth * 2.5 && safety < 20) {
-                    Array.from(track.children).forEach(item => {
+                // Pega os itens originais (sem duplicatas)
+                const originalItems = Array.from(track.children);
+
+                // Mede a largura do conjunto original
+                let originalWidth = 0;
+                originalItems.forEach(item => {
+                    originalWidth += item.offsetWidth;
+                });
+                // Adiciona os gaps (60px entre cada item)
+                originalWidth += (originalItems.length - 1) * 60;
+
+                // Se o conjunto original é menor que a tela, clona o set inteiro
+                // até que UMA cópia preencha a viewport
+                let setsNeeded = Math.ceil(wrapperWidth / originalWidth);
+                if (setsNeeded < 1) setsNeeded = 1;
+
+                // Cria o grupo expandido (preenche a viewport sem repetição visível)
+                for (let i = 1; i < setsNeeded; i++) {
+                    originalItems.forEach(item => {
                         track.appendChild(item.cloneNode(true));
                     });
-                    safety++;
                 }
 
-                // Velocidade sempre a mesma (30s) — confortável para ler os logos
-                // Quanto mais logos, mais suave parece. Poucos logos = mesma cadência.
-                const BASE_DURATION = 30; // segundos
-                track.style.animationDuration = BASE_DURATION + 's';
+                // Agora duplica TODO o conteúdo atual exatamente 1x para o loop seamless
+                const allCurrent = Array.from(track.children);
+                allCurrent.forEach(item => {
+                    track.appendChild(item.cloneNode(true));
+                });
+
+                // Velocidade proporcional à quantidade de conteúdo
+                // Mais logos = animação proporcionalmente mais lenta pra manter ritmo
+                const SPEED = 50; // pixels por segundo
+                const totalWidth = track.scrollWidth / 2; // metade pq duplicou
+                const duration = totalWidth / SPEED;
+                track.style.animationDuration = duration + 's';
             }
 
             window.addEventListener('load', () => {
@@ -1599,11 +1591,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
