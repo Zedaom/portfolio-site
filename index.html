@@ -720,17 +720,31 @@
             animation-play-state: paused;
         }
 
-        .marquee-track img {
+        /* Box consistente para logo real — mesmo tamanho visual do placeholder */
+        .marquee-logo {
             height: 40px;
+            padding: 0 24px;
+            background: var(--secondary-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+}
+/* Ajuste height aqui para calibrar o tamanho visual da logo dentro do box */
+        .marquee-logo img {
+            height: 22px;
             width: auto;
+            max-width: 140px;
             object-fit: contain;
             opacity: 0.85;
             transition: opacity 0.3s ease;
-            flex-shrink: 0;
-        }
+            display: block;
+           
+.marquee-logo:hover img { opacity: 1; }
 
-        .marquee-track img:hover { opacity: 1; }
-
+.marquee-track img:hover { opacity: 1; }
         .logo-placeholder {
             height: 40px;
             padding: 0 24px;
@@ -917,7 +931,9 @@
         <div class="clients-label reveal" data-i18n="clients_studios">Estúdios</div>
         <div class="marquee-wrapper">
             <div class="marquee-track">
-                <img src="colossal-logo.png" alt="colossal">
+                <div class="marquee-logo">
+                    <img src="colossal-logo.png" alt="Colossal">
+                </div>
                 <div class="logo-placeholder">Estúdio 2</div>
                 <div class="logo-placeholder">Estúdio 3</div>
                 <div class="logo-placeholder">Estúdio 4</div>
@@ -1356,6 +1372,7 @@
 </body>
 
 </html>
+
 
 
 
