@@ -856,6 +856,11 @@
             width: max-content;
             /* A duração é controlada via JS baseado na largura real */
             animation: marqueeScroll var(--duration, 25s) linear infinite;
+            /* Otimização de performance: força hardware acceleration */
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            perspective: 1000px;
         }
 
         .marquee-reverse {
@@ -1500,6 +1505,7 @@
                 clients_tag: 'Companies & Clients',
                 clients_studios: 'Studios',
                 clients_brands: 'Brands',
+                portfolio_tag: 'Featured Works',
                 portfolio_title: 'My Portfolio MIX',
                 filter_all: 'All',
                 filter_motion: 'Motion Design',
@@ -1528,6 +1534,7 @@
                 clients_tag: 'Empresas & Clientes',
                 clients_studios: 'Estúdios',
                 clients_brands: 'Marcas',
+                portfolio_tag: 'Trabalhos em Destaque',
                 portfolio_title: 'Meu Portfólio MIX',
                 filter_all: 'Todos',
                 filter_motion: 'Motion Design',
