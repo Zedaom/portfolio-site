@@ -852,8 +852,7 @@
         .marquee-track {
             display: flex;
             align-items: center;
-            gap: 60px;
-            width: max-content;
+            /* width: max-content; — removido pois o JS gerencia */
             /* A duração é controlada via JS baseado na largura real */
             animation: marqueeScroll var(--duration, 25s) linear infinite;
             /* Otimização de performance: força hardware acceleration */
@@ -878,6 +877,8 @@
             justify-content: center;
             flex-shrink: 0;
             padding: 0 12px;
+            margin-right: 60px;
+            /* Espaçamento fixo para loop perfeito */
         }
 
         /* Tamanho visual da logo */
@@ -1599,45 +1600,60 @@
                 const wrapper = track.parentElement;
                 const wrapperWidth = wrapper.offsetWidth;
 
-                // Pega os itens originais (sem duplicatas)
+                // clones iniciais para preencher a tela se necessário
                 const originalItems = Array.from(track.children);
+                if (originalItems.length === 0) return;
 
-                // Mede a largura do conjunto original
-                let originalWidth = 0;
+                // Mede a largura de um set (item + margin)
+                let setWidth = 0;
                 originalItems.forEach(item => {
-                    originalWidth += item.offsetWidth;
+                    // Considera a largura do item + margin de 60px definida no CSS
+                    setWidth += item.offsetWidth + 60;
                 });
-                // Adiciona os gaps (60px entre cada item)
-                originalWidth += (originalItems.length - 1) * 60;
 
-                // Se o conjunto original é menor que a tela, clona o set inteiro
-                // até que UMA cópia preencha a viewport
-                let setsNeeded = Math.ceil(wrapperWidth / originalWidth);
-                if (setsNeeded < 1) setsNeeded = 1;
+                // Clona os itens até que o conteúdo total seja pelo menos 2x a largura da tela
+                // para garantir que o loop de 50% nunca mostre um buraco
+                const minWidthNeeded = wrapperWidth * 2;
+                let currentTotalWidth = setWidth;
 
-                // Cria o grupo expandido (preenche a viewport sem repetição visível)
-                for (let i = 1; i < setsNeeded; i++) {
+                while (currentTotalWidth < minWidthNeeded) {
                     originalItems.forEach(item => {
-                        track.appendChild(item.cloneNode(true));
+                        const clone = item.cloneNode(true);
+                        track.appendChild(clone);
+                        currentTotalWidth += item.offsetWidth + 60;
                     });
                 }
 
-                // Agora duplica TODO o conteúdo atual exatamente 1x para o loop seamless
-                const allCurrent = Array.from(track.children);
-                allCurrent.forEach(item => {
+                // Agora duplicamos TUDO exatamente uma vez para o loop de 50%
+                const allItemsNow = Array.from(track.children);
+                allItemsNow.forEach(item => {
                     track.appendChild(item.cloneNode(true));
                 });
 
-                // Velocidade proporcional à quantidade de conteúdo
-                // Mais logos = animação proporcionalmente mais lenta pra manter ritmo
-                const SPEED = 50; // pixels por segundo
-                const totalWidth = track.scrollWidth / 2; // metade pq duplicou
-                const duration = totalWidth / SPEED;
+                // Velocidade
+                const SPEED = 50; // pixels per second
+                const totalScrollWidth = track.scrollWidth / 2;
+                const duration = totalScrollWidth / SPEED;
                 track.style.animationDuration = duration + 's';
             }
 
             window.addEventListener('load', () => {
                 document.querySelectorAll('.marquee-track').forEach(setupMarquee);
+            });
+            // Re-setup on resize to ensure width is still correct
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    document.querySelectorAll('.marquee-track').forEach(track => {
+                        // Limpa clones e refaz
+                        const originalCount = 5; // Assumindo o número inicial de logos
+                        const logos = Array.from(track.children).slice(0, originalCount);
+                        track.innerHTML = '';
+                        logos.forEach(l => track.appendChild(l));
+                        setupMarquee(track);
+                    });
+                }, 250);
             });
         })();
         const filterBtns = document.querySelectorAll('.filter-btn');
