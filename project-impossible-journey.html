@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>IMPOSSIBLE JOURNEY | Moacyr Neto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Outfit:wght@300;400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Outfit:wght@300;400&family=Boldonse&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-color: #000000;
@@ -18,103 +21,307 @@
             --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--bg-color); color: var(--text-color); overflow-x: hidden; line-height: 1.6; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb { background: var(--secondary-color); border-radius: 4px; }
-        .container { max-width: 1600px; margin: 0 auto; padding: 0 60px; }
+        .logo-text {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .logo-star {
+            width: 32px;
+            height: 32px;
+            fill: #fff;
+            transition: fill 0.3s ease, transform 0.3s ease;
+        }
+
+        .logo-text:hover .logo-star {
+            fill: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .logo-star.active {
+            fill: var(--accent-color) !important;
+            transform: scale(0.9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
 
         .back-btn {
-            position: fixed; top: 24px; left: 24px; z-index: 100;
-            display: flex; align-items: center; gap: 8px;
-            color: var(--text-color); text-decoration: none;
-            font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
             padding: 10px 18px;
-            background: rgba(0,0,0,0.6); backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border); border-radius: 50px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
             transition: var(--transition);
         }
-        .back-btn:hover { background: var(--accent-color); border-color: var(--accent-color); color: #000; }
-        .back-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+        .back-btn:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #000;
+        }
+
+        .back-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
 
         /* Hero desktop */
-        .project-hero { width: 100%; height: 100vh; position: relative; overflow: hidden; background: #0a0f1e; }
-        .project-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-        .project-hero iframe, .project-hero video {
-            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: none;
+        .project-hero {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: #0a0f1e;
         }
+
+        .project-hero-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-hero iframe,
+        .project-hero video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
         .project-hero-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%);
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.85) 100%);
             z-index: 1;
         }
-        .project-hero-info { position: absolute; bottom: 60px; left: 0; right: 0; z-index: 2; }
-        .project-category-tag {
-            display: inline-block; font-size: 0.7rem; font-weight: 700;
-            letter-spacing: 3px; text-transform: uppercase;
-            color: var(--accent-color); margin-bottom: 12px;
-        }
-        .project-hero-title {
-            font-family: 'Inter', sans-serif; font-weight: 900;
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            line-height: 1.05; color: #fff; letter-spacing: 0.05em;
+
+        .project-hero-info {
+            position: absolute;
+            bottom: 60px;
+            left: 0;
+            right: 0;
+            z-index: 2;
         }
 
-        .project-content { padding: 80px 0 120px; }
+        .project-category-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+        }
+
+        .project-hero-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            line-height: 1.05;
+            color: #fff;
+            letter-spacing: 0.05em;
+        }
+
+        .project-content {
+            padding: 80px 0 120px;
+        }
 
         .project-meta {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            gap: 1px; background: var(--glass-border);
-            border: 1px solid var(--glass-border); border-radius: 20px;
-            overflow: hidden; margin-bottom: 80px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--glass-border);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 80px;
         }
-        .meta-item { padding: 28px 32px; background: var(--bg-color); }
-        .meta-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-color); margin-bottom: 8px; }
-        .meta-value { font-size: 1rem; font-weight: 600; }
 
-        .project-description { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; margin-bottom: 80px; }
-        .project-description h2 { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 2.5rem; line-height: 1.1; letter-spacing: 0.02em; position: sticky; top: 100px; }
-        .project-description h2 span { color: var(--accent-color); }
-        .project-description p { font-size: 1.1rem; line-height: 1.9; opacity: 0.75; margin-bottom: 20px; }
+        .meta-item {
+            padding: 28px 32px;
+            background: var(--bg-color);
+        }
 
-        .section-divider { height: 1px; background: var(--glass-border); margin: 60px 0; }
+        .meta-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .project-description {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 80px;
+            align-items: start;
+            margin-bottom: 80px;
+        }
+
+        .project-description h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            line-height: 1.1;
+            letter-spacing: 0.02em;
+            position: sticky;
+            top: 100px;
+        }
+
+        .project-description h2 span {
+            color: var(--accent-color);
+        }
+
+        .project-description p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            opacity: 0.75;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: var(--glass-border);
+            margin: 60px 0;
+        }
 
         /* Cenas */
-        .scene-block { margin-bottom: 64px; }
-        .scene-block:last-child { margin-bottom: 0; }
-        .scene-header { padding: 0 0 16px; border-bottom: 1px solid var(--glass-border); margin-bottom: 20px; }
-        .scene-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-color); }
+        .scene-block {
+            margin-bottom: 64px;
+        }
+
+        .scene-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .scene-header {
+            padding: 0 0 16px;
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 20px;
+        }
+
+        .scene-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+        }
 
         /* Full bleed */
-        .scene-gallery-wrap { margin: 0 -60px; }
-        .scene-gallery {
-            display: flex; flex-direction: column;
-            /* evita linha de sub-pixel entre vídeos */
-            gap: 0; font-size: 0;
+        .scene-gallery-wrap {
+            margin: 0 -60px;
         }
+
+        .scene-gallery {
+            display: flex;
+            flex-direction: column;
+            /* evita linha de sub-pixel entre vídeos */
+            gap: 0;
+            font-size: 0;
+        }
+
         .scene-gif {
-            width: 100%; overflow: hidden;
+            width: 100%;
+            overflow: hidden;
             margin-bottom: -1px;
             /* reserva o espaço antes do vídeo carregar — evita flash preto no mobile */
             aspect-ratio: 16/9;
             background: #000;
         }
-        .scene-gif:last-child { margin-bottom: 0; }
+
+        .scene-gif:last-child {
+            margin-bottom: 0;
+        }
+
         .scene-gif img,
         .scene-gif video {
-            width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             display: block;
             object-fit: cover;
             vertical-align: bottom;
         }
+
         .gif-placeholder {
-            width: 100%; aspect-ratio: 16/9;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 8px; color: var(--muted-color); font-size: 0.65rem; letter-spacing: 2px;
-            text-transform: uppercase; border: 1px dashed var(--glass-border);
+            width: 100%;
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--muted-color);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px dashed var(--glass-border);
         }
-        .gif-placeholder svg { width: 22px; height: 22px; opacity: 0.25; fill: currentColor; }
+
+        .gif-placeholder svg {
+            width: 22px;
+            height: 22px;
+            opacity: 0.25;
+            fill: currentColor;
+        }
 
         /* Créditos — centralizado entre as duas linhas */
         .project-credits {
@@ -128,57 +335,105 @@
             justify-content: center;
             min-height: 260px;
         }
+
         .credits-title {
-            font-size: 0.7rem; font-weight: 700;
-            letter-spacing: 3px; text-transform: uppercase;
-            color: var(--muted-color); margin-bottom: 32px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+            margin-bottom: 32px;
         }
+
         .credits-list {
-            display: flex; flex-direction: column; gap: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
+
         .credit-line {
-            font-size: 0.95rem; color: var(--text-color); opacity: 0.75;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            opacity: 0.75;
             line-height: 1.6;
         }
+
         .credit-line strong {
             font-weight: 400;
         }
 
         /* Nav inferior — centralizado, sem borda própria (créditos já tem borda abaixo) */
         .project-nav {
-            display: flex; justify-content: center; align-items: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             gap: 48px;
             padding: 48px 0;
         }
+
         .project-nav a {
-            display: flex; align-items: center; gap: 10px;
-            text-decoration: none; color: var(--muted-color);
-            font-size: 0.85rem; font-weight: 600; letter-spacing: 1px;
-            text-transform: uppercase; transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--muted-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
         }
-        .project-nav a:hover { color: var(--accent-color); }
-        .project-nav a svg { width: 16px; height: 16px; fill: currentColor; }
+
+        .project-nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .project-nav a svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
         .project-nav .center-logo {
-            font-family: 'Outfit', sans-serif; font-weight: 300;
-            font-size: 1rem; letter-spacing: 2px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 300;
+            font-size: 1rem;
+            letter-spacing: 2px;
             background: linear-gradient(90deg, var(--accent-color), #fff);
-            -webkit-background-clip: text; background-clip: text;
-            -webkit-text-fill-color: transparent; text-decoration: none;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
         }
 
         /* Botão "ver créditos completos" */
         .credits-toggle {
             margin-top: 28px;
-            background: none; border: none;
+            background: none;
+            border: none;
             color: var(--muted-color);
-            font-size: 0.75rem; font-weight: 600;
-            letter-spacing: 1px; text-transform: uppercase;
-            cursor: pointer; display: flex; align-items: center; gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             transition: color 0.3s;
         }
-        .credits-toggle:hover { color: var(--accent-color); }
-        .credits-toggle svg { transition: transform 0.3s; }
-        .credits-toggle.open svg { transform: rotate(180deg); }
+
+        .credits-toggle:hover {
+            color: var(--accent-color);
+        }
+
+        .credits-toggle svg {
+            transition: transform 0.3s;
+        }
+
+        .credits-toggle.open svg {
+            transform: rotate(180deg);
+        }
 
         /* Lista completa — escondida por padrão */
         .credits-full {
@@ -187,69 +442,188 @@
             max-width: 680px;
             text-align: left;
         }
-        .credits-full.open { display: block; }
+
+        .credits-full.open {
+            display: block;
+        }
+
         .credits-full p {
-            font-size: 0.82rem; line-height: 1.8;
-            opacity: 0.55; color: var(--text-color);
+            font-size: 0.82rem;
+            line-height: 1.8;
+            opacity: 0.55;
+            color: var(--text-color);
             margin-bottom: 12px;
         }
-        .credits-full p:last-child { margin-bottom: 0; }
+
+        .credits-full p:last-child {
+            margin-bottom: 0;
+        }
 
         /* Vídeo: fade-in quando pronto — evita flash preto no mobile */
         .scene-gif video {
             opacity: 0;
             transition: opacity 0.3s ease;
         }
+
         .scene-gif video.ready {
             opacity: 1;
         }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.23, 1, 0.32, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .lang-btn {
-            position: fixed; top: 24px; right: 24px; z-index: 100;
-            background: rgba(0,0,0,0.6); backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border); border-radius: 50px;
-            color: white; padding: 10px 18px;
-            font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
-            cursor: pointer; transition: var(--transition);
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: white;
+            padding: 10px 18px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
         }
-        .lang-btn:hover { background: var(--accent-color); border-color: var(--accent-color); color: #000; }
+
+        .lang-btn:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #000;
+        }
 
         @media (max-width: 768px) {
-            .container { padding: 0 20px; }
-            .lang-btn { top: 16px; right: 16px; padding: 8px 14px; }
-            .back-btn { top: 16px; left: 16px; font-size: 0.75rem; padding: 8px 14px; }
+            .container {
+                padding: 0 20px;
+            }
 
-            .project-hero { height: auto; display: flex; flex-direction: column; }
-            .project-hero-img { position: static; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
-            .project-hero iframe, .project-hero video { position: static; width: 100%; height: auto; aspect-ratio: 16/9; }
-            .project-hero-overlay { display: none; }
-            .project-hero-info { position: static; padding: 20px 20px 0; background: var(--bg-color); }
-            .project-hero-title { font-size: 1.8rem; }
+            .lang-btn {
+                top: 16px;
+                right: 16px;
+                padding: 8px 14px;
+            }
 
-            .project-content { padding: 30px 0 80px; }
-            .project-meta { grid-template-columns: 1fr 1fr; }
-            .meta-item { padding: 16px 18px; }
-            .meta-value { font-size: 0.85rem; word-break: break-word; }
-            .meta-label { font-size: 0.55rem; }
+            .back-btn {
+                top: 16px;
+                left: 16px;
+                font-size: 0.75rem;
+                padding: 8px 14px;
+            }
 
-            .project-description { grid-template-columns: 1fr; gap: 30px; }
-            .project-description h2 { position: static; font-size: 1.8rem; }
+            .project-hero {
+                height: auto;
+                display: flex;
+                flex-direction: column;
+            }
 
-            .scene-gallery-wrap { margin: 0 -20px; }
-            .project-nav .center-logo { display: none; }
+            .project-hero-img {
+                position: static;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16/9;
+                object-fit: cover;
+            }
+
+            .project-hero iframe,
+            .project-hero video {
+                position: static;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16/9;
+            }
+
+            .project-hero-overlay {
+                display: none;
+            }
+
+            .project-hero-info {
+                position: static;
+                padding: 20px 20px 0;
+                background: var(--bg-color);
+            }
+
+            .project-hero-title {
+                font-size: 1.8rem;
+            }
+
+            .project-content {
+                padding: 30px 0 80px;
+            }
+
+            .project-meta {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .meta-item {
+                padding: 16px 18px;
+            }
+
+            .meta-value {
+                font-size: 0.85rem;
+                word-break: break-word;
+            }
+
+            .meta-label {
+                font-size: 0.55rem;
+            }
+
+            .project-description {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .project-description h2 {
+                position: static;
+                font-size: 1.8rem;
+            }
+
+            .scene-gallery-wrap {
+                margin: 0 -20px;
+            }
+
+            .project-nav .center-logo {
+                display: none;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <a href="index.html" class="back-btn">
-        <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-        <span class="back-label">Portfólio</span>
-    </a>
-    <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
+    <header style="position: fixed; width: 100%; top: 0; z-index: 1000; padding: 20px 0;">
+        <div class="container"
+            style="max-width: 100%; padding: 0 28px; display: flex; justify-content: space-between; align-items: center;">
+            <div class="logo-video-wrap">
+                <a href="javascript:void(0)" class="logo-text" onclick="scrollToTop(this)">
+                    <svg class="logo-star" viewBox="0 0 24 24">
+                        <path d="M12 2L13.2 10.2L22 10.2L14.8 15L17.5 23L12 18L6.5 23L9.2 15L2 10.2L10.8 10.2L12 2Z" />
+                    </svg>
+                </a>
+            </div>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="index.html" class="back-btn"
+                    style="position: static; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px);">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                    </svg>
+                    <span class="back-label">Portfolio</span>
+                </a>
+                <button class="lang-btn" id="langBtn" onclick="toggleLang()" style="position: static;">PT</button>
+            </div>
+        </div>
+    </header>
 
     <div class="project-hero">
         <img src="ImpossibleJourneyCapa.jpeg" alt="Impossible Journey" class="project-hero-img">
@@ -266,16 +640,29 @@
         <div class="container">
 
             <div class="project-meta reveal">
-                <div class="meta-item"><div class="meta-label">Pós-Produção</div><div class="meta-value">Colossal</div></div>
-                <div class="meta-item"><div class="meta-label">Produção</div><div class="meta-value">The Youth</div></div>
-                <div class="meta-item"><div class="meta-label">Ano</div><div class="meta-value">2025</div></div>
-                <div class="meta-item"><div class="meta-label">Software</div><div class="meta-value">Toon Boom</div></div>
+                <div class="meta-item">
+                    <div class="meta-label" data-i18n="meta_post">Post-Production</div>
+                    <div class="meta-value">Colossal</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label" data-i18n="meta_prod">Production</div>
+                    <div class="meta-value">The Youth</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label" data-i18n="meta_year">Year</div>
+                    <div class="meta-value">2025</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label" data-i18n="meta_soft">Software</div>
+                    <div class="meta-value">Toon Boom</div>
+                </div>
             </div>
 
             <div class="project-description reveal">
-                <h2>Sobre o<br><span>Projeto</span></h2>
+                <h2 data-i18n="sobre_title_main">About the<br><span>Project</span></h2>
                 <div>
-                    <p>Projeto que auxiliei no Clean up em cenas com cor base, luz e sombra antes de ir para o processo de pintura tradicional, dirigido por YUCA.</p>
+                    <p data-i18n="sobre_p1">Provided Clean up support on scenes featuring base color, lighting, and
+                        shadow passes before the traditional painting process. Directed by YUCA.</p>
                 </div>
             </div>
 
@@ -291,46 +678,74 @@
                  A lista completa fica escondida e expande com o botão.
             -->
             <div class="project-credits reveal">
-                <div class="credits-title">Credits</div>
+                <div class="credits-title" data-i18n="credits_tag">Credits</div>
 
                 <!-- Créditos principais — apenas os mais relevantes para o seu trabalho -->
                 <div class="credits-list">
                     <div class="credit-line">Director: <strong>YUCA + Bruno Brasil</strong></div>
                     <div class="credit-line">Production: <strong>The Youth</strong></div>
                     <div class="credit-line">Post-Production: <strong>Colossal</strong></div>
-                    <div class="credit-line">2D Animation Supervisor: <strong>Denis Bargos, Daniella Schuarts, Bruno Brasil, André Ruivo.</strong></div>
+                    <div class="credit-line">2D Animation Supervisor: <strong>Denis Bargos, Daniella Schuarts, Bruno
+                            Brasil, André Ruivo.</strong></div>
                     <div class="credit-line">Clean Up: <strong>Moacyr Neto</strong> and team</div>
                     <!-- ➕ adicione ou remova linhas aqui -->
                 </div>
 
                 <!-- Botão para expandir créditos completos -->
-                <button class="credits-toggle" id="creditsToggle" onclick="toggleCredits()">
+                <button class="credits-toggle" id="creditsToggle" onclick="toggleCredits()" data-i18n="full_credits">
                     Full Credits
-                    <svg id="creditsChevron" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+                    <svg id="creditsChevron" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path d="M7 10l5 5 5-5z" />
+                    </svg>
                 </button>
 
                 <!-- Lista completa — colada do press kit / vimeo description -->
                 <div class="credits-full" id="creditsFull">
-                    <p>Executive Creative Director: Eduardo Lubiazi, João Machado. Executive Producer: Eduardo Lubiazi. Head of Production: Daniel Maia. Post-Production Coordinator: Yasmim Uehara. Art Director: Eduardo Rosa. Animation Director: YUCA + Bruno Brasil. DOP: Yuri Maranhão.</p>
-                    <p>Producer: Yasmim Uehara, Mauricio Kazu Yamashita. Production Coordinator: Carol Cherobim. Assistant Coordinator: Camila Pires, Lu Krasa.</p>
-                    <p>Screenplay: Viton Araújo and Eduardo Tavares. Editor: Leonardo Salomão. Painting Artists: Ana Beatriz Artigas, João Paulo de Carvalho. 2D Animation Supervisor: Denis Bargos, Daniella Schuarts, Bruno Brasil, André Ruivo. VFX Supervision: Rodrigo Stradiotto, Diogo Gameiro.</p>
-                    <p>2D Animation: Carol Caporrino, Nana Siqueira, Gabriela Chamorro Diniz, Danila Ribeiro, Thalyne Chrystyna, Gabrielle Paparelli, André Ruivo, Diones Ignacio, Robson Vilalba, Anderson Omori, Gilson Júnior, Bremo, Gui Kirinus, Geovani Angelo, Carlos Yury, Gui Klein, Sid Ahearne, Alexandre Sales, Gabriel Fraga, Gabriel Chagas, Robb Reis, Denis Bargos.</p>
-                    <p>Clean Up / Painting: Clara Luz Carvalho Salazar, Nana Siqueira, Giovanna Jahjah, Melissa Ferreira Sartor, Renata SHP, Brenda Maryan, Taiza Nogueira, Mateuz Fernandes, Robson Vilalba, Diones Ignacio, Dudu Querubins, Ulisses Jucá, Luiz Alvares, Pedro Solano, Thallyson Silvestre, Moacyr Neto, Diogo Saraiva, Carlos Yury, Lucas Batalha, Rosinaldo Lages, Josias Bosio, Bruno Mazzilli, Leonardo Vincensi, Rafael Sinnott, Lucas Moraes, Fabio Soro, Lucas Fernandes Siqueira, Jonatas Freire da Silva Souza, Rhuan Gonçalves, Diego Akel, Lucas Felipe Pereira.</p>
-                    <p>2D Compositing: Gabriel Rocha, Diego Eduardo Loz, Tiago Castro, Adelir Boeira, Lucas Santiago, Jean Lamin, Alan Jose Dias. Colorist: Erick Moraes. Motion Graphics: Janaína da Veiga.</p>
+                    <p>Executive Creative Director: Eduardo Lubiazi, João Machado. Executive Producer: Eduardo Lubiazi.
+                        Head of Production: Daniel Maia. Post-Production Coordinator: Yasmim Uehara. Art Director:
+                        Eduardo Rosa. Animation Director: YUCA + Bruno Brasil. DOP: Yuri Maranhão.</p>
+                    <p>Producer: Yasmim Uehara, Mauricio Kazu Yamashita. Production Coordinator: Carol Cherobim.
+                        Assistant Coordinator: Camila Pires, Lu Krasa.</p>
+                    <p>Screenplay: Viton Araújo and Eduardo Tavares. Editor: Leonardo Salomão. Painting Artists: Ana
+                        Beatriz Artigas, João Paulo de Carvalho. 2D Animation Supervisor: Denis Bargos, Daniella
+                        Schuarts, Bruno Brasil, André Ruivo. VFX Supervision: Rodrigo Stradiotto, Diogo Gameiro.</p>
+                    <p>2D Animation: Carol Caporrino, Nana Siqueira, Gabriela Chamorro Diniz, Danila Ribeiro, Thalyne
+                        Chrystyna, Gabrielle Paparelli, André Ruivo, Diones Ignacio, Robson Vilalba, Anderson Omori,
+                        Gilson Júnior, Bremo, Gui Kirinus, Geovani Angelo, Carlos Yury, Gui Klein, Sid Ahearne,
+                        Alexandre Sales, Gabriel Fraga, Gabriel Chagas, Robb Reis, Denis Bargos.</p>
+                    <p>Clean Up / Painting: Clara Luz Carvalho Salazar, Nana Siqueira, Giovanna Jahjah, Melissa Ferreira
+                        Sartor, Renata SHP, Brenda Maryan, Taiza Nogueira, Mateuz Fernandes, Robson Vilalba, Diones
+                        Ignacio, Dudu Querubins, Ulisses Jucá, Luiz Alvares, Pedro Solano, Thallyson Silvestre, Moacyr
+                        Neto, Diogo Saraiva, Carlos Yury, Lucas Batalha, Rosinaldo Lages, Josias Bosio, Bruno Mazzilli,
+                        Leonardo Vincensi, Rafael Sinnott, Lucas Moraes, Fabio Soro, Lucas Fernandes Siqueira, Jonatas
+                        Freire da Silva Souza, Rhuan Gonçalves, Diego Akel, Lucas Felipe Pereira.</p>
+                    <p>2D Compositing: Gabriel Rocha, Diego Eduardo Loz, Tiago Castro, Adelir Boeira, Lucas Santiago,
+                        Jean Lamin, Alan Jose Dias. Colorist: Erick Moraes. Motion Graphics: Janaína da Veiga.</p>
                     <p>Music: Satélite Áudio. Music Direction: Roberto Coelho, Kito Siqueira e Hurso Ambrifi.</p>
                     <!-- ➕ adicione mais parágrafos se precisar -->
                 </div>
             </div>
 
             <div class="project-nav reveal">
-                <a href="index.html">
-                    <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                    Voltar
+                <a href="index.html" data-i18n="nav_prev_link">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                    </svg>
+                    Back
                 </a>
-                <a href="index.html" class="center-logo">Moacyr Neto</a>
-                <a href="#">
-                    Próximo
-                    <svg viewBox="0 0 24 24"><path d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4v-2z"/></svg>
+                <div class="logo-video-wrap" style="display: flex; justify-content: center;">
+                    <a href="javascript:void(0)" class="logo-text" onclick="scrollToTop(this)" title="Back to top">
+                        <svg class="logo-star" viewBox="0 0 24 24">
+                            <path d="M7 14l5-5 5 5H7z" />
+                        </svg>
+                    </a>
+                </div>
+                <!-- Próximo projeto - link manual se houver -->
+                <a href="project-the-lost-glitches.html" data-i18n="nav_next_link">
+                    Next
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4v-2z" />
+                    </svg>
                 </a>
             </div>
 
@@ -338,28 +753,28 @@
     </div>
 
     <script>
-    const CENAS = [
-        {
-            tag: "Clean Up",
-            clips: [
-                { src: "ImpossibleJourneySH160_COR_BASE.mp4", label: "SH160 Cor Base" },
-                { src: "ImpossibleJourneySH160_LUZ.mp4",      label: "SH160 Luz" },
-                { src: "ImpossibleJourneySH170_COR_BASE.mp4", label: "SH170 Cor Base" },
-                { src: "ImpossibleJourneySH270_COR_BASE.mp4", label: "SH270 Cor Base" },
-                { src: "ImpossibleJourneySH450_COR_BASE.mp4", label: "SH450 Cor Base" },
-                { src: "ImpossibleJourneyBebe_01.mp4",         label: "Bebê 01" },
-                { src: "ImpossibleJourneyBebe_02.mp4",         label: "Bebê 02" },
-                { src: "ImpossibleJourneyBebe_03.mp4",         label: "Bebê 03" },
-            ]
-        },
-    ];
+        const CENAS = [
+            {
+                tag: "Clean Up",
+                clips: [
+                    { src: "ImpossibleJourneySH160_COR_BASE.mp4", label: "SH160 Cor Base" },
+                    { src: "ImpossibleJourneySH160_LUZ.mp4", label: "SH160 Luz" },
+                    { src: "ImpossibleJourneySH170_COR_BASE.mp4", label: "SH170 Cor Base" },
+                    { src: "ImpossibleJourneySH270_COR_BASE.mp4", label: "SH270 Cor Base" },
+                    { src: "ImpossibleJourneySH450_COR_BASE.mp4", label: "SH450 Cor Base" },
+                    { src: "ImpossibleJourneyBebe_01.mp4", label: "Bebê 01" },
+                    { src: "ImpossibleJourneyBebe_02.mp4", label: "Bebê 02" },
+                    { src: "ImpossibleJourneyBebe_03.mp4", label: "Bebê 03" },
+                ]
+            },
+        ];
 
-    const iconImg = `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>`;
+        const iconImg = `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>`;
 
-    const container = document.getElementById('scenesContainer');
-    container.innerHTML = CENAS.map(c => {
-        const clipsHTML = c.clips && c.clips.length
-            ? `<div class="scene-gallery-wrap"><div class="scene-gallery">
+        const container = document.getElementById('scenesContainer');
+        container.innerHTML = CENAS.map(c => {
+            const clipsHTML = c.clips && c.clips.length
+                ? `<div class="scene-gallery-wrap"><div class="scene-gallery">
                 ${c.clips.map(g => {
                     if (!g.src) {
                         return `<div class="scene-gif"><div class="gif-placeholder">${iconImg}<span>${g.label}</span></div></div>`;
@@ -372,102 +787,145 @@
                     return `<div class="scene-gif"><img src="${g.src}" alt="${g.label}" loading="lazy"></div>`;
                 }).join('')}
                </div></div>`
-            : '';
+                : '';
 
-        return `
+            return `
         <div class="scene-block reveal">
             <div class="scene-header">
                 <span class="scene-tag">${c.tag}</span>
             </div>
             ${clipsHTML}
         </div>`;
-    }).join('');
+        }).join('');
 
-    // ── Reveal observer (seções gerais) ──────────────────────────────
-    const revealObs = new IntersectionObserver(
-        entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }),
-        { threshold: 0.08 }
-    );
-    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+        // ── Reveal observer (seções gerais) ──────────────────────────────
+        const revealObs = new IntersectionObserver(
+            entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }),
+            { threshold: 0.08 }
+        );
+        document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    // ── Play/Pause observer — toca só quando visível ──────────────────
-    // threshold: 0.25 = pelo menos 25% do vídeo na tela para começar
-    const videoObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            const video = e.target.querySelector('video');
-            if (!video) return;
-            if (e.isIntersecting) {
-                video.play().catch(() => {}); // catch ignora bloqueio de autoplay
+        // ── Play/Pause observer — toca só quando visível ──────────────────
+        // threshold: 0.25 = pelo menos 25% do vídeo na tela para começar
+        const videoObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                const video = e.target.querySelector('video');
+                if (!video) return;
+                if (e.isIntersecting) {
+                    video.play().catch(() => { }); // catch ignora bloqueio de autoplay
+                } else {
+                    video.pause();
+                }
+            });
+        }, { threshold: 0.25 });
+
+        document.querySelectorAll('.scene-gif').forEach(el => videoObs.observe(el));
+
+        // ── Fade-in quando o vídeo tem dados suficientes para exibir ─────
+        // Evita flash preto no mobile — o vídeo só aparece quando tem o 1º frame
+        document.querySelectorAll('.scene-gif video').forEach(video => {
+            const show = () => video.classList.add('ready');
+            if (video.readyState >= 2) {
+                show();
             } else {
-                video.pause();
+                video.addEventListener('loadeddata', show, { once: true });
+                video.addEventListener('canplay', show, { once: true });
             }
         });
-    }, { threshold: 0.25 });
 
-    document.querySelectorAll('.scene-gif').forEach(el => videoObs.observe(el));
-
-    // ── Fade-in quando o vídeo tem dados suficientes para exibir ─────
-    // Evita flash preto no mobile — o vídeo só aparece quando tem o 1º frame
-    document.querySelectorAll('.scene-gif video').forEach(video => {
-        const show = () => video.classList.add('ready');
-        if (video.readyState >= 2) {
-            show();
-        } else {
-            video.addEventListener('loadeddata', show, { once: true });
-            video.addEventListener('canplay',    show, { once: true });
+        function toggleCredits() {
+            const full = document.getElementById('creditsFull');
+            const toggle = document.getElementById('creditsToggle');
+            const isOpen = full.classList.toggle('open');
+            toggle.classList.toggle('open', isOpen);
+            toggle.childNodes[0].textContent = isOpen ? 'Close Credits ' : 'Full Credits ';
         }
-    });
-
-    function toggleCredits() {
-        const full    = document.getElementById('creditsFull');
-        const toggle  = document.getElementById('creditsToggle');
-        const isOpen  = full.classList.toggle('open');
-        toggle.classList.toggle('open', isOpen);
-        toggle.childNodes[0].textContent = isOpen ? 'Close Credits ' : 'Full Credits ';
-    }
     </script>
 
     <script>
-    const TRADUCOES = {
-        pt: {
-            back:        "Portfólio",
-            sobre_title: "Sobre o",
-            sobre_span:  "Projeto",
-            sobre_p1:    "Projeto que auxiliei no Clean up em cenas com cor base, luz e sombra antes de ir para o processo de pintura tradicional, dirigido por YUCA.",
-            nav_prev:    "Voltar",
-            nav_next:    "Próximo",
-        },
-        en: {
-            back:        "Portfolio",
-            sobre_title: "About the",
-            sobre_span:  "Project",
-            sobre_p1:    "Provided Clean up support on scenes featuring base color, lighting, and shadow passes before the traditional painting process. Directed by YUCA.",
-            nav_prev:    "Back",
-            nav_next:    "Next",
+        const TRADUCOES = {
+            pt: {
+                back: "Portfólio",
+                sobre_title_main: "Sobre o<br><span>Projeto</span>",
+                sobre_p1: "Projeto que auxiliei no Clean up em cenas com cor base, luz e sombra antes de ir para o processo de pintura tradicional, dirigido por YUCA.",
+                nav_prev: "Voltar",
+                nav_next: "Próximo",
+                meta_post: "Pós-Produção",
+                meta_prod: "Produção",
+                meta_year: "Ano",
+                meta_soft: "Software",
+                full_credits: "Créditos Completos",
+                close_credits: "Fechar Créditos",
+                credits_tag: "Créditos"
+            },
+            en: {
+                back: "Portfolio",
+                sobre_title_main: "About the<br><span>Project</span>",
+                sobre_p1: "Provided Clean up support on scenes featuring base color, lighting, and shadow passes before the traditional painting process. Directed by YUCA.",
+                nav_prev: "Back",
+                nav_next: "Next",
+                meta_post: "Post-Production",
+                meta_prod: "Production",
+                meta_year: "Year",
+                meta_soft: "Software",
+                full_credits: "Full Credits",
+                close_credits: "Close Credits",
+                credits_tag: "Credits"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLang() {
+            currentLang = currentLang === 'pt' ? 'en' : 'pt';
+            document.getElementById('langBtn').textContent = currentLang === 'pt' ? 'EN' : 'PT';
+            applyLang(currentLang);
         }
-    };
 
-    let currentLang = 'pt';
+        function applyLang(lang) {
+            const t = TRADUCOES[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.innerHTML = t[key];
+            });
 
-    function toggleLang() {
-        currentLang = currentLang === 'pt' ? 'en' : 'pt';
-        document.getElementById('langBtn').textContent = currentLang === 'pt' ? 'EN' : 'PT';
+            // Fallback for specific elements without data-i18n or complex structures
+            document.querySelector('.back-label').textContent = t.back;
+            document.querySelector('[data-i18n="sobre_title_main"]').innerHTML = t.sobre_title_main;
+            document.querySelector('[data-i18n="sobre_p1"]').textContent = t.sobre_p1;
+
+            // Labels de meta
+            const labels = document.querySelectorAll('.meta-label');
+            labels[0].textContent = t.meta_post;
+            labels[1].textContent = t.meta_prod;
+            labels[2].textContent = t.meta_year;
+            labels[3].textContent = t.meta_soft;
+
+            // Nav links
+            const navLinks = document.querySelectorAll('.project-nav a');
+            navLinks[0].innerHTML = `<svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" /></svg> ${t.nav_prev}`;
+            navLinks[1].innerHTML = `${t.nav_next} <svg viewBox="0 0 24 24"><path d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4v-2z" /></svg>`;
+
+            // Credits
+            document.querySelector('.credits-title').textContent = t.credits_tag;
+            const toggleBtn = document.getElementById('creditsToggle');
+            const isOpen = document.getElementById('creditsFull').classList.contains('open');
+            toggleBtn.childNodes[0].textContent = isOpen ? t.close_credits + ' ' : t.full_credits + ' ';
+        }
+
+        // ====== Scroll to Top Logic ======
+        function scrollToTop(el) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const star = el.querySelector('.logo-star');
+            if (star) {
+                star.classList.add('active');
+                setTimeout(() => star.classList.remove('active'), 400);
+            }
+        }
+
+        // Initialize in English
         applyLang(currentLang);
-    }
-
-    function applyLang(lang) {
-        const t = TRADUCOES[lang];
-        const q = s => document.querySelector(s);
-        const qa = s => document.querySelectorAll(s);
-        q('.back-label').textContent = t.back;
-        q('.project-description h2').innerHTML = `${t.sobre_title}<br><span>${t.sobre_span}</span>`;
-        const ps = qa('.project-description p');
-        if (ps[0]) ps[0].textContent = t.sobre_p1;
-        qa('.project-nav a').forEach((a, i) => {
-            if (i === 0) a.innerHTML = a.innerHTML.replace(/Voltar|Back/, t.nav_prev);
-            if (i === 2) a.innerHTML = a.innerHTML.replace(/Próximo|Next/, t.nav_next);
-        });
-    }
     </script>
 </body>
+
 </html>
