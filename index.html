@@ -158,17 +158,28 @@
         }
 
         .logo-text {
-            font-family: 'Boldonse', sans-serif !important;
-            font-size: 1.6rem;
-            color: #fff;
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            letter-spacing: -1px;
-            line-height: 1;
             transition: var(--transition);
+            cursor: pointer;
         }
 
-        .logo-text:hover {
-            color: var(--accent-color);
+        .logo-star {
+            width: 32px;
+            height: 32px;
+            fill: #fff;
+            transition: fill 0.3s ease, transform 0.3s ease;
+        }
+
+        .logo-text:hover .logo-star {
+            fill: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .logo-star.active {
+            fill: var(--accent-color) !important;
+            transform: scale(0.9);
         }
 
         .nav-links {
@@ -1113,7 +1124,12 @@
         <div class="container" style="max-width: 100%; padding: 0 28px;">
             <nav>
                 <div class="logo-video-wrap">
-                    <a href="#" class="logo-text">MOA</a>
+                    <a href="javascript:void(0)" class="logo-text" onclick="scrollToTop(this)">
+                        <svg class="logo-star" viewBox="0 0 24 24">
+                            <path
+                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                        </svg>
+                    </a>
                 </div>
                 <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
                 <ul class="nav-links">
@@ -1360,7 +1376,12 @@
                 </a>
             </div>
             <div class="logo-video-wrap" style="margin-bottom: 25px; justify-content: center;">
-                <a href="#" class="logo-text">MOA</a>
+                <a href="javascript:void(0)" class="logo-text" onclick="scrollToTop(this)">
+                    <svg class="logo-star" viewBox="0 0 24 24">
+                        <path
+                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                </a>
             </div>
 
         </div>
@@ -1665,6 +1686,16 @@
                 }
             });
         });
+
+        // ====== Scroll to Top Logic ======
+        function scrollToTop(el) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const star = el.querySelector('.logo-star');
+            if (star) {
+                star.classList.add('active');
+                setTimeout(() => star.classList.remove('active'), 400);
+            }
+        }
 
         // Initialize language
         applyTranslations(currentLang);
