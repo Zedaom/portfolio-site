@@ -135,6 +135,16 @@
             border-bottom: 1px solid var(--glass-border);
         }
 
+        /* Glass effect on mobile header */
+        @media (max-width: 768px) {
+            header {
+                background: rgba(0, 0, 0, 0.45);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--glass-border);
+            }
+        }
+
         nav {
             display: flex;
             justify-content: space-between;
@@ -852,14 +862,11 @@
         .marquee-track {
             display: flex;
             align-items: center;
-            /* width: max-content; — removido pois o JS gerencia */
-            /* A duração é controlada via JS baseado na largura real */
+            width: max-content;
             animation: marqueeScroll var(--duration, 25s) linear infinite;
-            /* Otimização de performance: força hardware acceleration */
             will-change: transform;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            perspective: 1000px;
         }
 
         .marquee-reverse {
@@ -1595,67 +1602,26 @@
         document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
         // ====== Marquee Seamless Fix ======
-        // Lógica inteligente: duplica o conjunto original apenas 1x para o loop,
-        // garantindo que o usuário nunca veja logos repetidos na mesma tela.
         (function () {
             function setupMarquee(track) {
-                const wrapper = track.parentElement;
-                const wrapperWidth = wrapper.offsetWidth;
+                // Pega os itens originais (já renderizados no HTML)
+                const items = Array.from(track.children);
+                if (items.length === 0) return;
 
-                // clones iniciais para preencher a tela se necessário
-                const originalItems = Array.from(track.children);
-                if (originalItems.length === 0) return;
+                // Simplesmente duplica todos os itens UMA vez.
+                // Como width: max-content está no CSS, o track se expande.
+                // translateX(-50%) move exatamente metade, voltando ao início.
+                items.forEach(item => track.appendChild(item.cloneNode(true)));
 
-                // Mede a largura de um set (item + margin)
-                let setWidth = 0;
-                originalItems.forEach(item => {
-                    // Considera a largura do item + margin de 60px definida no CSS
-                    setWidth += item.offsetWidth + 60;
-                });
-
-                // Clona os itens até que o conteúdo total seja pelo menos 2x a largura da tela
-                // para garantir que o loop de 50% nunca mostre um buraco
-                const minWidthNeeded = wrapperWidth * 2;
-                let currentTotalWidth = setWidth;
-
-                while (currentTotalWidth < minWidthNeeded) {
-                    originalItems.forEach(item => {
-                        const clone = item.cloneNode(true);
-                        track.appendChild(clone);
-                        currentTotalWidth += item.offsetWidth + 60;
-                    });
-                }
-
-                // Agora duplicamos TUDO exatamente uma vez para o loop de 50%
-                const allItemsNow = Array.from(track.children);
-                allItemsNow.forEach(item => {
-                    track.appendChild(item.cloneNode(true));
-                });
-
-                // Velocidade
-                const SPEED = 85; // Aumentado de 50 para 85 (mais rápido)
-                const totalScrollWidth = track.scrollWidth / 2;
-                const duration = totalScrollWidth / SPEED;
+                // Calcula duração: metade do scrollWidth (a parte original) / velocidade
+                const SPEED = 80; // pixels por segundo
+                const halfWidth = track.scrollWidth / 2;
+                const duration = halfWidth / SPEED;
                 track.style.animationDuration = duration + 's';
             }
 
             window.addEventListener('load', () => {
                 document.querySelectorAll('.marquee-track').forEach(setupMarquee);
-            });
-            // Re-setup on resize to ensure width is still correct
-            let resizeTimer;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => {
-                    document.querySelectorAll('.marquee-track').forEach(track => {
-                        // Limpa clones e refaz
-                        const originalCount = 5; // Assumindo o número inicial de logos
-                        const logos = Array.from(track.children).slice(0, originalCount);
-                        track.innerHTML = '';
-                        logos.forEach(l => track.appendChild(l));
-                        setupMarquee(track);
-                    });
-                }, 250);
             });
         })();
         const filterBtns = document.querySelectorAll('.filter-btn');
