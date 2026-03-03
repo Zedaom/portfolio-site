@@ -1604,16 +1604,34 @@
         // ====== Marquee Seamless Fix ======
         (function () {
             function setupMarquee(track) {
+                const wrapper = track.parentElement;
+                const wrapperWidth = wrapper.offsetWidth;
+
                 // Pega os itens originais (já renderizados no HTML)
-                const items = Array.from(track.children);
-                if (items.length === 0) return;
+                const originalItems = Array.from(track.children);
+                if (originalItems.length === 0) return;
 
-                // Simplesmente duplica todos os itens UMA vez.
-                // Como width: max-content está no CSS, o track se expande.
-                // translateX(-50%) move exatamente metade, voltando ao início.
-                items.forEach(item => track.appendChild(item.cloneNode(true)));
+                // Mede a largura do set original (com margins)
+                let setWidth = 0;
+                originalItems.forEach(item => {
+                    const style = getComputedStyle(item);
+                    setWidth += item.offsetWidth + parseFloat(style.marginRight || 0);
+                });
 
-                // Calcula duração: metade do scrollWidth (a parte original) / velocidade
+                // Clona o set inteiro até que ele sozinho preencha a tela
+                // Isso evita que logos "sumam" durante a animação
+                while (setWidth < wrapperWidth) {
+                    originalItems.forEach(item => {
+                        track.appendChild(item.cloneNode(true));
+                    });
+                    setWidth *= 2; // cada rodada dobra a largura
+                }
+
+                // Agora duplica TUDO uma vez para o loop seamless de 50%
+                const expandedItems = Array.from(track.children);
+                expandedItems.forEach(item => track.appendChild(item.cloneNode(true)));
+
+                // Calcula duração: metade do scrollWidth / velocidade
                 const SPEED = 80; // pixels por segundo
                 const halfWidth = track.scrollWidth / 2;
                 const duration = halfWidth / SPEED;
