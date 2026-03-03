@@ -878,7 +878,9 @@
             flex-shrink: 0;
             padding: 0 12px;
             margin-right: 60px;
-            /* Espaçamento fixo para loop perfeito */
+            /* GPU acceleration per logo to fix stuttering */
+            transform: translate3d(0, 0, 0);
+            will-change: transform;
         }
 
         /* Tamanho visual da logo */
@@ -1631,7 +1633,7 @@
                 });
 
                 // Velocidade
-                const SPEED = 50; // pixels per second
+                const SPEED = 85; // Aumentado de 50 para 85 (mais rápido)
                 const totalScrollWidth = track.scrollWidth / 2;
                 const duration = totalScrollWidth / SPEED;
                 track.style.animationDuration = duration + 's';
