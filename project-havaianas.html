@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>IMPOSSIBLE JOURNEY | Moacyr Neto</title>
+    <title>HAVAIANAS | Moacyr Neto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -113,7 +113,6 @@
             fill: currentColor;
         }
 
-        /* Hero desktop */
         .project-hero {
             width: 100%;
             height: 100vh;
@@ -243,7 +242,6 @@
             margin: 60px 0;
         }
 
-        /* Cenas */
         .scene-block {
             margin-bottom: 64px;
         }
@@ -266,7 +264,6 @@
             color: var(--accent-color);
         }
 
-        /* Full bleed */
         .scene-gallery-wrap {
             margin: 0 -60px;
         }
@@ -274,7 +271,6 @@
         .scene-gallery {
             display: flex;
             flex-direction: column;
-            /* evita linha de sub-pixel entre vídeos */
             gap: 0;
             font-size: 0;
         }
@@ -283,9 +279,9 @@
             width: 100%;
             overflow: hidden;
             margin-bottom: -1px;
-            /* reserva o espaço antes do vídeo carregar — evita flash preto no mobile */
             aspect-ratio: 16/9;
-            background: #000;
+            background: #111;
+            position: relative;
         }
 
         .scene-gif:last-child {
@@ -299,6 +295,65 @@
             display: block;
             object-fit: cover;
             vertical-align: bottom;
+        }
+
+        .scene-gif video {
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .scene-gif::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #111 25%, #1a1a1a 50%, #111 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            z-index: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .scene-gif.video-ready::before {
+            opacity: 0;
+        }
+
+        .scene-gif video,
+        .scene-gif img {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        .video-error {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--muted-color);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .video-error svg {
+            width: 22px;
+            height: 22px;
+            opacity: 0.3;
+            fill: currentColor;
         }
 
         .gif-placeholder {
@@ -323,7 +378,6 @@
             fill: currentColor;
         }
 
-        /* Créditos — centralizado entre as duas linhas */
         .project-credits {
             padding: 80px 0;
             border-top: 1px solid var(--glass-border);
@@ -362,7 +416,6 @@
             font-weight: 400;
         }
 
-        /* Nav inferior — centralizado, sem borda própria (créditos já tem borda abaixo) */
         .project-nav {
             display: flex;
             justify-content: center;
@@ -406,7 +459,6 @@
             text-decoration: none;
         }
 
-        /* Botão "ver créditos completos" */
         .credits-toggle {
             margin-top: 28px;
             background: none;
@@ -435,7 +487,6 @@
             transform: rotate(180deg);
         }
 
-        /* Lista completa — escondida por padrão */
         .credits-full {
             display: none;
             margin-top: 28px;
@@ -453,20 +504,6 @@
             opacity: 0.55;
             color: var(--text-color);
             margin-bottom: 12px;
-        }
-
-        .credits-full p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Vídeo: fade-in quando pronto — evita flash preto no mobile */
-        .scene-gif video {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .scene-gif video.ready {
-            opacity: 1;
         }
 
         .reveal {
@@ -611,12 +648,12 @@
     <button class="lang-btn" id="langBtn" onclick="toggleLang()">PT</button>
 
     <div class="project-hero">
-        <img src="ImpossibleJourneyCapa.jpeg" alt="Impossible Journey" class="project-hero-img">
+        <img src="HavaianasCapa.jpg" alt="HAVAIANAS" class="project-hero-img">
         <div class="project-hero-overlay"></div>
         <div class="project-hero-info">
             <div class="container">
                 <div class="project-category-tag">Clean Up</div>
-                <h1 class="project-hero-title">IMPOSSIBLE JOURNEY</h1>
+                <h1 class="project-hero-title">HAVAIANAS</h1>
             </div>
         </div>
     </div>
@@ -626,16 +663,16 @@
 
             <div class="project-meta reveal">
                 <div class="meta-item">
-                    <div class="meta-label" data-i18n="meta_post">Post-Production</div>
-                    <div class="meta-value">Colossal</div>
-                </div>
-                <div class="meta-item">
                     <div class="meta-label" data-i18n="meta_prod">Production</div>
                     <div class="meta-value">The Youth</div>
                 </div>
                 <div class="meta-item">
+                    <div class="meta-label" data-i18n="meta_dir">Director</div>
+                    <div class="meta-value">Maldita</div>
+                </div>
+                <div class="meta-item">
                     <div class="meta-label" data-i18n="meta_year">Year</div>
-                    <div class="meta-value">2025</div>
+                    <div class="meta-value">2024</div>
                 </div>
                 <div class="meta-item">
                     <div class="meta-label" data-i18n="meta_soft">Software</div>
@@ -646,8 +683,8 @@
             <div class="project-description reveal">
                 <h2 data-i18n="sobre_title_main">About the<br><span>Project</span></h2>
                 <div>
-                    <p data-i18n="sobre_p1">Provided Clean up support on scenes featuring base color, lighting, and
-                        shadow passes before the traditional painting process. Directed by YUCA.</p>
+                    <p data-i18n="sobre_p1">Clean up work on scenes featuring line art and base color passes for the
+                        Havaianas campaign.</p>
                 </div>
             </div>
 
@@ -655,64 +692,64 @@
 
             <div id="scenesContainer" class="reveal"></div>
 
-            <!-- â•â•â• CRÃ‰DITOS â•â•â•
-                 Adicione linhas no formato: Cargo: Nome(s)
-            -->
-            <!-- â•â•â• CRÃ‰DITOS â•â•â•
-                 Edite os crÃ©ditos principais abaixo.
-                 A lista completa fica escondida e expande com o botÃ£o.
-            -->
             <div class="project-credits reveal">
                 <div class="credits-title" data-i18n="credits_tag">Credits</div>
-
-                <!-- CrÃ©ditos principais â€” apenas os mais relevantes para o seu trabalho -->
                 <div class="credits-list">
-                    <div class="credit-line">Director: <strong>YUCA + Bruno Brasil</strong></div>
-                    <div class="credit-line">Production: <strong>The Youth</strong></div>
-                    <div class="credit-line">Post-Production: <strong>Colossal</strong></div>
-                    <div class="credit-line">2D Animation Supervisor: <strong>Denis Bargos, Daniella Schuarts, Bruno
-                            Brasil, André Ruivo.</strong></div>
-                    <div class="credit-line">Clean Up: <strong>Moacyr Neto</strong> and team</div>
-                    <!-- âž• adicione ou remova linhas aqui -->
+                    <div class="credit-line">Production Company: <strong>The Youth</strong></div>
+                    <div class="credit-line">Director: <strong>Maldita</strong></div>
+                    <div class="credit-line">Creative Direction: <strong>João Machado</strong></div>
+                    <div class="credit-line">Animation Assistant: <strong>Moacyr Neto</strong></div>
                 </div>
-
-                <!-- BotÃ£o para expandir crÃ©ditos completos -->
                 <button class="credits-toggle" id="creditsToggle" onclick="toggleCredits()" data-i18n="full_credits">
                     Full Credits
                     <svg id="creditsChevron" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                         <path d="M7 10l5 5 5-5z" />
                     </svg>
                 </button>
-
-                <!-- Lista completa â€” colada do press kit / vimeo description -->
                 <div class="credits-full" id="creditsFull">
-                    <p>Executive Creative Director: Eduardo Lubiazi, João Machado. Executive Producer: Eduardo Lubiazi.
-                        Head of Production: Daniel Maia. Post-Production Coordinator: Yasmim Uehara. Art Director:
-                        Eduardo Rosa. Animation Director: YUCA + Bruno Brasil. DOP: Yuri Maranhão.</p>
-                    <p>Producer: Yasmim Uehara, Mauricio Kazu Yamashita. Production Coordinator: Carol Cherobim.
-                        Assistant Coordinator: Camila Pires, Lu Krasa.</p>
-                    <p>Screenplay: Viton Araújo and Eduardo Tavares. Editor: Leonardo Salomão. Painting Artists: Ana
-                        Beatriz Artigas, João Paulo de Carvalho. 2D Animation Supervisor: Denis Bargos, Daniella
-                        Schuarts, Bruno Brasil, André Ruivo. VFX Supervision: Rodrigo Stradiotto, Diogo Gameiro.</p>
-                    <p>2D Animation: Carol Caporrino, Nana Siqueira, Gabriela Chamorro Diniz, Danila Ribeiro, Thalyne
-                        Chrystyna, Gabrielle Paparelli, André Ruivo, Diones Ignacio, Robson Vilalba, Anderson Omori,
-                        Gilson Júnior, Bremo, Gui Kirinus, Geovani Angelo, Carlos Yury, Gui Klein, Sid Ahearne,
-                        Alexandre Sales, Gabriel Fraga, Gabriel Chagas, Robb Reis, Denis Bargos.</p>
-                    <p>Clean Up / Painting: Clara Luz Carvalho Salazar, Nana Siqueira, Giovanna Jahjah, Melissa Ferreira
-                        Sartor, Renata SHP, Brenda Maryan, Taiza Nogueira, Mateuz Fernandes, Robson Vilalba, Diones
-                        Ignacio, Dudu Querubins, Ulisses Jucá, Luiz Alvares, Pedro Solano, Thallyson Silvestre, Moacyr
-                        Neto, Diogo Saraiva, Carlos Yury, Lucas Batalha, Rosinaldo Lages, Josias Bosio, Bruno Mazzilli,
-                        Leonardo Vincensi, Rafael Sinnott, Lucas Moraes, Fabio Soro, Lucas Fernandes Siqueira, Jonatas
-                        Freire da Silva Souza, Rhuan Gonçalves, Diego Akel, Lucas Felipe Pereira.</p>
-                    <p>2D Compositing: Gabriel Rocha, Diego Eduardo Loz, Tiago Castro, Adelir Boeira, Lucas Santiago,
-                        Jean Lamin, Alan Jose Dias. Colorist: Erick Moraes. Motion Graphics: Janaína da Veiga.</p>
-                    <p>Music: Satélite Áudio. Music Direction: Roberto Coelho, Kito Siqueira e Hurso Ambrifi.</p>
-                    <!-- • adicione mais parágrafos se precisar -->
+                    <p>Production Company: The Youth. Director: Maldita. Producer: Daniel Maia. Creative Direction: João
+                        Machado. Executive Production: Carol Cherobim and João Machado. Client Service: Carol Cherobim
+                        and Camila Pires. Finance: Iza Lubiazi.</p>
+                    <p>Post-Production / VFX: COLOSSAL. Post-Production Supervision: Diogo Gameiro. Editing: Maldita.
+                        Director’s Cut Editing: Maria Luísa Machado. Conform: André Albuquerque and Victor Balestrin.
+                    </p>
+                    <p>Motion Design: Adelir Boeira and Janaína Veiga. 3D: Vinícius Lavor, Leandro Beltran, Everton
+                        Schneider, Lucas Pereira, Henrique Miranda, Bruno Cornelsen, Daniel Meurer and Sacha Carletti.
+                        Finishing: Luciana Lima.</p>
+                    <p>Art Direction: Rodolfo Garcia. Lead Compositing: Adelir Boeira. Compositing: Emerson Cordeiro
+                        Junior, Gabriel Rocha and Marcos Rigobello. Animation Coordination: Lu Krasa and Renata
+                        Peterlini. Clean-Up Supervisor: Thallyson Mikael.</p>
+                    <p>Production Assistant: Gabriela Alves. Creative Assistant: Bianca Leal. Storyboard: Gustavo
+                        Santos. Concept Art: Fernando Molina. Lead Illustration: Fernando Molina, Diogo Saraiva.</p>
+                    <p>Illustration: Studio Lasca, Eduardo Rosa, Lucas Sales, Pevê Azevedo, Marília Mafé and Geff Silva.
+                    </p>
+                    <p>Animation: André Ruivo, Geovani Angelo, Natália Faria, Guma Nutinski, Bruno Brasil, Rafael Pah,
+                        Robb Reis, Pedro Solano, Murilo Prudêncio, Felipe Emerson, Thalyne Chrystyna, Arthemis Iannuzzi,
+                        Robson Vilalba, Pedro Peluso, Jaison Roberto, Deco Daviola, Thomás Lóes, Diones Ignacio and
+                        Higor Fernandes.</p>
+                    <p>Animation Assistants: Thallyson Mikael, Mateuz Fernandes, Gui Klein, Brenda Maryan, Moacyr Neto,
+                        Diones Ignacio, Rosinaldo Lages, Thalyne Chrystyna, Bruno Martin, Sabrina Melo, Pedro Solano and
+                        Willian Lieder.</p>
+                    <p>Agency: AlmapBBDO. Advertiser: Alpargatas. Client: Havaianas. Campaign: This is Havaianas. CCO:
+                        Pernil. Creative Directors: Antonia Zobaran, Fernando Duarte and Henrique Del Lama.</p>
+                    <p>Creative Team: Carlos Yanke, Michele Gorodski, Andre Paulo Arteze, Sara de Souza, Vitor Chagas,
+                        Marcos Lee, Gustavo Tasselli, Francis França, Bruno Bizuti, Victor Yves, Hiroito Takashi and
+                        Vinicius Biss. Account Team: Maysa Lopes, Camila Weissheimer, Guilherme Alcatrão, Mariana
+                        Silveira, Warley Vieira, Mayara Cortez, Milena Ferezim, Cairo Ribas and Leonardo Stevanato.</p>
+                    <p>Planning: João Gabriel Fernandes and Janaína Agostini. Audiovisual Production: Diego Villas Bôas,
+                        Tatiana Angelim Martins and Vera Jacinto. Client Approval: Fernanda Romano, Maria Fernanda
+                        Albuquerque, Matheus Gonzalez, Maria Eduarda Manga and Mariana Corradi.</p>
+                    <p>Sound Production Company: Cabaret. Music Production: Guile Oliveira and Letícia Medeiros.
+                        Composer: André Henrique. Mixing: Gab Scatolin. Sound Finishing: Letícia Medeiros. Sound Client
+                        Service: Ingrid Lopes, Flávia Caparelli and Bárbara Russiano. Sound Coordination: Verusca
+                        Garcia, Chandra Lima, Débora Mello and Carol Oliveira.</p>
+                    <p>Voice Over (Portuguese & English): Maria Eduarda Manga. Voice Over (Spanish): Maria Carolina
+                        Lapolli.</p>
                 </div>
             </div>
 
             <div class="project-nav reveal">
-                <a href="project-tiger-beer.html" id="prevProject" data-i18n="nav_prev_link">
+                <a href="project-active-rings.html" id="prevProject" data-i18n="nav_prev_link">
                     <svg viewBox="0 0 24 24">
                         <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
                     </svg>
@@ -721,13 +758,11 @@
                 <div class="logo-video-wrap" style="display: flex; justify-content: center;">
                     <a href="javascript:void(0)" class="logo-text" onclick="scrollToTop(this)" title="Back to top">
                         <svg class="logo-star" viewBox="0 0 24 24">
-                            <!-- Seta para cima -->
                             <path d="M7 14l5-5 5 5H7z" />
                         </svg>
                     </a>
                 </div>
-                <!-- Próximo projeto - link manual se houver -->
-                <a href="project-the-lost-glitches.html" id="nextProject" data-i18n="nav_next_link">
+                <a href="project-the-ring.html" id="nextProject" data-i18n="nav_next_link">
                     Next
                     <svg viewBox="0 0 24 24">
                         <path d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4v-2z" />
@@ -743,19 +778,22 @@
             {
                 tag: "Clean Up",
                 clips: [
-                    { src: "ImpossibleJourneySH160_COR_BASE.mp4", label: "SH160 Cor Base" },
-                    { src: "ImpossibleJourneySH160_LUZ.mp4", label: "SH160 Luz" },
-                    { src: "ImpossibleJourneySH170_COR_BASE.mp4", label: "SH170 Cor Base" },
-                    { src: "ImpossibleJourneySH270_COR_BASE.mp4", label: "SH270 Cor Base" },
-                    { src: "ImpossibleJourneySH450_COR_BASE.mp4", label: "SH450 Cor Base" },
-                    { src: "ImpossibleJourneyBebe_01.mp4", label: "Bebê 01" },
-                    { src: "ImpossibleJourneyBebe_02.mp4", label: "Bebê 02" },
-                    { src: "ImpossibleJourneyBebe_03.mp4", label: "Bebê 03" },
+                    { src: "HavaianasSH09_COR.mp4", label: "SH09 Cor" },
+                    { src: "HavaianasSH20_COR.mp4", label: "SH20 Cor" },
+                    { src: "HavaianasSH30_COR.mp4", label: "SH30 Cor" },
+                    { src: "HavaianasSH50_COR.mp4", label: "SH50 Cor" },
+                    { src: "HavaianasSH60_PART1_COLOR.mp4", label: "SH60 P1 Cor" },
+                    { src: "HavaianasSH60_PART2_COR.mp4", label: "SH60 P2 Cor" },
+                    { src: "HavaianasSH70_COR.mp4", label: "SH70 Cor" },
+                    { src: "HavaianasSH80_COR.mp4", label: "SH80 Cor" },
+                    { src: "HavaianasSH90.mp4", label: "SH90" },
+                    { src: "HavaianasSH100_COR.mp4", label: "SH100 Cor" },
                 ]
             },
         ];
 
         const iconImg = `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>`;
+        const iconVideo = `<svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>`;
 
         const container = document.getElementById('scenesContainer');
         container.innerHTML = CENAS.map(c => {
@@ -767,8 +805,11 @@
                     }
                     const isVideo = /\.(webm|mp4|mov)$/i.test(g.src);
                     if (isVideo) {
-                        // preload="none" — só carrega quando o observer mandar
-                        return `<div class="scene-gif"><video loop muted playsinline preload="metadata"><source src="${g.src}" type="video/mp4"></video></div>`;
+                        return `<div class="scene-gif" data-label="${g.label}">
+                            <video autoplay loop muted playsinline preload="auto">
+                                <source src="${g.src}" type="video/mp4">
+                            </video>
+                        </div>`;
                     }
                     return `<div class="scene-gif"><img src="${g.src}" alt="${g.label}" loading="lazy"></div>`;
                 }).join('')}
@@ -784,40 +825,57 @@
         </div>`;
         }).join('');
 
-        // ── Reveal observer (seções gerais) ──────────────────────────────
+        // ── Reveal observer ──────────────────────────────
         const revealObs = new IntersectionObserver(
             entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }),
             { threshold: 0.08 }
         );
         document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-        // ── Play/Pause observer — toca só quando visível ──────────────
-        // threshold: 0.25 = pelo menos 25% do vídeo na tela para começar
+        // ── Play/Pause observer ──────────────────────────────────────────
+        function tryPlay(video) {
+            const p = video.play();
+            if (p !== undefined) {
+                p.catch(() => {
+                    document.addEventListener('click', () => video.play().catch(() => { }), { once: true });
+                    document.addEventListener('touchstart', () => video.play().catch(() => { }), { once: true });
+                });
+            }
+        }
+
         const videoObs = new IntersectionObserver(entries => {
             entries.forEach(e => {
                 const video = e.target.querySelector('video');
                 if (!video) return;
-                if (e.isIntersecting) {
-                    video.play().catch(() => { }); // catch ignora bloqueio de autoplay
-                } else {
-                    video.pause();
-                }
+                if (e.isIntersecting) tryPlay(video);
+                else video.pause();
             });
-        }, { threshold: 0.25 });
+        }, { threshold: 0.15 });
 
-        document.querySelectorAll('.scene-gif').forEach(el => videoObs.observe(el));
+        document.querySelectorAll('.scene-gif').forEach(el => {
+            videoObs.observe(el);
+        });
 
-        // ── Fade-in quando o vídeo tem dados suficientes para exibir ─────
-        // Evita flash preto no mobile — o vídeo só aparece quando tem o 1º frame
-        document.querySelectorAll('.scene-gif video').forEach(video => {
-            const show = () => video.classList.add('ready');
-            if (video.readyState >= 1) {
-                show();
+        // ── Shimmer remove quando vídeo está pronto ─────
+        document.querySelectorAll('.scene-gif').forEach(wrap => {
+            const video = wrap.querySelector('video');
+            if (!video) return;
+
+            const markReady = () => wrap.classList.add('video-ready');
+
+            if (video.readyState >= 2) {
+                markReady();
             } else {
-                video.addEventListener('loadedmetadata', show, { once: true });
-                video.addEventListener('loadeddata', show, { once: true });
-                video.addEventListener('canplay', show, { once: true });
+                video.addEventListener('loadeddata', markReady, { once: true });
+                video.addEventListener('canplay', markReady, { once: true });
+                setTimeout(markReady, 3000);
             }
+
+            video.addEventListener('error', () => {
+                wrap.classList.add('video-ready');
+                const label = wrap.dataset.label || '';
+                wrap.innerHTML = `<div class="video-error">${iconVideo}<span>${label || 'Arquivo não encontrado'}</span></div>`;
+            }, { once: true });
         });
 
         function toggleCredits() {
@@ -834,10 +892,10 @@
             pt: {
                 back: "Portfólio",
                 sobre_title_main: "Sobre o<br><span>Projeto</span>",
-                sobre_p1: "Projeto que auxiliei no Clean up em cenas com cor base, luz e sombra antes de ir para o processo de pintura tradicional, dirigido por YUCA.",
+                sobre_p1: "Trabalho de Clean up em cenas com line art e cor base para a campanha Havaianas.",
                 nav_prev: "Voltar",
                 nav_next: "Próximo",
-                meta_post: "Pós-Produção",
+                meta_dir: "Direção",
                 meta_prod: "Produção",
                 meta_year: "Ano",
                 meta_soft: "Software",
@@ -848,10 +906,10 @@
             en: {
                 back: "Portfolio",
                 sobre_title_main: "About the<br><span>Project</span>",
-                sobre_p1: "Provided Clean up support on scenes featuring base color, lighting, and shadow passes before the traditional painting process. Directed by YUCA.",
+                sobre_p1: "Clean up work on scenes featuring line art and base color passes for the Havaianas campaign.",
                 nav_prev: "Back",
                 nav_next: "Next",
-                meta_post: "Post-Production",
+                meta_dir: "Direction",
                 meta_prod: "Production",
                 meta_year: "Year",
                 meta_soft: "Software",
@@ -871,8 +929,6 @@
 
         function applyLang(lang) {
             const t = TRADUCOES[lang];
-
-            // Loop para todos os elementos com data-i18n
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (t[key]) {
@@ -884,13 +940,11 @@
                 }
             });
 
-            // Nav links
             const prevLink = document.getElementById('prevProject');
             const nextLink = document.getElementById('nextProject');
             if (prevLink) prevLink.innerHTML = `<svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" /></svg> ${t.nav_prev}`;
             if (nextLink) nextLink.innerHTML = `${t.nav_next} <svg viewBox="0 0 24 24"><path d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4v-2z" /></svg>`;
 
-            // Credits Toggle Text
             const toggleBtn = document.getElementById('creditsToggle');
             if (toggleBtn) {
                 const isOpen = document.getElementById('creditsFull').classList.contains('open');
@@ -898,7 +952,6 @@
             }
         }
 
-        // ====== Scroll to Top Logic ======
         function scrollToTop(el) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
             const star = el.querySelector('.logo-star');
@@ -908,7 +961,6 @@
             }
         }
 
-        // Initialize in English
         applyLang(currentLang);
     </script>
 </body>

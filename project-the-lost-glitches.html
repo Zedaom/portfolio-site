@@ -672,7 +672,7 @@
                     <div class="credit-line">Director: <strong>Tony Neto</strong></div>
                     <div class="credit-line">Animation Lead: <strong>Henrique Lobato, João Buosi</strong></div>
                     <div class="credit-line">Clean Up: <strong>Moacyr Neto</strong> and team</div>
-                    <!-- ➕ adicione ou remova linhas aqui -->
+                    <!-- • adicione ou remova linhas aqui -->
                 </div>
 
                 <!-- Botão para expandir créditos completos -->
@@ -689,7 +689,7 @@
                         Project Manager: Bruna Boretto. Director: Tony Neto. Script: Lucas Reis, Tony Neto.
                         Animatic: Tony Neto. Animation Lead: Henrique Lobato, João Buosi.</p>
                     <p>Art Director: Kenji Uchima
-                        Visual Development: Tiago Calliari. Colorscript: João Capoulade.Styleframe: Herbert Dariel,
+                        Visual Development: Tiago Calliari. Colorscript: João Capoulade. Styleframe: Herbert Dariel,
                         Kenji Uchima
                         Character Design: Herbert Dariel, Kenji Uchima, Rodrigo Sansei.</p>
                     <p>Environment: Gabriel dos Anjos, Guilherme Lascasas, Rafael Fernandes. Design: Bruno Medeiros,
@@ -707,12 +707,12 @@
                     <p>2D VFX: Marcos Pereira, Pierre Sersour, Andre Camillo
                         Compositing Lead: Isabela Littger. Compositing: Pudoctopus, Isabela Littger
                         Motion Design: Pudoctopus, Jonathas Moura. Edit: Tony Neto, Matheus Miglionico. Sound: MDois</p>
-                    <!-- ➕ adicione mais parágrafos se precisar -->
+                    <!-- • adicione mais parágrafos se precisar -->
                 </div>
             </div>
 
             <div class="project-nav reveal">
-                <a href="index.html" id="prevProject" data-i18n="nav_prev_link">
+                <a href="project-impossible-journey.html" id="prevProject" data-i18n="nav_prev_link">
                     <svg viewBox="0 0 24 24">
                         <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
                     </svg>
@@ -727,7 +727,7 @@
                     </a>
                 </div>
                 <!-- Próximo projeto - link manual se houver -->
-                <a href="project-the-lost-glitches.html" id="nextProject" data-i18n="nav_next_link">
+                <a href="project-convergence.html" id="nextProject" data-i18n="nav_next_link">
                     Next
                     <svg viewBox="0 0 24 24">
                         <path d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4v-2z" />
@@ -806,9 +806,10 @@
         // Evita flash preto no mobile — o vídeo só aparece quando tem o 1º frame
         document.querySelectorAll('.scene-gif video').forEach(video => {
             const show = () => video.classList.add('ready');
-            if (video.readyState >= 2) {
+            if (video.readyState >= 1) {
                 show();
             } else {
+                video.addEventListener('loadedmetadata', show, { once: true });
                 video.addEventListener('loadeddata', show, { once: true });
                 video.addEventListener('canplay', show, { once: true });
             }

@@ -135,7 +135,6 @@
             border-bottom: 1px solid var(--glass-border);
         }
 
-        /* Glass effect on mobile header */
         @media (max-width: 768px) {
             header {
                 background: rgba(0, 0, 0, 0.45);
@@ -264,9 +263,7 @@
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg,
-                    rgba(20, 33, 61, 0.55) 0%,
-                    rgba(0, 0, 0, 0.45) 100%);
+            background: linear-gradient(135deg, rgba(20, 33, 61, 0.55) 0%, rgba(0, 0, 0, 0.45) 100%);
             z-index: 1;
         }
 
@@ -364,7 +361,131 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
 
+        /* ── Reel card — ocupa 2 colunas e tem visual diferenciado ── */
+        .project-card.reel-card {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-color: rgba(252, 163, 17, 0.25);
+        }
+
+        .project-card.reel-card:hover {
+            border-color: var(--accent-color);
+        }
+
+        .project-card.reel-card .project-image-container {
+            height: 100%;
+            min-height: 260px;
+        }
+
+        .project-card.reel-card .project-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 48px;
+            gap: 16px;
+        }
+
+        .project-card.reel-card .project-title {
+            font-size: 2rem;
+            line-height: 1.1;
+        }
+
+        .reel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(252, 163, 17, 0.12);
+            border: 1px solid rgba(252, 163, 17, 0.35);
+            border-radius: 50px;
+            padding: 5px 14px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            width: fit-content;
+        }
+
+        .reel-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            animation: pulseDot 1.8s ease-in-out infinite;
+        }
+
+        @keyframes pulseDot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.7);
+            }
+        }
+
+        .reel-desc {
+            font-size: 0.9rem;
+            color: var(--muted-color);
+            line-height: 1.7;
+        }
+
+        .reel-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-color);
+            color: #000;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            width: fit-content;
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+
+        .reel-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(252, 163, 17, 0.4);
+        }
+
+        .reel-cta svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            .project-card.reel-card {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card.reel-card .project-image-container {
+                height: 200px;
+                min-height: unset;
+            }
+
+            .project-card.reel-card .project-info {
+                padding: 28px;
+            }
+
+            .project-card.reel-card .project-title {
+                font-size: 1.5rem;
+            }
+        }
+
         .project-image-container {
+            position: relative;
             height: 260px;
             overflow: hidden;
             background: #000;
@@ -637,7 +758,6 @@
             border-color: var(--accent-color);
         }
 
-        /* --- Toast Notification --- */
         .toast {
             position: fixed;
             bottom: 40px;
@@ -662,7 +782,6 @@
             opacity: 1;
         }
 
-        /* --- Splash Screen --- */
         #splash {
             position: fixed;
             inset: 0;
@@ -725,7 +844,6 @@
             animation: lineExpand 0.6s ease 1s forwards;
         }
 
-        /* Segunda linha — espelho da primeira */
         .splash-line-right {
             height: 1.5px;
             width: 0;
@@ -768,7 +886,6 @@
             }
         }
 
-        /* Hero CTA — mesmo visual do filter-btn mas sem participar do filtro */
         .hero-cta-btn {
             padding: 12px 28px;
             border-radius: 50px;
@@ -827,11 +944,6 @@
             pointer-events: all;
         }
 
-        /* --- Cards com vídeo autoplay --- */
-        .project-image-container {
-            position: relative;
-        }
-
         .project-video {
             position: absolute;
             inset: 0;
@@ -846,7 +958,6 @@
             opacity: 1;
         }
 
-        /* --- Clients Marquee --- */
         .clients {
             padding: 60px 0;
             overflow: hidden;
@@ -894,7 +1005,6 @@
             animation-play-state: paused;
         }
 
-        /* Container da logo — sem fundo, só alinhamento */
         .marquee-logo {
             display: flex;
             align-items: center;
@@ -902,12 +1012,10 @@
             flex-shrink: 0;
             padding: 0 12px;
             margin-right: 60px;
-            /* GPU acceleration per logo to fix stuttering */
             transform: translate3d(0, 0, 0);
             will-change: transform;
         }
 
-        /* Tamanho visual da logo */
         .marquee-logo img {
             height: 100px;
             width: auto;
@@ -920,22 +1028,6 @@
 
         .marquee-logo:hover img {
             opacity: 1;
-        }
-
-        .marquee-track img:hover {
-            opacity: 1;
-        }
-
-        .logo-placeholder {
-            display: flex;
-            align-items: center;
-            padding: 0 12px;
-            color: var(--muted-color);
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            white-space: nowrap;
-            flex-shrink: 0;
         }
 
         @keyframes marqueeScroll {
@@ -970,8 +1062,6 @@
         }
 
         @media (max-width: 768px) {
-
-            /* Splash mobile — centralizado */
             #splash {
                 align-items: center;
             }
@@ -995,7 +1085,6 @@
                 letter-spacing: 3px;
             }
 
-            /* Hero mobile */
             .hero {
                 padding: 70px 0 20px;
             }
@@ -1019,7 +1108,6 @@
                 letter-spacing: 1.5px;
             }
 
-            /* Nav mobile */
             .menu-toggle {
                 display: block;
             }
@@ -1029,7 +1117,6 @@
                 flex-direction: column;
                 position: fixed;
                 top: 82px;
-                /* Altura do header */
                 left: 0;
                 width: 100%;
                 height: calc(100vh - 82px);
@@ -1140,8 +1227,6 @@
         </div>
     </div>
 
-    <!-- Animação de transição entre splash e Hero -->
-    <!-- Coloque transition.mov e transition.webm na mesma pasta do index.html -->
     <div id="transitionOverlay">
         <video id="transitionVideo" muted playsinline>
             <source src="transition.mov" type='video/mp4; codecs="hvc1"'>
@@ -1149,7 +1234,6 @@
         </video>
     </div>
 
-    <!-- Toast de confirmação -->
     <div class="toast" id="toast">Mensagem enviada!</div>
 
     <header>
@@ -1158,7 +1242,6 @@
                 <div class="logo-video-wrap">
                     <a href="javascript:void(0)" class="logo-text" onclick="scrollToTop(this)">
                         <svg class="logo-star" viewBox="0 0 24 24">
-                            <!-- Estrela mais fina e afiada -->
                             <path
                                 d="M12 1L13.8 10.2L22.5 8.6L14.9 13.1L18.5 22.5L12 15L5.5 22.5L9.2 13.1L1.5 8.6L10.2 10.2Z" />
                         </svg>
@@ -1181,14 +1264,11 @@
     <section class="hero">
         <div class="container" style="z-index: 1;">
             <div class="hero-card reveal">
-                <!-- Vídeo de fundo — coloque hero-bg.mov e hero-bg.webm na mesma pasta -->
                 <video class="hero-bg-video" autoplay muted loop playsinline>
                     <source src="hero-bg.mov" type='video/mp4; codecs="hvc1"'>
                     <source src="hero-bg.webm" type="video/webm">
                 </video>
-                <!-- Camada de cor sobre o vídeo -->
                 <div class="hero-overlay"></div>
-                <!-- Conteúdo centralizado -->
                 <div class="hero-content">
                     <h1 class="reveal hero-title" style="transition-delay: 0.1s;">MOACYR NETO</h1>
                     <p class="reveal hero-specs" data-i18n="hero_specs" style="transition-delay: 0.2s;">Motion Design ·
@@ -1202,53 +1282,30 @@
         </div>
     </section>
 
-    <!-- Empresas / Clientes -->
     <section class="clients">
         <div class="clients-header reveal">
             <span class="section-tag" data-i18n="clients_tag">Empresas & Clientes</span>
         </div>
 
-        <!-- Trilho 1: Estúdios (vai para a esquerda) -->
         <div class="clients-label reveal" data-i18n="clients_studios">Estúdios</div>
         <div class="marquee-wrapper">
             <div class="marquee-track">
-                <div class="marquee-logo">
-                    <img src="colossal-logo.png" alt="Colossal">
-                </div>
-                <div class="marquee-logo">
-                    <img src="the-youth-logo.png" alt="The-Youth">
-                </div>
-                <div class="marquee-logo">
-                    <img src="envar-logo.png" alt="Envar-Entertainment">
-                </div>
-                <div class="marquee-logo">
-                    <img src="histeria-logo.png" alt="Histeria">
-                </div>
-                <div class="marquee-logo">
-                    <img src="split-logo.png" alt="Split-Studio">
-                </div>
+                <div class="marquee-logo"><img src="colossal-logo.png" alt="Colossal"></div>
+                <div class="marquee-logo"><img src="the-youth-logo.png" alt="The-Youth"></div>
+                <div class="marquee-logo"><img src="envar-logo.png" alt="Envar-Entertainment"></div>
+                <div class="marquee-logo"><img src="histeria-logo.png" alt="Histeria"></div>
+                <div class="marquee-logo"><img src="split-logo.png" alt="Split-Studio"></div>
             </div>
         </div>
 
-        <!-- Trilho 2: Marcas (vai para a direita) -->
         <div class="clients-label reveal" style="margin-top: 28px;" data-i18n="clients_brands">Marcas</div>
         <div class="marquee-wrapper">
             <div class="marquee-track marquee-reverse">
-                <div class="marquee-logo">
-                    <img src="riot-forge.png" alt="Riot-Forge">
-                </div>
-                <div class="marquee-logo">
-                    <img src="havaianas-logo.png" alt="Havaianas">
-                </div>
-                <div class="marquee-logo">
-                    <img src="huawei-logo.png" alt="Huawei">
-                </div>
-                <div class="marquee-logo">
-                    <img src="tiger-beer-logo.png" alt="Tiger Beer">
-                </div>
-                <div class="marquee-logo">
-                    <img src="the-ring-logo.png" alt="The Ring">
-                </div>
+                <div class="marquee-logo"><img src="riot-forge.png" alt="Riot-Forge"></div>
+                <div class="marquee-logo"><img src="havaianas-logo.png" alt="Havaianas"></div>
+                <div class="marquee-logo"><img src="huawei-logo.png" alt="Huawei"></div>
+                <div class="marquee-logo"><img src="tiger-beer-logo.png" alt="Tiger Beer"></div>
+                <div class="marquee-logo"><img src="the-ring-logo.png" alt="The Ring"></div>
             </div>
         </div>
     </section>
@@ -1270,68 +1327,152 @@
             <div class="project-grid" id="projectGrid"></div>
 
             <script>
-                // ╔══════════════════════════════════════════════════════════╗
-                // ║  ✏️  ADICIONE / REMOVA PROJETOS AQUI                    ║
-                // ║                                                          ║
-                // ║  categoria: "motion" | "cleanup" | "2d"                 ║
-                // ║  thumb: imagem de capa (fallback se vídeo não carregar)  ║
-                // ║  preview: nome base do arquivo de preview (sem extensão) ║
-                // ║  pagina: arquivo HTML do projeto                         ║
-                // ╚══════════════════════════════════════════════════════════╝
                 const PROJETOS = [
+                    // ── REEL — card destacado, sempre primeiro ──────────────
                     {
-                        titulo: "Impossible Journey",
+                        titulo_en: "Clean Up Demo Reel",
+                        titulo_pt: "Clean Up Demo Reel",
                         categoria: "cleanup",
-                        label: "Clean Up",
+                        label_en: "Demo Reel",
+                        label_pt: "Demo Reel",
+                        thumb: "CleanUpReelCapa.jpg",   // troque pela capa que quiser
+                        preview: "",                    // sem preview de vídeo no card
+                        pagina: "project-demo-reel-clean.html",
+                        isReel: true,
+                        desc_en: "A compilation of clean up work across multiple projects — base color, lighting and shadow passes in Toon Boom Harmony.",
+                        desc_pt: "Compilação de trabalhos de clean up em diversos projetos — passes de cor base, luz e sombra no Toon Boom Harmony.",
+                    },
+                    // ── Projetos individuais ────────────────────────────────
+                    {
+                        titulo_en: "Impossible Journey",
+                        titulo_pt: "Impossible Journey",
+                        categoria: "cleanup",
+                        label_en: "Clean Up",
+                        label_pt: "Clean Up",
                         thumb: "ImpossibleJourneyCapa.jpeg",
-                        preview: "preview-motion",
+                        preview: "ImpossibleJourneyBebe_01",
                         pagina: "project-impossible-journey.html",
                     },
                     {
-                        titulo: "The Lost Glitches",
+                        titulo_en: "The Lost Glitches",
+                        titulo_pt: "The Lost Glitches",
                         categoria: "cleanup",
-                        label: "Clean Up",
+                        label_en: "Clean Up",
+                        label_pt: "Clean Up",
                         thumb: "TheLostGlitchesCapa.jpg",
-                        preview: "TheLostGlitchesPreview",
+                        preview: "TheLostGlitchesSH380_LUZ",
                         pagina: "project-the-lost-glitches.html",
                     },
                     {
-                        titulo: "Max Dynamic",
-                        categoria: "2d",
-                        label: "Animação 2D",
-                        thumb: "https://images.unsplash.com/photo-1633533412154-53afb7875b28?auto=format&fit=crop&w=800&q=80",
-                        preview: "preview-2d",
-                        pagina: "projeto-max.html",
+                        titulo_en: "Convergence",
+                        titulo_pt: "Convergence",
+                        categoria: "cleanup",
+                        label_en: "Clean Up",
+                        label_pt: "Clean Up",
+                        thumb: "ConvergenceCapa.jpg",
+                        preview: "ConvergenceSH760_LUZ",
+                        pagina: "project-convergence.html",
                     },
-                    // ➕ Para adicionar um projeto novo, copie o bloco acima e cole aqui
+                    {
+                        titulo_en: "Active Rings",
+                        titulo_pt: "Active Rings",
+                        categoria: "cleanup",
+                        label_en: "Clean Up",
+                        label_pt: "Clean Up",
+                        thumb: "ActiveRingsCapa.jpg",
+                        preview: "ActiveRingsSH11_COR",
+                        pagina: "project-active-rings.html",
+                    },
+                    {
+                        titulo_en: "Havaianas",
+                        titulo_pt: "Havaianas",
+                        categoria: "cleanup",
+                        label_en: "Clean Up",
+                        label_pt: "Clean Up",
+                        thumb: "HavaianasCapa.jpg",
+                        preview: "HavaianasSH09_COR",
+                        pagina: "project-havaianas.html",
+                    },
+                    {
+                        titulo_en: "The Ring",
+                        titulo_pt: "The Ring",
+                        categoria: "cleanup",
+                        label_en: "Clean Up",
+                        label_pt: "Clean Up",
+                        thumb: "TheRingCapa.jpg",
+                        preview: "TheRingSH140_LUZ",
+                        pagina: "project-the-ring.html",
+                    },
+                    {
+                        titulo_en: "Tiger Beer",
+                        titulo_pt: "Tiger Beer",
+                        categoria: "cleanup",
+                        label_en: "Clean Up",
+                        label_pt: "Clean Up",
+                        thumb: "TigerBeerCapa.jpg",
+                        preview: "TigerBeerSH3000_COR",
+                        pagina: "project-tiger-beer.html",
+                    },
                 ];
 
-                // ─── Renderização automática — não precisa editar ─────────
+                // ─── Renderização ─────────────────────────────────────────
                 const grid = document.getElementById('projectGrid');
                 const delays = ['delay-1', 'delay-2', 'delay-3', 'delay-4', 'delay-5', 'delay-6'];
-                grid.innerHTML = PROJETOS.map((p, i) => `
-                <div class="project-card reveal ${delays[i % delays.length]}"
-                    data-category="${p.categoria}"
-                    onclick="window.location.href='${p.pagina}'">
-                    <div class="project-image-container">
-                        <img src="${p.thumb}" alt="${p.titulo}" class="project-image">
-                        <video class="project-video" autoplay muted loop playsinline
-                            oncanplay="this.classList.add('loaded')">
-                            <source src="${p.preview}.mov" type='video/mp4; codecs="hvc1"'>
-                            <source src="${p.preview}.webm" type="video/webm">
-                        </video>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-category">${p.label}</span>
-                        <h3 class="project-title">${p.titulo}</h3>
-                    </div>
-                </div>
-            `).join('');
 
-                // Observa os cards gerados dinamicamente assim que forem criados
+                let normalIndex = 0;  // contador separado para cards normais
+                grid.innerHTML = PROJETOS.map((p, i) => {
+                    if (p.isReel) {
+                        // Card largo do reel
+                        return `
+                        <div class="project-card reel-card reveal"
+                             data-category="${p.categoria}"
+                             onclick="window.location.href='${p.pagina}'">
+                            <div class="project-image-container">
+                                <img src="${p.thumb}" alt="${p.titulo_en}" class="project-image">
+                            </div>
+                            <div class="project-info">
+                                <span class="reel-badge" data-reel-label="true">Demo Reel</span>
+                                <h3 class="project-title" data-reel-title="true">${p.titulo_en}</h3>
+                                <p class="reel-desc" data-reel-desc="true">${p.desc_en}</p>
+                                <a href="${p.pagina}" class="reel-cta" data-reel-cta="true">
+                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    Watch Reel
+                                </a>
+                            </div>
+                        </div>`;
+                    }
+
+                    // Cards normais
+                    const ni = normalIndex++;
+                    const previewHTML = p.preview
+                        ? `<video class="project-video" autoplay muted loop playsinline oncanplay="this.classList.add('loaded')">
+                               <source src="${p.preview}.mov" type='video/mp4; codecs="hvc1"'>
+                               <source src="${p.preview}.webm" type="video/webm">
+                           </video>`
+                        : '';
+
+                    return `
+                    <div class="project-card reveal ${delays[ni % delays.length]}"
+                         data-category="${p.categoria}"
+                         onclick="window.location.href='${p.pagina}'">
+                        <div class="project-image-container">
+                            <img src="${p.thumb}" alt="${p.titulo_en}" class="project-image">
+                            ${previewHTML}
+                        </div>
+                        <div class="project-info">
+                            <span class="project-category" data-proj-label="${ni}">${p.label_en}</span>
+                            <h3 class="project-title" data-proj-title="${ni}">${p.titulo_en}</h3>
+                        </div>
+                    </div>`;
+                }).join('');
+
+                // Observa os cards para o reveal
                 grid.querySelectorAll('.reveal').forEach(el => {
                     if (window.__portfolioObserver) window.__portfolioObserver.observe(el);
                 });
+
+                // Expõe PROJETOS para o sistema de i18n
+                window.PROJETOS = PROJETOS;
             </script>
         </div>
     </section>
@@ -1346,10 +1487,12 @@
                     <span class="section-tag" data-i18n="about_tag">Minha Jornada</span>
                     <h2 data-i18n="about_title">Dando Vida a <br><span style="color:var(--accent-color)">Ideias</span>.
                     </h2>
-                    <p data-i18n="about_p1">Com anos de experiência no mercado de animação, especializei-me no
-                        equilíbrio entre a técnica meticulosa do Clean Up e a criatividade do Motion Design.</p>
-                    <p data-i18n="about_p2">Acredito que cada movimento deve contar uma história visual impactante e
-                        fluida.</p>
+                    <p data-i18n="about_p0">Olá, muito prazer!</p>
+                    <p data-i18n="about_p1">Me chamo Moacyr Neto, sou um artista multidisciplinar com
+                        foco em Motion Design e Animação 2D, formado em Design gráfico pela Universidade de Mogi Das
+                        Cruzes, tendo auxiliado diversas empresas na criação de conteúdo visual desde 2017.</p>
+                    <p data-i18n="about_p2">Sou uma pessoa apaixonada por Ritmo, formas e cores, e busco sempre explorar
+                        novas formas de expressão artística.</p>
                 </div>
             </div>
         </div>
@@ -1411,12 +1554,10 @@
             <div class="logo-video-wrap" style="margin-bottom: 25px; justify-content: center;">
                 <a href="javascript:void(0)" class="logo-text" onclick="scrollToTop(this)" title="Back to top">
                     <svg class="logo-star" viewBox="0 0 24 24">
-                        <!-- Ícone de seta para cima para retorno ao topo -->
                         <path d="M7 14l5-5 5 5H7z" />
                     </svg>
                 </a>
             </div>
-
         </div>
     </footer>
 
@@ -1438,27 +1579,20 @@
         // ====== Splash Screen + Transição ======
         (function () {
             document.body.classList.add('splash-active');
-
             const splash = document.getElementById('splash');
             const overlay = document.getElementById('transitionOverlay');
             const transVideo = document.getElementById('transitionVideo');
 
             function showHero() {
-                // Remove overlay e libera o hero para aparecer
                 overlay.classList.remove('playing');
                 setTimeout(() => overlay.remove(), 500);
             }
 
             function playTransition() {
-                // Se não tiver o arquivo, pula direto pro hero
-                if (!transVideo.src || transVideo.readyState === 0) {
-                    showHero();
-                    return;
-                }
+                if (!transVideo.src || transVideo.readyState === 0) { showHero(); return; }
                 overlay.classList.add('playing');
                 transVideo.play();
                 transVideo.addEventListener('ended', showHero, { once: true });
-                // Fallback: se o vídeo travar, remove após 8s
                 setTimeout(showHero, 8000);
             }
 
@@ -1471,14 +1605,12 @@
                 }, { once: true });
             }
 
-            // Dispara após as animações de texto terminarem (~2.2s)
             setTimeout(dismissSplash, 2200);
         })();
 
-        // ====== Formulário via Fetch (sem sair da página) ======
+        // ====== Formulário ======
         document.getElementById('contactForm').addEventListener('submit', async function (e) {
             e.preventDefault();
-
             const btn = document.getElementById('submitBtn');
             const originalText = btn.textContent;
             btn.textContent = currentLang === 'pt' ? 'Enviando...' : 'Sending...';
@@ -1498,18 +1630,13 @@
                     headers: { 'Accept': 'application/json' },
                     body: data
                 });
-
-                // Limpa o formulário
                 document.getElementById('contactForm').reset();
-
-                // Mostra o toast de confirmação
                 const toast = document.getElementById('toast');
                 toast.textContent = translations[currentLang].toast_msg;
                 requestAnimationFrame(() => {
                     toast.classList.add('show');
                     setTimeout(() => toast.classList.remove('show'), 4000);
                 });
-
             } catch (err) {
                 alert(currentLang === 'pt' ? 'Erro ao enviar. Tente novamente.' : 'Error sending. Please try again.');
             } finally {
@@ -1518,82 +1645,84 @@
             }
         });
 
-        // ====== i18n Translation System ======
+        // ====== i18n ======
         let currentLang = 'en';
 
         const translations = {
             en: {
-                nav_portfolio: 'Portfolio',
-                nav_about: 'About',
-                nav_contact: 'Contact',
-                hero_name: 'Moacyr Neto',
+                nav_portfolio: 'Portfolio', nav_about: 'About', nav_contact: 'Contact',
                 hero_specs: 'Motion Design · Clean Up · 2D Animation',
                 hero_cta: 'Explore Projects',
-                clients_tag: 'Companies & Clients',
-                clients_studios: 'Studios',
-                clients_brands: 'Brands',
-                portfolio_tag: 'Featured Works',
-                portfolio_title: 'My Portfolio',
-                filter_all: 'All',
-                filter_motion: 'Motion Design',
-                filter_cleanup: 'Clean Up',
-                filter_2d: '2D Animation',
+                clients_tag: 'Companies & Clients', clients_studios: 'Studios', clients_brands: 'Brands',
+                portfolio_tag: 'Featured Works', portfolio_title: 'My Portfolio',
+                filter_all: 'All', filter_motion: 'Motion Design', filter_cleanup: 'Clean Up', filter_2d: '2D Animation',
                 about_tag: 'My Journey',
                 about_title: 'Bringing <br><span style="color:var(--accent-color)">Ideas</span> to Life.',
-                about_p1: 'With years of experience in the animation industry, I specialize in the balance between meticulous Clean Up technique and the creativity of Motion Design.',
-                about_p2: 'I believe every movement should tell a visually impactful and fluid story.',
-                contact_tag: 'Ready to start?',
-                contact_title: "Let's bring your project to life",
+                about_p0: 'Hi, nice to meet you!',
+                about_p1: 'My name is Moacyr Neto \u2014 I\'m a multidisciplinary artist focused on Motion Design and 2D Animation, graduated in Graphic Design from Universidade de Mogi Das Cruzes. I\'ve been helping companies create visual content since 2017.',
+                about_p2: 'I\'m someone passionate about rhythm, shapes and colors, and I always seek to explore new forms of artistic expression.',
+                contact_tag: 'Ready to start?', contact_title: "Let's bring your project to life",
                 contact_btn: 'Send Message',
-                footer_copy: '&copy; 2024 Moacyr Neto. All rights reserved.',
-                ph_name: 'Your Name',
-                ph_email: 'Your E-mail',
-                ph_message: 'Tell me about your project...',
-                toast_msg: 'Message sent!'
+                ph_name: 'Your Name', ph_email: 'Your E-mail', ph_message: 'Tell me about your project...',
+                toast_msg: 'Message sent!',
+                reel_watch: 'Watch Reel',
+                reel_desc: 'A compilation of clean up work across multiple projects — base color, lighting and shadow passes in Toon Boom Harmony.',
             },
             pt: {
-                nav_portfolio: 'Portfólio',
-                nav_about: 'Sobre',
-                nav_contact: 'Contato',
-                hero_name: 'Moacyr Neto',
+                nav_portfolio: 'Portfólio', nav_about: 'Sobre', nav_contact: 'Contato',
                 hero_specs: 'Motion Design · Clean Up · Animação 2D',
                 hero_cta: 'Explorar Projetos',
-                clients_tag: 'Empresas & Clientes',
-                clients_studios: 'Estúdios',
-                clients_brands: 'Marcas',
-                portfolio_tag: 'Trabalhos em Destaque',
-                portfolio_title: 'Meu Portfólio',
-                filter_all: 'Todos',
-                filter_motion: 'Motion Design',
-                filter_cleanup: 'Clean Up',
-                filter_2d: 'Animação 2D',
+                clients_tag: 'Empresas & Clientes', clients_studios: 'Estúdios', clients_brands: 'Marcas',
+                portfolio_tag: 'Trabalhos em Destaque', portfolio_title: 'Meu Portfólio',
+                filter_all: 'Todos', filter_motion: 'Motion Design', filter_cleanup: 'Clean Up', filter_2d: 'Animação 2D',
                 about_tag: 'Minha Jornada',
                 about_title: 'Dando Vida a <br><span style="color:var(--accent-color)">Ideias</span>.',
-                about_p1: 'Com anos de experiência no mercado de animação, especializei-me no equilíbrio entre a técnica meticulosa do Clean Up e a criatividade do Motion Design.',
-                about_p2: 'Acredito que cada movimento deve contar uma história visual impactante e fluida.',
-                contact_tag: 'Pronto para começar?',
-                contact_title: 'Vamos dar movimento ao seu projeto',
+                about_p0: 'Olá, muito prazer!',
+                about_p1: 'Me chamo Moacyr Neto, sou um artista multidisciplinar com foco em Motion Design e Animação 2D, formado em Design gráfico pela Universidade de Mogi Das Cruzes, tendo auxiliado diversas empresas na criação de conteúdo visual desde 2017.',
+                about_p2: 'Sou uma pessoa apaixonada por Ritmo, formas e cores, e busco sempre explorar novas formas de expressão artística.',
+                contact_tag: 'Pronto para começar?', contact_title: 'Vamos dar movimento ao seu projeto',
                 contact_btn: 'Enviar Mensagem',
-                footer_copy: '&copy; 2024 Moacyr Neto. Todos os direitos reservados.',
-                ph_name: 'Seu Nome',
-                ph_email: 'Seu E-mail',
-                ph_message: 'Conte-me sobre o seu projeto...',
-                toast_msg: 'Mensagem enviada!'
+                ph_name: 'Seu Nome', ph_email: 'Seu E-mail', ph_message: 'Conte-me sobre o seu projeto...',
+                toast_msg: 'Mensagem enviada!',
+                reel_watch: 'Assistir Reel',
+                reel_desc: 'Compilação de trabalhos de clean up em diversos projetos — passes de cor base, luz e sombra no Toon Boom Harmony.',
             }
         };
 
         function applyTranslations(lang) {
+            const t = translations[lang];
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) el.innerHTML = translations[lang][key];
+                if (t[key]) el.innerHTML = t[key];
             });
             document.querySelectorAll('[data-i18n-ph]').forEach(el => {
                 const key = el.getAttribute('data-i18n-ph');
-                if (translations[lang][key]) el.placeholder = translations[lang][key];
+                if (t[key]) el.placeholder = t[key];
             });
-            // Atualiza toast
-            const toast = document.getElementById('toast');
-            if (toast) toast.textContent = translations[lang].toast_msg;
+
+            // Atualiza o card do reel
+            const reelDesc = document.querySelector('[data-reel-desc]');
+            const reelCta = document.querySelector('[data-reel-cta]');
+            const reelTitle = document.querySelector('[data-reel-title]');
+            if (reelDesc) reelDesc.textContent = t.reel_desc;
+            if (reelCta) reelCta.innerHTML = `<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> ${t.reel_watch}`;
+            if (reelTitle && window.PROJETOS) {
+                const r = window.PROJETOS.find(p => p.isReel);
+                if (r) reelTitle.textContent = lang === 'pt' ? r.titulo_pt : r.titulo_en;
+            }
+
+            // Atualiza labels/títulos dos cards normais
+            document.querySelectorAll('[data-proj-label]').forEach(el => {
+                const i = parseInt(el.getAttribute('data-proj-label'));
+                const p = window.PROJETOS ? window.PROJETOS.filter(x => !x.isReel)[i] : null;
+                if (p) el.textContent = lang === 'pt' ? p.label_pt : p.label_en;
+            });
+            document.querySelectorAll('[data-proj-title]').forEach(el => {
+                const i = parseInt(el.getAttribute('data-proj-title'));
+                const p = window.PROJETOS ? window.PROJETOS.filter(x => !x.isReel)[i] : null;
+                if (p) el.textContent = lang === 'pt' ? p.titulo_pt : p.titulo_en;
+            });
+
             document.documentElement.lang = lang === 'pt' ? 'pt-br' : 'en';
         }
 
@@ -1605,86 +1734,55 @@
 
         // ====== Intersection Observer ======
         const observeOptions = { threshold: 0.1, rootMargin: "0px 0px -30px 0px" };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
+                if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); }
             });
         }, observeOptions);
         window.__portfolioObserver = observer;
-
         document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
-        // ====== Marquee Seamless Fix ======
+        // ====== Marquee ======
         (function () {
             function setupMarquee(track) {
                 const wrapper = track.parentElement;
                 const wrapperWidth = wrapper.offsetWidth;
-
-                // Pega os itens originais (já renderizados no HTML)
                 const originalItems = Array.from(track.children);
                 if (originalItems.length === 0) return;
-
-                // Mede a largura do set original (com margins)
                 let setWidth = 0;
                 originalItems.forEach(item => {
                     const style = getComputedStyle(item);
                     setWidth += item.offsetWidth + parseFloat(style.marginRight || 0);
                 });
-
-                // Clona o set inteiro até que ele sozinho preencha a tela
-                // Isso evita que logos "sumam" durante a animação
                 while (setWidth < wrapperWidth) {
-                    originalItems.forEach(item => {
-                        track.appendChild(item.cloneNode(true));
-                    });
-                    setWidth *= 2; // cada rodada dobra a largura
+                    originalItems.forEach(item => track.appendChild(item.cloneNode(true)));
+                    setWidth *= 2;
                 }
-
-                // Agora duplica TUDO uma vez para o loop seamless de 50%
                 const expandedItems = Array.from(track.children);
                 expandedItems.forEach(item => track.appendChild(item.cloneNode(true)));
-
-                // Calcula duração: metade do scrollWidth / velocidade
-                const SPEED = 80; // pixels por segundo
+                const SPEED = 80;
                 const halfWidth = track.scrollWidth / 2;
-                const duration = halfWidth / SPEED;
-                track.style.animationDuration = duration + 's';
+                track.style.animationDuration = (halfWidth / SPEED) + 's';
             }
-
             window.addEventListener('load', () => {
                 document.querySelectorAll('.marquee-track').forEach(setupMarquee);
             });
         })();
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const projects = document.querySelectorAll('.project-card');
 
+        // ====== Filter ======
+        const filterBtns = document.querySelectorAll('.filter-btn');
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 const filter = btn.getAttribute('data-filter');
-                projects.forEach(project => {
-                    project.style.display = (filter === 'all' || project.getAttribute('data-category') === filter) ? 'block' : 'none';
+                document.querySelectorAll('.project-card').forEach(project => {
+                    project.style.display = (filter === 'all' || project.getAttribute('data-category') === filter) ? '' : 'none';
                 });
             });
         });
 
         // ====== Modal ======
-        function openProjectI18n(card, videoUrl) {
-            const suffix = currentLang;
-            const title = card.getAttribute('data-title-' + suffix);
-            const desc = card.getAttribute('data-desc-' + suffix);
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDescription').innerText = desc;
-            document.getElementById('projectVideo').src = videoUrl;
-            document.getElementById('projectModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
         function closeModal() {
             document.getElementById('projectModal').style.display = 'none';
             document.getElementById('projectVideo').src = '';
@@ -1694,40 +1792,35 @@
         function closeModalOnSide(event) {
             if (event.target.id === 'projectModal') closeModal();
         }
-        // ====== Mobile Menu Logic ======
+
+        // ====== Mobile Menu ======
         function toggleMobileMenu() {
             const header = document.querySelector('header');
             const nav = document.querySelector('.nav-links');
             const isOpen = nav.classList.toggle('open');
             header.classList.toggle('nav-open', isOpen);
-            // Removido o lock de scroll para evitar travamento no celular
         }
 
-        // Close menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 const header = document.querySelector('header');
                 const nav = document.querySelector('.nav-links');
-                if (nav.classList.contains('open')) {
-                    toggleMobileMenu();
-                }
+                if (nav.classList.contains('open')) toggleMobileMenu();
             });
         });
 
-        // ====== Scroll to Top Logic ======
+        // ====== Scroll to Top ======
         function scrollToTop(el) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
             const star = el.querySelector('.logo-star');
             if (star) {
                 star.classList.remove('active');
-                // Force reflow to restart animation
                 void star.offsetWidth;
                 star.classList.add('active');
                 setTimeout(() => star.classList.remove('active'), 700);
             }
         }
 
-        // Initialize language
         applyTranslations(currentLang);
     </script>
 </body>
