@@ -122,7 +122,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 0;
+            padding: 10px 0;
             z-index: 1000;
             background: transparent;
             border-bottom: none;
@@ -163,7 +163,7 @@
         .logo-video-wrap {
             display: flex;
             align-items: center;
-            height: 42px;
+            height: 120px;
         }
 
         .logo-text {
@@ -175,10 +175,15 @@
         }
 
         .logo-star {
-            width: 32px;
-            height: 32px;
+            width: 120px;
+            height: 120px;
             fill: #fff;
             transition: fill 0.3s ease, transform 0.3s ease;
+        }
+
+        video.logo-star {
+            object-fit: contain;
+            fill: none;
         }
 
         .logo-text:hover .logo-star {
@@ -227,7 +232,7 @@
         }
 
         .hero {
-            padding: 80px 0 30px;
+            padding: 130px 0 30px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -245,7 +250,7 @@
             width: 100%;
             border-radius: 28px;
             overflow: hidden;
-            height: calc(100vh - 120px);
+            height: calc(100vh - 170px);
             border: 1px solid var(--glass-border);
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
             background: #0a0f1e;
@@ -1086,11 +1091,11 @@
             }
 
             .hero {
-                padding: 70px 0 20px;
+                padding: 120px 0 20px;
             }
 
             .hero-card {
-                height: calc(100vh - 100px);
+                height: calc(100vh - 150px);
                 border-radius: 18px;
             }
 
@@ -1241,10 +1246,9 @@
             <nav>
                 <div class="logo-video-wrap">
                     <a href="javascript:void(0)" class="logo-text" onclick="scrollToTop(this)">
-                        <svg class="logo-star" viewBox="0 0 24 24">
-                            <path
-                                d="M12 1L13.8 10.2L22.5 8.6L14.9 13.1L18.5 22.5L12 15L5.5 22.5L9.2 13.1L1.5 8.6L10.2 10.2Z" />
-                        </svg>
+                        <video class="logo-star" autoplay loop muted playsinline style="pointer-events: none;">
+                            <source src="Logo_Animada_Versao_clara.webm" type="video/webm">
+                        </video>
                     </a>
                 </div>
                 <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
@@ -1831,13 +1835,6 @@
         // ====== Scroll to Top ======
         function scrollToTop(el) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            const star = el.querySelector('.logo-star');
-            if (star) {
-                star.classList.remove('active');
-                void star.offsetWidth;
-                star.classList.add('active');
-                setTimeout(() => star.classList.remove('active'), 700);
-            }
         }
 
         applyTranslations(currentLang);
