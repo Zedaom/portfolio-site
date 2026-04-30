@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -487,42 +487,12 @@
             transform: translateY(0);
         }
 
-        .lang-btn {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            z-index: 100;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            color: white;
-            padding: 10px 18px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .lang-btn:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            color: #000;
-        }
-
-        @media (max-width: 768px) {
+@media (max-width: 768px) {
             .container {
                 padding: 0 20px;
             }
 
-            .lang-btn {
-                top: 16px;
-                right: 16px;
-                padding: 8px 14px;
-            }
-
-            .back-btn {
+.back-btn {
                 top: 16px;
                 left: 16px;
                 font-size: 0.75rem;
@@ -615,10 +585,11 @@
         </svg>
         <span class="back-label" data-i18n="back">Portfolio</span>
     </a>
-    <button class="lang-btn" id="langBtn" onclick="toggleLang()">PT</button>
-
     <div class="project-hero">
-        <img src="TheRingCapa.jpg" alt="THE RING" class="project-hero-img">
+        <video class="project-hero-img" autoplay muted loop playsinline preload="metadata" poster="TheRingCapa.jpg">
+            <source src="The_Ring_Recorte.webm" type="video/webm">
+            <source src="The_Ring_Recorte.mp4" type="video/mp4">
+        </video>
         <div class="project-hero-overlay"></div>
         <div class="project-hero-info">
             <div class="container">
@@ -842,85 +813,6 @@
         }
     </script>
 
-    <script>
-        const TRADUCOES = {
-            pt: {
-                back: "Portfólio",
-                sobre_title_main: "Sobre o<br><span>Projeto</span>",
-                sobre_p1: "Trabalho de Clean up em múltiplas cenas com cor base, line art e passes de iluminação.",
-                nav_prev: "Voltar",
-                nav_next: "Próximo",
-                meta_dir: "Direção",
-                meta_prod: "Produção",
-                meta_year: "Ano",
-                meta_soft: "Software",
-                full_credits: "Créditos Completos",
-                close_credits: "Fechar Créditos",
-                credits_tag: "Créditos"
-            },
-            en: {
-                back: "Portfolio",
-                sobre_title_main: "About the<br><span>Project</span>",
-                sobre_p1: "Clean up work on scenes featuring line art and lighting passes.",
-                nav_prev: "Back",
-                nav_next: "Next",
-                meta_dir: "Direction",
-                meta_prod: "Production",
-                meta_year: "Year",
-                meta_soft: "Software",
-                full_credits: "Full Credits",
-                close_credits: "Close Credits",
-                credits_tag: "Credits"
-            }
-        };
-
-        let currentLang = 'en';
-
-        function toggleLang() {
-            currentLang = currentLang === 'pt' ? 'en' : 'pt';
-            document.getElementById('langBtn').textContent = currentLang === 'pt' ? 'EN' : 'PT';
-            applyLang(currentLang);
-        }
-
-        function applyLang(lang) {
-            const t = TRADUCOES[lang];
-
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (t[key]) {
-                    if (key.includes('title') || key.includes('sobre')) {
-                        el.innerHTML = t[key];
-                    } else {
-                        el.textContent = t[key];
-                    }
-                }
-            });
-
-            const prevLink = document.getElementById('prevProject');
-            const nextLink = document.getElementById('nextProject');
-            if (prevLink) prevLink.innerHTML = `<svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" /></svg> ${t.nav_prev}`;
-            if (nextLink) nextLink.innerHTML = `${t.nav_next} <svg viewBox="0 0 24 24"><path d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4v-2z" /></svg>`;
-
-            const toggleBtn = document.getElementById('creditsToggle');
-            if (toggleBtn) {
-                const isOpen = document.getElementById('creditsFull').classList.contains('open');
-                toggleBtn.childNodes[0].textContent = isOpen ? t.close_credits + ' ' : t.full_credits + ' ';
-            }
-        }
-
-        // ====== Scroll to Top Logic ======
-        function scrollToTop(el) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            const star = el.querySelector('.logo-star');
-            if (star) {
-                star.classList.add('active');
-                setTimeout(() => star.classList.remove('active'), 400);
-            }
-        }
-
-        // Initialize in English
-        applyLang(currentLang);
-    </script>
-</body>
+    </body>
 
 </html>
